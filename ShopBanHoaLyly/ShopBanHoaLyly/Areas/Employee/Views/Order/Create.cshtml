@@ -1,0 +1,493 @@
+@model ShopBanHoaLyly.Models.DonHang
+@{
+    ViewData["Title"] = "Tạo đơn hàng";
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeeLayout.cshtml";
+    var products = ViewBag.Products as List<ShopBanHoaLyly.Models.SanPham>;
+    var paymentMethods = ViewBag.PaymentMethods as List<ShopBanHoaLyly.Models.PhuongThucThanhToan>;
+    var orderStatuses = ViewBag.OrderStatuses as List<ShopBanHoaLyly.Models.TrangThaiDonHang>;
+    var quanHuyens = ViewBag.QuanHuyens as List<ShopBanHoaLyly.Models.QuanHuyen>;
+    var phuongXas = ViewBag.PhuongXas;
+    
+    // Tạo danh sách đơn giản để serialize
+    var quanHuyenList = quanHuyens.Select(q => new { Id = q.MaQuanHuyen, Name = q.TenQuanHuyen }).ToList();
+}
+
+<style>
+    .form-select, .form-control {
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+    
+    .form-select:focus, .form-control:focus {
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+    
+    .field-validation-error {
+        color: #dc3545;
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+    
+    .input-validation-error {
+        border-color: #dc3545;
+    }
+    
+    .input-validation-error:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+</style>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Tạo đơn hàng</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="post" asp-action="Create" id="orderForm">
+                        @Html.AntiForgeryToken()
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Thông tin người nhận</h5>
+                                <div class="mb-3">
+                                    <label for="NguoiNhan" class="form-label">Tên người nhận <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="NguoiNhan" name="NguoiNhan" value="@Model.NguoiNhan" required data-val="true" data-val-required="Vui lòng nhập tên người nhận">
+                                    <span asp-validation-for="NguoiNhan" class="text-danger"></span>
+                                    <span data-valmsg-for="NguoiNhan" data-valmsg-replace="true" class="field-validation-error"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="SoDienThoaiNhan" class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="SoDienThoaiNhan" name="SoDienThoaiNhan" value="@Model.SoDienThoaiNhan" required 
+                                           data-val="true" 
+                                           data-val-required="Vui lòng nhập số điện thoại người nhận"
+                                           data-val-regex="Số điện thoại không hợp lệ"
+                                           data-val-regex-pattern="^(0|\+84)\d{9,10}$">
+                                    <span asp-validation-for="SoDienThoaiNhan" class="text-danger"></span>
+                                    <span data-valmsg-for="SoDienThoaiNhan" data-valmsg-replace="true" class="field-validation-error"></span>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="QuanHuyen" class="form-label">Quận/Huyện <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="QuanHuyen" name="QuanHuyen" required data-val="true" data-val-required="Vui lòng chọn Quận/Huyện">
+                                            <option value="">-- Chọn Quận/Huyện --</option>
+                                            @foreach (var quanHuyen in quanHuyenList)
+                                            {
+                                                <option value="@quanHuyen.Id">@quanHuyen.Name</option>
+                                            }
+                                        </select>
+                                        <span class="field-validation-error" data-valmsg-for="QuanHuyen" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="PhuongXa" class="form-label">Phường/Xã <span class="text-danger">*</span></label>
+                                        <select class="form-select" id="PhuongXa" name="PhuongXa" required disabled data-val="true" data-val-required="Vui lòng chọn Phường/Xã">
+                                            <option value="">-- Chọn Phường/Xã --</option>
+                                        </select>
+                                        <span class="field-validation-error" data-valmsg-for="PhuongXa" data-valmsg-replace="true"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="DiaChiGiaoHang" class="form-label">Số nhà, đường <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="DiaChiGiaoHang" name="DiaChiGiaoHang" value="@Model.DiaChiGiaoHang" required data-val="true" data-val-required="Vui lòng nhập địa chỉ giao hàng">
+                                    <span asp-validation-for="DiaChiGiaoHang" class="text-danger"></span>
+                                    <span data-valmsg-for="DiaChiGiaoHang" data-valmsg-replace="true" class="field-validation-error"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="GhiChu" class="form-label">Ghi chú</label>
+                                    <textarea class="form-control" id="GhiChu" name="GhiChu" rows="3">@Model.GhiChu</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Thông tin đơn hàng</h5>
+                                <div class="mb-3">
+                                    <label for="MaPhuongThucThanhToan" class="form-label">Phương thức thanh toán</label>
+                                    <select class="form-select" id="MaPhuongThucThanhToan" name="MaPhuongThucThanhToan">
+                                        @foreach (var method in paymentMethods)
+                                        {
+                                            if (Model.MaPhuongThucThanhToan == method.MaPhuongThucThanhToan)
+                                            {
+                                                <option value="@method.MaPhuongThucThanhToan" selected>@method.TenPhuongThucThanhToan</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@method.MaPhuongThucThanhToan">@method.TenPhuongThucThanhToan</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                                <!-- Ẩn trường trạng thái, mặc định = 1 (Đã đặt hàng) -->
+                                <input type="hidden" name="MaTrangThaiDonHang" value="1" />
+                                <div class="mb-3">
+                                    <label class="form-label d-block">Phí vận chuyển</label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="IsPickup" id="shipDelivery" value="false" checked>
+                                        <label class="form-check-label" for="shipDelivery">Giao hàng (tính phí)</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="IsPickup" id="shipPickup" value="true">
+                                        <label class="form-check-label" for="shipPickup">Nhận tại cửa hàng (miễn phí)</label>
+                                    </div>
+                                    <input type="hidden" id="PhiVanChuyen" name="PhiVanChuyen" value="@Model.PhiVanChuyen">
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="TrangThaiThanhToan" name="TrangThaiThanhToan" value="true" @(Model.TrangThaiThanhToan == true ? "checked" : "")>
+                                    <label class="form-check-label" for="TrangThaiThanhToan">Đã thanh toán</label>
+                                </div>
+                                <div class="card mt-4">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Thông tin thanh toán</h6>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Tổng tiền hàng:</span>
+                                            <span id="subtotal">0₫</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Phí vận chuyển:</span>
+                                            <span id="shipping-fee">30.000₫</span>
+                                        </div>
+                                        <small class="form-text text-muted d-block mb-2">Miễn phí vận chuyển cho đơn hàng từ 500.000₫</small>
+                                        <hr>
+                                        <div class="d-flex justify-content-between fw-bold">
+                                            <span>Tổng thanh toán:</span>
+                                            <span id="total-payment">30.000₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mb-3">Chọn sản phẩm</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="productTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%">#</th>
+                                        <th style="width: 15%">Ảnh</th>
+                                        <th style="width: 30%">Tên sản phẩm</th>
+                                        <th style="width: 15%">Giá bán</th>
+                                        <th style="width: 15%">Số lượng</th>
+                                        <th style="width: 15%">Thành tiền</th>
+                                        <th style="width: 5%">Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productTableBody">
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal">
+                                                <i class="fa fa-plus"></i> Thêm sản phẩm
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="text-danger" id="productError">
+                            @if (TempData["ProductError"] != null)
+                            {
+                                @TempData["ProductError"]
+                            }
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-between">
+                            <a href="@Url.Action("Index")" class="btn btn-danger">Hủy</a>
+                            <button type="submit" class="btn btn-primary">Tạo đơn hàng</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal chọn sản phẩm -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Chọn sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm..." id="searchProduct">
+                            <button class="btn btn-outline-secondary" type="button" id="btnSearchProduct">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="modalProductTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%">#</th>
+                                <th style="width: 15%">Ảnh</th>
+                                <th style="width: 30%">Tên sản phẩm</th>
+                                <th style="width: 15%">Danh mục</th>
+                                <th style="width: 15%">Giá bán</th>
+                                <th style="width: 10%">Tồn kho</th>
+                                <th style="width: 10%">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in products)
+                            {
+                                var mainImage = product.HinhAnhs.FirstOrDefault()?.DuongDan ?? "no-image.png";
+                                
+                                <tr data-id="@product.MaSanPham" data-name="@product.TenSanPham" data-price="@product.GiaBan" data-image="@mainImage">
+                                    <td>@product.MaSanPham</td>
+                                    <td>
+                                        <img src="/images/product/@mainImage" class="img-thumbnail" style="max-height: 50px;">
+                                    </td>
+                                    <td>@product.TenSanPham</td>
+                                    <td>@product.MaDanhMucNavigation?.TenDanhMuc</td>
+                                    <td>@(product.GiaBan?.ToString("C0"))</td>
+                                    <td>@product.SoLuongCon</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm btn-primary btn-add-product">
+                                            <i class="fa fa-plus"></i> Chọn
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Kích hoạt jQuery validation
+            $.validator.setDefaults({
+                ignore: [],
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('input-validation-error');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('input-validation-error');
+                }
+            });
+            
+            // Xử lý validation cho dropdown Phường/Xã
+            $("#QuanHuyen").on("change", function() {
+                // Xóa lỗi validation khi người dùng chọn Quận/Huyện
+                if ($(this).val()) {
+                    $(this).removeClass('input-validation-error');
+                    $('[data-valmsg-for="QuanHuyen"]').text('');
+                }
+            });
+            
+            // Xử lý dropdown phường xã theo quận huyện
+            $("#QuanHuyen").change(function() {
+                var quanHuyenId = $(this).val();
+                console.log("Quận/Huyện được chọn:", quanHuyenId);
+                
+                if (quanHuyenId) {
+                    // Danh sách phường/xã được serialize phía server
+                    var phuongXaList = @Html.Raw(Json.Serialize(phuongXas));
+                    console.log("Tổng số phường xã:", phuongXaList.length);
+                    
+                    // Lọc theo quận/huyện (hỗ trợ cả PascalCase và camelCase)
+                    var filteredPhuongXas = phuongXaList.filter(function(px) {
+                        var qhId = px.MaQuanHuyen !== undefined ? px.MaQuanHuyen : px.maQuanHuyen;
+                        return qhId == quanHuyenId;
+                    });
+                    
+                    console.log("Số phường xã tìm thấy:", filteredPhuongXas.length);
+                    console.log("Danh sách phường xã:", filteredPhuongXas);
+                    
+                    // Cập nhật dropdown phường xã
+                    var phuongXaSelect = $("#PhuongXa");
+                    phuongXaSelect.empty();
+                    phuongXaSelect.append('<option value="">-- Chọn Phường/Xã --</option>');
+                    
+                    $.each(filteredPhuongXas, function(i, px) {
+                        var pxId = px.MaPhuongXa !== undefined ? px.MaPhuongXa : px.maPhuongXa;
+                        var pxName = px.TenPhuongXa !== undefined ? px.TenPhuongXa : px.tenPhuongXa;
+                        phuongXaSelect.append('<option value="' + pxId + '">' + pxName + '</option>');
+                    });
+                    
+                    phuongXaSelect.prop('disabled', false);
+                } else {
+                    $("#PhuongXa").empty();
+                    $("#PhuongXa").append('<option value="">-- Chọn Phường/Xã --</option>');
+                    $("#PhuongXa").prop('disabled', true);
+                }
+            });
+            
+            // Xử lý validation cho Phường/Xã
+            $("#PhuongXa").on("change", function() {
+                if ($(this).val()) {
+                    $(this).removeClass('input-validation-error');
+                    $('[data-valmsg-for="PhuongXa"]').text('');
+                }
+            });
+            
+            // Xử lý tìm kiếm sản phẩm trong modal
+            $("#searchProduct").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#modalProductTable tbody tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+            // Xử lý thêm sản phẩm vào bảng
+            $(".btn-add-product").click(function () {
+                var row = $(this).closest("tr");
+                var id = row.data("id");
+                var name = row.data("name");
+                var price = row.data("price");
+                var image = row.data("image");
+                
+                // Kiểm tra xem sản phẩm đã được thêm chưa
+                var existingRow = $("#productTableBody tr[data-id='" + id + "']");
+                if (existingRow.length > 0) {
+                    // Sản phẩm đã tồn tại, tăng số lượng
+                    var quantityInput = existingRow.find(".product-quantity");
+                    var currentQuantity = parseInt(quantityInput.val());
+                    quantityInput.val(currentQuantity + 1);
+                    updateTotal(existingRow);
+                } else {
+                    // Thêm sản phẩm mới
+                    var newRow = `
+                        <tr data-id="${id}">
+                            <td>
+                                <input type="hidden" name="productIds" value="${id}">
+                                ${id}
+                            </td>
+                            <td>
+                                <img src="/images/product/${image}" class="img-thumbnail" style="max-height: 50px;">
+                            </td>
+                            <td>${name}</td>
+                            <td>
+                                <input type="hidden" name="prices" class="product-price" value="${price}">
+                                ${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}
+                            </td>
+                            <td>
+                                <input type="number" name="quantities" class="form-control product-quantity" value="1" min="1" style="width: 80px;">
+                            </td>
+                            <td>
+                                <span class="product-total">${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price)}</span>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-danger btn-remove-product">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    $("#productTableBody").append(newRow);
+                }
+                
+                // Cập nhật tổng tiền
+                calculateOrderTotal();
+                
+                // Đóng modal
+                $("#productModal").modal("hide");
+                
+                // Xóa thông báo lỗi sản phẩm nếu có
+                $("#productError").text('');
+            });
+            
+            // Xử lý sự kiện khi thay đổi số lượng
+            $(document).on("change", ".product-quantity, input[name='IsPickup']", function() {
+                var row = $(this).closest("tr");
+                updateTotal(row);
+                calculateOrderTotal();
+            });
+            
+            // Xử lý sự kiện xóa sản phẩm
+            $(document).on("click", ".btn-remove-product", function() {
+                $(this).closest("tr").remove();
+                calculateOrderTotal();
+            });
+            
+            // Hàm cập nhật thành tiền cho một sản phẩm
+            function updateTotal(row) {
+                var price = parseFloat(row.find(".product-price").val());
+                var quantity = parseInt(row.find(".product-quantity").val());
+                var total = price * quantity;
+                row.find(".product-total").text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(total));
+            }
+            
+            // Hàm tính tổng tiền đơn hàng
+            function calculateOrderTotal() {
+                var subtotal = 0;
+                
+                // Tính tổng tiền hàng
+                $("#productTableBody tr").each(function() {
+                    var price = parseFloat($(this).find(".product-price").val());
+                    var quantity = parseInt($(this).find(".product-quantity").val());
+                    subtotal += price * quantity;
+                });
+                
+                // Hiển thị tổng tiền hàng
+                $("#subtotal").text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(subtotal));
+                
+                // Tính phí vận chuyển
+                var isPickup = $('input[name="IsPickup"]:checked').val() === 'true';
+                var shippingFee = isPickup ? 0 : (subtotal >= 500000 ? 0 : 30000);
+                $("#shipping-fee").text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(shippingFee));
+                $("#PhiVanChuyen").val(shippingFee);
+                
+                // Hiển thị tổng thanh toán
+                var totalPayment = subtotal + shippingFee;
+                $("#total-payment").text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPayment));
+            }
+            
+            // Kiểm tra trước khi submit form
+            $("#orderForm").submit(function(e) {
+                var isValid = true;
+                
+                // Kiểm tra sản phẩm
+                if ($("#productTableBody tr").length === 0) {
+                    $("#productError").text("Vui lòng chọn ít nhất một sản phẩm");
+                    isValid = false;
+                }
+                
+                // Kiểm tra Quận/Huyện
+                if (!$("#QuanHuyen").val()) {
+                    $("#QuanHuyen").addClass('input-validation-error');
+                    $('[data-valmsg-for="QuanHuyen"]').text('Vui lòng chọn Quận/Huyện');
+                    isValid = false;
+                }
+                
+                // Kiểm tra Phường/Xã
+                if (!$("#PhuongXa").val()) {
+                    $("#PhuongXa").addClass('input-validation-error');
+                    $('[data-valmsg-for="PhuongXa"]').text('Vui lòng chọn Phường/Xã');
+                    isValid = false;
+                }
+                
+                if (!isValid) {
+                    e.preventDefault();
+                    return false;
+                }
+                
+                return true;
+            });
+        });
+    </script>
+} 

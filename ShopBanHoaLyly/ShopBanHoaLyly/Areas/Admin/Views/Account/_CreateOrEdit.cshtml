@@ -1,0 +1,204 @@
+﻿@model ShopBanHoaLyly.Models.TaiKhoan
+
+<div class="modal fade"
+     id="addUserModal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold"> @(Model.MaTaiKhoan == 0 ? "Thêm tài khoản mới" : "Chỉnh sửa tài khoản") </span>
+                </h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Đóng">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createOrEditForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @if (Model.MaTaiKhoan != 0)
+                    {
+                        <input type="hidden" name="MaTaiKhoan" value="@Model.MaTaiKhoan" />
+                    }
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Tên tài khoản</label>
+                                <input name="TenTaiKhoan"
+                                       type="text"
+                                       class="form-control"
+                                       value="@Model.TenTaiKhoan"
+                                       placeholder="Nhập tên tài khoản"
+                                       @(Model.MaTaiKhoan != 0 ? "readonly" : "") />
+                                <div class="text-danger">@Html.ValidationMessage("TenTaiKhoan")</div>
+                                @if (Model.MaTaiKhoan != 0)
+                                {
+                                    <small class="text-muted">Tên tài khoản không thể thay đổi sau khi đã tạo</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Họ và tên</label>
+                                <input name="HoVaTen"
+                                       type="text"
+                                       class="form-control"
+                                       value="@Model.HoVaTen"
+                                       placeholder="Nhập họ và tên" />
+                                <div class="text-danger">@Html.ValidationMessage("HoVaTen")</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Email</label>
+                                <input name="Email"
+                                       type="email"
+                                       class="form-control"
+                                       value="@Model.Email"
+                                       placeholder="Nhập email" />
+                                <div class="text-danger">@Html.ValidationMessage("Email")</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Số điện thoại</label>
+                                <input name="SoDienThoai"
+                                       type="tel"
+                                       class="form-control"
+                                       value="@Model.SoDienThoai"
+                                       placeholder="Nhập số điện thoại"
+                                       data-val="@Model.SoDienThoai" />
+                                <div class="text-danger">@Html.ValidationMessage("SoDienThoai")</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Mật khẩu</label>
+                                <input name="MatKhau"
+                                       type="password"
+                                       class="form-control"
+                                       value="@(Model.MaTaiKhoan == 0 ? Model.MatKhau : "")"
+                                       placeholder="Nhập mật khẩu" />
+                                <div class="text-danger">@Html.ValidationMessage("MatKhau")</div>
+                                @if (Model.MaTaiKhoan != 0)
+                                {
+                                    <small class="text-muted">Để trống nếu không muốn thay đổi mật khẩu</small>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Xác nhận mật khẩu</label>
+                                <input name="ConfirmPassword"
+                                       type="password"
+                                       class="form-control"
+                                       value="@ViewBag.ConfirmPassword"
+                                       placeholder="Nhập lại mật khẩu" />
+                                <div class="text-danger">@Html.ValidationMessage("ConfirmPassword")</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group form-group-default">
+                                <label>Trạng thái</label>
+                                <select name="TrangThaiTaiKhoan" class="form-control w-100">
+                                    <option value="true" @(Model.TrangThaiTaiKhoan == true ? "selected" : "")>Hoạt động</option>
+                                    <option value="false" @(Model.TrangThaiTaiKhoan == false ? "selected" : "")>Khóa</option>
+                                </select>
+                                <div class="text-danger">@Html.ValidationMessage("TrangThaiTaiKhoan")</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group form-group-default">
+                                <label>Quyền</label>
+                                <select name="MaQuyen" class="form-control w-100">
+                                    <option value="">-- Chọn quyền --</option>
+                                    @if (ViewBag.Quyens != null)
+                                    {
+                                        foreach (var quyen in ViewBag.Quyens)
+                                        {
+                                            <option value="@quyen.MaQuyen" @(Model.MaQuyen == quyen.MaQuyen ? "selected" : "")>@quyen.TenQuyen</option>
+                                        }
+                                    }
+                                </select>
+                                <div class="text-danger">@Html.ValidationMessage("MaQuyen")</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button"
+                        id="saveAccountBtn"
+                        class="btn btn-primary">
+                    @(Model.MaTaiKhoan == 0 ? "Thêm" : "Lưu")
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Định nghĩa hàm xử lý submit form
+    function submitAccountForm() {
+        var form = $('#createOrEditForm');
+        var formData = form.serialize();
+        var isEdit = form.find('input[name="MaTaiKhoan"]').length > 0;
+        var url = isEdit ? '/Admin/Account/Edit' : '/Admin/Account/Create';
+        
+        // Hiển thị loading hoặc vô hiệu hóa nút để tránh nhấn nhiều lần
+        var btn = $('#saveAccountBtn');
+        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang xử lý...');
+        
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            success: function (res) {
+                // Kích hoạt lại nút
+                btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                
+                if (typeof res === 'string') {
+                    // Nếu response là HTML, thay thế nội dung modal
+                    $('#addUserModal .modal-content').html($(res).find('.modal-content').html());
+                    
+                    // Gắn lại sự kiện cho nút lưu
+                    $('#saveAccountBtn').off('click').on('click', submitAccountForm);
+                } else if (res.success) {
+                    // Nếu thành công
+                    $('#addUserModal').modal('hide');
+                    if (res.forceLogout) {
+                        window.location.href = '/Home/Login';
+                    } else {
+                        location.reload();
+                    }
+                } else if (res.errors) {
+                    // Nếu có lỗi từ JSON
+                    for (var field in res.errors) {
+                        var errorMsg = res.errors[field].join(', ');
+                        $('#createOrEditForm').find('[name="' + field + '"]').siblings('.text-danger').text(errorMsg);
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                // Kích hoạt lại nút
+                btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                console.error("Lỗi AJAX:", error);
+                alert("Có lỗi xảy ra khi xử lý yêu cầu. Vui lòng thử lại.");
+            }
+        });
+    }
+
+    $(function () {
+        // Gắn sự kiện cho nút lưu
+        $('#saveAccountBtn').off('click').on('click', submitAccountForm);
+    });
+</script>

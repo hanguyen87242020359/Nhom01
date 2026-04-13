@@ -1,0 +1,1845 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ShopBanHoaLyly.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ShopBanHoaLyly.vidabdu1l0.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\css\\demo.css",
+      "PackagePath": "staticwebassets\\css\\demo.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\css\\demo.css.map",
+      "PackagePath": "staticwebassets\\css\\demo.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\css\\fonts.min.css",
+      "PackagePath": "staticwebassets\\css\\fonts.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\css\\kaiadmin.min.css",
+      "PackagePath": "staticwebassets\\css\\kaiadmin.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\css\\plugins\\plugins.min.css",
+      "PackagePath": "staticwebassets\\css\\plugins\\plugins.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.eot"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.svg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.woff"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.eot"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.svg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.woff"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.eot"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.svg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.woff"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\fontawesome\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\fonts\\fontawesome\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\simple-line-icons\\Simple-Line-Icons.eot",
+      "PackagePath": "staticwebassets\\fonts\\simple-line-icons\\Simple-Line-Icons.eot"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\simple-line-icons\\Simple-Line-Icons.svg",
+      "PackagePath": "staticwebassets\\fonts\\simple-line-icons\\Simple-Line-Icons.svg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\simple-line-icons\\Simple-Line-Icons.ttf",
+      "PackagePath": "staticwebassets\\fonts\\simple-line-icons\\Simple-Line-Icons.ttf"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\simple-line-icons\\Simple-Line-Icons.woff",
+      "PackagePath": "staticwebassets\\fonts\\simple-line-icons\\Simple-Line-Icons.woff"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\simple-line-icons\\Simple-Line-Icons.woff2",
+      "PackagePath": "staticwebassets\\fonts\\simple-line-icons\\Simple-Line-Icons.woff2"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\summernote\\summernote.eot",
+      "PackagePath": "staticwebassets\\fonts\\summernote\\summernote.eot"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\summernote\\summernote.ttf",
+      "PackagePath": "staticwebassets\\fonts\\summernote\\summernote.ttf"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\summernote\\summernote.woff",
+      "PackagePath": "staticwebassets\\fonts\\summernote\\summernote.woff"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\fonts\\summernote\\summernote.woff2",
+      "PackagePath": "staticwebassets\\fonts\\summernote\\summernote.woff2"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\about\\about-us-2.jpg",
+      "PackagePath": "staticwebassets\\images\\about\\about-us-2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\about\\about-us.jpg",
+      "PackagePath": "staticwebassets\\images\\about\\about-us.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\Pink Watercolour Flower Shop Logo250033464.png",
+      "PackagePath": "staticwebassets\\images\\blog\\Pink Watercolour Flower Shop Logo250033464.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\logo255133570.png",
+      "PackagePath": "staticwebassets\\images\\blog\\logo255133570.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\logo255139514.png",
+      "PackagePath": "staticwebassets\\images\\blog\\logo255139514.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\logo255143772.png",
+      "PackagePath": "staticwebassets\\images\\blog\\logo255143772.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\tin_tuc_cham_soc_hoa.jpg",
+      "PackagePath": "staticwebassets\\images\\blog\\tin_tuc_cham_soc_hoa.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\tin_tuc_hoa_hong_chinh.jpg",
+      "PackagePath": "staticwebassets\\images\\blog\\tin_tuc_hoa_hong_chinh.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\blog\\tin_tuc_hoa_hong_chinh255216471.jpg",
+      "PackagePath": "staticwebassets\\images\\blog\\tin_tuc_hoa_hong_chinh255216471.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\logo\\logo-big.png",
+      "PackagePath": "staticwebassets\\images\\logo\\logo-big.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Causal-Inference-Framework-in-Medical-Domain_638841521924284132.png",
+      "PackagePath": "staticwebassets\\images\\product\\Causal-Inference-Framework-in-Medical-Domain_638841521924284132.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Hoa hồng đỏ.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Hoa hồng đỏ.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Hoa hồng đỏ1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Hoa hồng đỏ1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Hoa hồng đỏ2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Hoa hồng đỏ2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Hoa lan trắng 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Hoa lan trắng 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Hoa lan trắng 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Hoa lan trắng 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Hoa lan trắng 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\Hoa lan trắng 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Pink Watercolour Flower Shop Logo_638857949488918118.png",
+      "PackagePath": "staticwebassets\\images\\product\\Pink Watercolour Flower Shop Logo_638857949488918118.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\Pink Watercolour Flower Shop Logo_638859697138772314.png",
+      "PackagePath": "staticwebassets\\images\\product\\Pink Watercolour Flower Shop Logo_638859697138772314.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\The-Type-and-Stage-of-Breast-Cancer_638843964429918633.png",
+      "PackagePath": "staticwebassets\\images\\product\\The-Type-and-Stage-of-Breast-Cancer_638843964429918633.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\baby nhiều màu 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\baby nhiều màu 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\baby nhiều màu 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\baby nhiều màu 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\baby nhiều màu 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\baby nhiều màu 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\bàn tiệc 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\bàn tiệc 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\bàn tiệc 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\bàn tiệc 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\bàn tiệc 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\bàn tiệc 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\cẩm chướng đỏ 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\cẩm chướng đỏ 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\cẩm chướng đỏ 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\cẩm chướng đỏ 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\cẩm chướng đỏ 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\cẩm chướng đỏ 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\cẩm tú trắng 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\cẩm tú trắng 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\cẩm tú trắng 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\cẩm tú trắng 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\cẩm tú trắng 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\cẩm tú trắng 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giáng sinh 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giáng sinh 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giáng sinh 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giáng sinh 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giáng sinh 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giáng sinh 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giỏ hoa hướng dương 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giỏ hoa hướng dương 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giỏ hoa hướng dương 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giỏ hoa hướng dương 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giỏ hoa hướng dương 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giỏ hoa hướng dương 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giỏ hoa lily 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giỏ hoa lily 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giỏ hoa lily 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giỏ hoa lily 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\giỏ hoa lily 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\giỏ hoa lily 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa 20 10 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa 20 10 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa 20 10 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa 20 10 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa 20 10 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa 20 10 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa 83 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa 83 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa 83 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa 83 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa 83 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa 83 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa baby 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa baby 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa baby 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa baby 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa baby 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa baby 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cúc 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cúc 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cúc 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cúc 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cúc 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cúc 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cúc họa mi 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cúc họa mi 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cúc họa mi 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cúc họa mi 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cúc họa mi 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cúc họa mi 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cưới 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cưới 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cưới 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cưới 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa cưới 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa cưới 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa hồng sáp 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa hồng sáp 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa hồng sáp 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa hồng sáp 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa hồng sáp 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa hồng sáp 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa hồng vàng 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa hồng vàng 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa hồng vàng 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa hồng vàng 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa hồng vàng 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa hồng vàng 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa nhập khẩu 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa nhập khẩu 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa nhập khẩu 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa nhập khẩu 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa nhập khẩu 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa nhập khẩu 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa phong lan 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa phong lan 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa phong lan 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa phong lan 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa phong lan 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa phong lan 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa tang lễ 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa tang lễ 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa tang lễ 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa tang lễ 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa tang lễ 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa tang lễ 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa tết 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa tết 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa tết 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa tết 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa tết 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa tết 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa đám cưới 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa đám cưới 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa đám cưới 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa đám cưới 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa đám cưới 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa đám cưới 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa để bàn hồng 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa để bàn hồng 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa để bàn hồng 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa để bàn hồng 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\hoa để bàn hồng 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\hoa để bàn hồng 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\ikebana 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ikebana 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\ikebana 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\ikebana 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\ikebana 3.png",
+      "PackagePath": "staticwebassets\\images\\product\\ikebana 3.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\khai trương 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\khai trương 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\khai trương 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\khai trương 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\khai trương 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\khai trương 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\lọ mini 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\lọ mini 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\lọ mini 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\lọ mini 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\lọ mini 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\lọ mini 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\nhà giáo 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\nhà giáo 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\nhà giáo 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\nhà giáo 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\nhà giáo 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\nhà giáo 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\phật đản 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\phật đản 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\phật đản 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\phật đản 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\phật đản 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\phật đản 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\sen hồng 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\sen hồng 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\sen hồng 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\sen hồng 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\sen hồng 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\sen hồng 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\thu hoạch vàng 1.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\thu hoạch vàng 1.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\thu hoạch vàng 2.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\thu hoạch vàng 2.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\images\\product\\thu hoạch vàng 3.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\thu hoạch vàng 3.jpg"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\COPYING.GPL",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\COPYING.GPL"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\LICENSE.md",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\README.md",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\README.md"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5-content.css",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5-content.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5-editor.css",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5-editor.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.css",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.css.map",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.js.map",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.umd.js.map",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\ckeditor5.umd.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\af.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\af.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\af.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\af.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\af.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\af.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ar.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ar.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ar.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ar.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ar.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ar.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ast.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ast.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ast.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ast.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ast.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ast.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\az.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\az.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\az.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\az.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\az.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\az.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\be.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\be.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\be.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\be.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\be.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\be.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bg.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bg.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bg.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bg.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bg.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bg.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bn.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bn.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bn.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bn.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bn.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bn.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bs.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bs.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bs.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bs.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bs.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\bs.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ca.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ca.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ca.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ca.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ca.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ca.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\cs.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\cs.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\cs.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\cs.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\cs.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\cs.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\da.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\da.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\da.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\da.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\da.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\da.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de-ch.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de-ch.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de-ch.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de-ch.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de-ch.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de-ch.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\de.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\el.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\el.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\el.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\el.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\el.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\el.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-au.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-au.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-au.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-au.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-au.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-au.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-gb.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-gb.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-gb.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-gb.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-gb.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en-gb.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\en.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eo.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eo.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eo.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eo.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eo.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eo.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es-co.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es-co.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es-co.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es-co.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es-co.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es-co.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\es.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\et.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\et.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\et.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\et.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\et.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\et.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eu.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eu.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eu.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eu.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eu.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\eu.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fa.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fa.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fa.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fa.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fa.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fa.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fi.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fi.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fi.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fi.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fi.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fi.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fr.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fr.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fr.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fr.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fr.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\fr.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gl.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gl.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gl.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gl.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gl.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gl.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gu.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gu.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gu.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gu.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gu.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\gu.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\he.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\he.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\he.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\he.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\he.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\he.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hi.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hi.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hi.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hi.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hi.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hi.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hr.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hr.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hr.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hr.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hr.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hr.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hu.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hu.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hu.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hu.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hu.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hu.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hy.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hy.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hy.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hy.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hy.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\hy.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\id.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\id.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\id.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\id.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\id.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\id.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\it.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\it.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\it.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\it.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\it.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\it.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ja.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ja.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ja.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ja.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ja.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ja.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\jv.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\jv.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\jv.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\jv.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\jv.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\jv.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kk.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kk.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kk.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kk.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kk.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kk.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\km.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\km.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\km.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\km.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\km.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\km.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kn.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kn.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kn.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kn.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kn.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\kn.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ko.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ko.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ko.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ko.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ko.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ko.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ku.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ku.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ku.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ku.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ku.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ku.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lt.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lt.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lt.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lt.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lt.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lt.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lv.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lv.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lv.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lv.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lv.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\lv.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ms.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ms.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ms.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ms.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ms.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ms.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nb.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nb.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nb.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nb.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nb.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nb.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ne.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ne.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ne.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ne.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ne.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ne.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nl.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nl.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nl.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nl.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nl.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\nl.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\no.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\no.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\no.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\no.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\no.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\no.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\oc.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\oc.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\oc.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\oc.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\oc.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\oc.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pl.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pl.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pl.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pl.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pl.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pl.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt-br.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt-br.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt-br.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt-br.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt-br.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt-br.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\pt.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ro.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ro.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ro.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ro.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ro.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ro.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ru.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ru.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ru.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ru.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ru.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ru.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\si.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\si.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\si.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\si.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\si.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\si.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sk.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sk.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sk.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sk.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sk.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sk.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sl.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sl.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sl.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sl.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sl.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sl.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sq.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sq.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sq.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sq.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sq.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sq.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr-latn.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr-latn.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr-latn.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr-latn.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr-latn.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr-latn.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sr.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sv.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sv.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sv.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sv.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sv.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\sv.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\th.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\th.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\th.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\th.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\th.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\th.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ti.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ti.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ti.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ti.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ti.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ti.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tk.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tk.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tk.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tk.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tk.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tk.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tr.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tr.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tr.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tr.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tr.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tr.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tt.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tt.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tt.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tt.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tt.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\tt.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ug.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ug.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ug.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ug.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ug.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ug.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uk.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uk.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uk.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uk.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uk.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uk.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ur.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ur.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ur.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ur.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ur.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\ur.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uz.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uz.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uz.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uz.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uz.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\uz.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\vi.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\vi.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\vi.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\vi.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\vi.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\vi.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh-cn.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh-cn.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh-cn.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh-cn.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh-cn.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh-cn.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh.d.ts",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh.d.ts"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh.umd.js",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\ckeditor5\\translations\\zh.umd.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\ckeditor5-45.2.0\\index.html",
+      "PackagePath": "staticwebassets\\js\\ckeditor5-45.2.0\\index.html"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\core\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\core\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\core\\jquery-3.7.1.min.js",
+      "PackagePath": "staticwebassets\\js\\core\\jquery-3.7.1.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\core\\popper.min.js",
+      "PackagePath": "staticwebassets\\js\\core\\popper.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\demo.js",
+      "PackagePath": "staticwebassets\\js\\demo.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\kaiadmin.min.js",
+      "PackagePath": "staticwebassets\\js\\kaiadmin.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\bootstrap-notify\\bootstrap-notify.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\bootstrap-notify\\bootstrap-notify.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\bootstrap-tagsinput\\bootstrap-tagsinput.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\bootstrap-tagsinput\\bootstrap-tagsinput.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\bootstrap-toggle\\bootstrap-toggle.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\bootstrap-toggle\\bootstrap-toggle.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\chart-circle\\circles.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\chart-circle\\circles.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\chart.js\\chart.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\chart.js\\chart.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\datatables\\datatables.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\datatables\\datatables.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\datepicker\\bootstrap-datetimepicker.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\datepicker\\bootstrap-datetimepicker.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\dropzone\\dropzone.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\dropzone\\dropzone.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\fullcalendar\\fullcalendar.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\fullcalendar\\fullcalendar.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\gmaps\\gmaps.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\gmaps\\gmaps.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\jquery-scrollbar\\jquery.scrollbar.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\jquery-scrollbar\\jquery.scrollbar.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\jquery.magnific-popup\\jquery.magnific-popup.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\jquery.magnific-popup\\jquery.magnific-popup.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\jquery.sparkline\\jquery.sparkline.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\jquery.sparkline\\jquery.sparkline.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\jquery.validate\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\jquery.validate\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\jsvectormap\\jsvectormap.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\jsvectormap\\jsvectormap.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\jsvectormap\\world.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\jsvectormap\\world.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\list.js\\list.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\list.js\\list.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\moment\\moment.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\moment\\moment.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\owl-carousel\\ajax-loader.gif",
+      "PackagePath": "staticwebassets\\js\\plugin\\owl-carousel\\ajax-loader.gif"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\owl-carousel\\owl.carousel.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\owl-carousel\\owl.carousel.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\owl-carousel\\owl.video.play.png",
+      "PackagePath": "staticwebassets\\js\\plugin\\owl-carousel\\owl.video.play.png"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\select2\\select2.full.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\select2\\select2.full.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\sortable\\sortable.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\sortable\\sortable.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\sticky-sidebar\\sticky-sidebar.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\sticky-sidebar\\sticky-sidebar.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\summernote\\summernote-lite.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\summernote\\summernote-lite.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\sweetalert\\sweetalert.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\sweetalert\\sweetalert.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\js\\plugin\\webfont\\webfont.min.js",
+      "PackagePath": "staticwebassets\\js\\plugin\\webfont\\webfont.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ShopBanHoaLyly.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ShopBanHoaLyly.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ShopBanHoaLyly.props",
+      "PackagePath": "build\\ShopBanHoaLyly.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ShopBanHoaLyly.props",
+      "PackagePath": "buildMultiTargeting\\ShopBanHoaLyly.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ShopBanHoaLyly.props",
+      "PackagePath": "buildTransitive\\ShopBanHoaLyly.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

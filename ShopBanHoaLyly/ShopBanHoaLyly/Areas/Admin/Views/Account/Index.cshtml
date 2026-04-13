@@ -1,0 +1,126 @@
+﻿@model List<ShopBanHoaLyly.Models.TaiKhoan>
+@{
+    ViewData["Title"] = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách tài khoản</h4>
+                <button class="btn btn-primary btn-round ms-auto" id="btnShowCreateModal">
+                    <i class="fa fa-plus"></i>
+                    Thêm tài khoản
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-3">
+                    <select id="filterStatus" class="form-select">
+                        <option value="">-- Lọc trạng thái --</option>
+                        <option value="Hoạt động">Hoạt động</option>
+                        <option value="Khóa">Khóa</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="filterRole" class="form-select">
+                        <option value="">-- Lọc quyền --</option>
+                        @foreach (var quyen in Model.Select(x => x.MaQuyenNavigation?.TenQuyen).Distinct())
+                        {
+                            if (!string.IsNullOrEmpty(quyen))
+                            {
+                                <option value="@quyen">@quyen</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <div id="custom-search-container" style="width: 300px;"></div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="add-row"
+                       class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã TK</th>
+                            <th>Tên tài khoản</th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Quyền</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaTaiKhoan</td>
+                            <td>@item.TenTaiKhoan</td>
+                            <td>@item.HoVaTen</td>
+                            <td>@item.Email</td>
+                            <td>@item.SoDienThoai</td>
+                            <td>@item.MaQuyenNavigation?.TenQuyen</td>
+                            <td>@(item.TrangThaiTaiKhoan == true ? "Hoạt động" : "Khóa")</td>
+                            <td>
+                                <div class="form-button-action">
+                                    <button class="btn btn-link btn-primary btn-lg btn-edit-account" data-id="@item.MaTaiKhoan" data-bs-toggle="tooltip" title="Sửa">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalContainer"></div>
+@section Scripts {
+<script>
+    $(function () {
+        var table = $('#add-row').DataTable();
+        // Đưa ô tìm kiếm lên cùng hàng với combobox
+        $("#custom-search-container").html(
+            $("#add-row_filter input")
+                .detach()
+                .addClass("form-control")
+                .attr("placeholder", "Tìm kiếm...")
+                .css("width", "100%")
+        );
+        $("#add-row_filter").hide();
+        // Thêm tài khoản
+        $('#btnShowCreateModal').on('click', function () {
+            $.get('/Admin/Account/Create', function (res) {
+                $('#modalContainer').html(res);
+                $('#addUserModal').modal('show');
+            });
+        });
+        // Sửa tài khoản (dùng event delegation để hoạt động trên mọi trang DataTables)
+        $('#add-row').on('click', '.btn-edit-account', function () {
+            var id = $(this).data('id');
+            $.get('/Admin/Account/Edit/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#addUserModal').modal('show');
+            });
+        });
+        // Lọc theo trạng thái
+        $('#filterStatus').on('change', function () {
+            var val = $(this).val();
+            table.column(6).search(val).draw(); // Cột trạng thái là cột thứ 7 (index 6)
+        });
+        // Lọc theo quyền
+        $('#filterRole').on('change', function () {
+            var val = $(this).val();
+            table.column(5).search(val).draw(); // Cột quyền là cột thứ 6 (index 5)
+        });
+    });
+</script>
+}

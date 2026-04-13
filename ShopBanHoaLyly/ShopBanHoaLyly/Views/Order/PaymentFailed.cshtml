@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Thanh toán thất bại";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Thanh toán thất bại</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li>Thanh toán thất bại</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="thank-you-area mt-no-text mb-no-text">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 text-center mb-30">
+                <div class="thank-you-content">
+                    <i class="fa fa-times-circle text-danger" style="font-size: 5rem;"></i>
+                    <h2 class="my-4">Thanh toán thất bại!</h2>
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <p>@TempData["ErrorMessage"]</p>
+                    }
+                    else
+                    {
+                        <p>Đã xảy ra lỗi trong quá trình thanh toán đơn hàng của bạn.</p>
+                    }
+                    <div class="mt-4">
+                        <a asp-controller="Cart" asp-action="Index" class="btn flosun-button secondary-btn theme-color rounded-0 mt-4 me-3">Quay lại giỏ hàng</a>
+                        <a asp-controller="Home" asp-action="Index" class="btn flosun-button primary-btn theme-color rounded-0 mt-4">Quay về trang chủ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-no-text"></div> 

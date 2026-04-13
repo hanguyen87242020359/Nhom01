@@ -1,0 +1,840 @@
+﻿@{
+    var isAuthenticated = User.Identity.IsAuthenticated;
+    var fullName = User.Claims.FirstOrDefault(c => c.Type == "FullName")?.Value;
+    // Xác định controller và action hiện tại để đặt class 'active' cho menu động
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+}
+<!doctype html>
+<html class="no-js" lang="vi">
+ <!-- Đã đổi lang="vi" -->
+<!-- Mirrored from htmldemo.net/flosun/flosun/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Aug 2024 16:57:59 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Thay đổi title -->
+    <title>Cửa hàng hoa Lyly</title>
+    <meta name="robots" content="noindex, follow" />
+    <!-- Có thể dịch description nếu cần -->
+    <meta name="description" content="Cửa hàng hoa Lyly - Nơi những bó hoa tươi thắm thay lời yêu thương."> <!-- Đã dịch description -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico">
+
+    <!-- CSS
+    ============================================ -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/vendor/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="~/css/vendor/font.awesome.min.css">
+    <!-- Linear Icons CSS -->
+    <link rel="stylesheet" href="~/css/vendor/linearicons.min.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="~/css/plugins/swiper-bundle.min.css">
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="~/css/plugins/animate.min.css">
+    <!-- Jquery ui CSS -->
+    <link rel="stylesheet" href="~/css/plugins/jquery-ui.min.css">
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href="~/css/plugins/nice-select.min.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="~/css/plugins/magnific-popup.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="~/css/style.css">
+
+	@await RenderSectionAsync("Styles", required: false)
+    <style>
+        #toast-container {
+            top: 70px !important; /* Mặc định thường là 12px, bạn tăng lên để nó xuống thấp */
+        }
+
+        #toast-container > .toast {
+            opacity: 0.9 !important;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .header-right-area.main-nav > ul > li.minicart-wrap .minicart-btn .wishlist-item_count {
+            background-color: #E72463;
+            border-radius: 50%;
+            color: #ffffff;
+            display: block;
+            font-size: 12px;
+            text-align: center;
+            line-height: 18px;
+            height: 18px;
+            width: 18px;
+            position: absolute;
+            right: -10px;
+            top: -5px;
+        }
+        
+        /* Style toàn cục cho badge */
+        .badge {
+            font-size: 1em !important;
+        }
+
+        /* Sold-out styles */
+        .sold-out {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .badge-soldout {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #dc3545;
+            color: #fff;
+            padding: 5px 8px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    @Html.AntiForgeryToken()
+    <!-- Header Area Start Here -->
+    <header class="main-header-area">
+        <!-- Main Header Area Start -->
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-2 col-xl-2 col-md-6 col-6 col-custom">
+                        <div class="header-logo d-flex align-items-center">
+                            <a asp-controller="Home" asp-action="Index">
+                                <img class="img-full" src="~/images/logo/logo.png" alt="Logo Cửa hàng" style="width: 150px"> <!-- Đã dịch alt -->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 d-none d-lg-flex justify-content-center col-custom">
+                        <nav class="main-nav d-none d-lg-flex">
+                            <ul class="nav">
+                                <li>
+                                    <a href="/" class="@(currentController == "Home" && currentAction == "Index" ? "active" : "")">
+                                        <span class="menu-text"> Trang chủ</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Home/Search" class="@(currentController == "Home" && currentAction == "Search" ? "active" : "")">
+                                        <span class="menu-text">Sản phẩm</span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                    @await Component.InvokeAsync("CategoryMenu")
+                                </li>
+                                <li>
+                                    <a href="/News/Index" class="@(currentController == "News" ? "active" : "")">
+                                        <span class="menu-text"> Tin tức</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Home/About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">
+                                        <span class="menu-text"> Về chúng tôi</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Home/Contact" class="@(currentController == "Home" && currentAction == "Contact" ? "active" : "")">
+                                        <span class="menu-text">Liên hệ</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-6 col-custom">
+                        <div class="header-right-area main-nav">
+                            <ul class="nav">
+                                <!-- ===== BẮT ĐẦU THÊM ICON WISHLIST ===== -->
+                                <li class="minicart-wrap">
+                                    <!-- Thêm class để dễ style nếu cần -->
+                                    <a asp-controller="Wishlist" asp-action="Index" class="toolbar-btn minicart-btn">
+                                        <!-- Link tới trang wishlist -->
+                                        <i class="fa fa-heart"></i>
+                                        <span class="wishlist-item_count">@await Component.InvokeAsync("WishlistCount")</span>
+                                    </a>
+                                </li>
+                                <!-- ===== KẾT THÚC THÊM ICON WISHLIST ===== -->
+                                <li class="minicart-wrap">
+                                    <a asp-controller="Cart" asp-action="Index" class="minicart-btn toolbar-btn">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="cart-item_count">@await Component.InvokeAsync("CartCount")</span>
+                                    </a>
+                                </li>
+                                <li class="sidemenu-wrap">
+                                    <a href="#"><i class="fa fa-search"></i> </a>
+                                    <ul class="dropdown-sidemenu dropdown-hover-2 dropdown-search">
+                                        <li>
+                                            <form asp-controller="Home" asp-action="Search" method="get">
+                                                <input name="search" id="search" placeholder="Tìm kiếm..." type="text">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="user-account-wrap">
+                                    <a href="#" class="toolbar-btn">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <ul class="dropdown-submenu dropdown-hover dropdown-hover-2">
+                                        @if (!isAuthenticated)
+                                        {
+                                            <li><a asp-controller="Home" asp-action="Login">Đăng nhập</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-controller="ClientAccount" asp-action="Index">Xin chào, @fullName</a></li>
+                                            @if (User.IsInRole("Quản trị viên"))
+                                            {
+                                                <li><a asp-area="Admin" asp-controller="Account" asp-action="Index" class="text-success"><i class="fa fa-cog"></i> Truy cập quản trị</a></li>
+                                            }
+                                            @if (User.IsInRole("Nhân viên"))
+                                            {
+                                                <li><a asp-area="Employee" asp-controller="Category" asp-action="Index" class="text-info"><i class="fa fa-cog"></i> Truy cập nhân viên</a></li>
+                                            }
+                                            <li><a asp-controller="Home" asp-action="Logout">Đăng xuất</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                                <li class="account-menu-wrap d-none d-lg-flex">
+                                    <a href="#" class="off-canvas-menu-btn">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+                                <li class="mobile-menu-btn d-lg-none">
+                                    <a class="off-canvas-btn" href="#">
+                                        <i class="fa fa-bars"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Header Area End -->
+        <!-- off-canvas menu start -->
+        <aside class="off-canvas-wrapper" id="mobileMenu">
+            <div class="off-canvas-overlay"></div>
+            <div class="off-canvas-inner-content">
+                <div class="btn-close-off-canvas">
+                    <i class="fa fa-times"></i>
+                </div>
+                <div class="off-canvas-inner">
+                    <div class="search-box-offcanvas">
+                        <form asp-controller="Home" asp-action="Search" method="get">
+                            <!-- Thêm asp-controller, asp-action, method -->
+                            <input name="search" id="search-mobile" placeholder="Tìm kiếm sản phẩm..." type="text"> <!-- Thêm name và id duy nhất -->
+                            <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <!-- mobile menu start -->
+                    <div class="mobile-navigation">
+                        <!-- mobile menu navigation start -->
+                        <nav>
+                            <ul class="mobile-menu">
+                                <!-- Dịch -->
+                                <li>
+                                    <a asp-controller="Home" asp-action="Index" class="@(currentController == "Home" && currentAction == "Index" ? "active" : "")">Trang chủ</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">
+                                        <span class="menu-text">Sản phẩm</span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    @await Component.InvokeAsync("CategoryMenu")
+                                </li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Về chúng tôi</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact" class="@(currentController == "Home" && currentAction == "Contact" ? "active" : "")">Liên hệ</a></li>
+                            </ul>
+                        </nav>
+                        <!-- mobile menu navigation end -->
+                    </div>
+                    <!-- mobile menu end -->
+                    <div class="offcanvas-widget-area">
+                        <div class="top-info-wrap text-left text-black">
+                            <ul class="address-info">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <a href="tel:01234567890">01234 567 890</a> <!-- Sửa href thành tel: -->
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="mailto:nguyencamlyly1903@gmail.com">nhom1@support.com</a> <!-- Sửa href thành mailto: -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- off-canvas menu end -->
+        <!-- off-canvas menu start -->
+        <aside class="off-canvas-menu-wrapper" id="sideMenu">
+            <div class="off-canvas-overlay"></div>
+            <div class="off-canvas-inner-content">
+                <div class="off-canvas-inner">
+                    <div class="btn-close-off-canvas">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <!-- offcanvas widget area start -->
+                    <div class="offcanvas-widget-area">
+                        <ul class="menu-top-menu">
+                            <!-- Dịch -->
+                            <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Về chúng tôi</a></li>
+                        </ul>
+                        <!-- Dịch đoạn mô tả mẫu -->
+                        <p class="desc-content">
+                            Lyly là thương hiệu hoa tươi ra đời từ tình yêu với cái đẹp và mong muốn lan toả cảm xúc đến mọi người.
+                            Chúng tôi tin rằng mỗi bó hoa đều có thể kể một câu chuyện – về tình yêu, sự quan tâm, và những khoảnh khắc đáng nhớ. Với đội ngũ tận tâm và nghệ nhân cắm hoa sáng tạo, chúng tôi luôn nỗ lực mang đến những thiết kế tinh tế, phù hợp cho mọi dịp.
+                            Sự hài lòng của khách hàng là nguồn cảm hứng lớn nhất để Lyly không ngừng hoàn thiện mỗi ngày.
+                        </p>
+                        <div class="top-info-wrap text-left text-black">
+                            <ul class="address-info">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <a href="tel:01234567890">01234 567 890</a> <!-- Sửa href thành tel: -->
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="mailto:nguyencamlyly1903@gmail.com">nhom1@support.com</a> <!-- Sửa href thành mailto: -->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- offcanvas widget area end -->
+                </div>
+            </div>
+        </aside>
+        <!-- off-canvas menu end -->
+    </header>
+    <!-- Header Area End Here -->
+    @RenderBody()
+    <!--Footer Area Start-->
+    <footer class="footer-area">
+        <div class="footer-widget-area">
+            <div class="container container-default custom-area">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-custom">
+                        <div class="single-footer-widget m-0">
+                            <div class="footer-logo text-center">
+                                <a asp-controller="Home" asp-action="Index">
+                                    <img src="~/images/logo/logo-footer.png" alt="Logo Chân trang" style="width: 150px"> <!-- Dịch alt -->
+                                </a>
+                            </div>
+                            <!-- Dịch đoạn mô tả mẫu -->
+                            <p class="desc-content">Chúng tôi mang đến những thiết kế hoa tươi đầy cảm hứng cho mọi khoảnh khắc trong cuộc sống. Luôn đồng hành cùng bạn trong từng dịp đặc biệt – từ lời chúc mừng, cảm ơn, cho đến những lời yêu thương.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-2 col-custom">
+                        <div class="single-footer-widget">
+                            <!-- Dịch -->
+                            <h2 class="widget-title">Thông tin</h2>
+                            <ul class="widget-list">
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Công ty chúng tôi</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact" class="@(currentController == "Home" && currentAction == "Contact" ? "active" : "")">Liên hệ chúng tôi</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Dịch vụ của chúng tôi</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Tại sao chọn chúng tôi?</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Tuyển dụng</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-2 col-custom">
+                        <div class="single-footer-widget">
+                            <!-- Dịch -->
+                            <h2 class="widget-title">Liên kết nhanh</h2>
+                            <ul class="widget-list">
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Giới thiệu</a></li>
+                                <li><a asp-controller="News" asp-action="Index" class="@(currentController == "News" ? "active" : "")">Tin tức</a></li>
+                                <li><a asp-controller="Home" asp-action="Index" class="@(currentController == "Home" && currentAction == "Index" ? "active" : "")">Cửa hàng</a></li>
+                                <li><a asp-controller="Cart" asp-action="Index" class="@(currentController == "Cart" && currentAction == "Index" ? "active" : "")">Giỏ hàng</a></li>
+                                <li><a asp-controller="Home" asp-action="Contact" class="@(currentController == "Home" && currentAction == "Contact" ? "active" : "")">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-2 col-custom">
+                        <div class="single-footer-widget">
+                            <!-- Dịch -->
+                            <h2 class="widget-title">Hỗ trợ</h2>
+                            <ul class="widget-list">
+                                <li><a asp-controller="Home" asp-action="Contact" class="@(currentController == "Home" && currentAction == "Contact" ? "active" : "")">Hỗ trợ trực tuyến</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Chính sách vận chuyển</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Chính sách đổi trả</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Chính sách bảo mật</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="@(currentController == "Home" && currentAction == "About" ? "active" : "")">Điều khoản dịch vụ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-custom">
+                        <div class="single-footer-widget">
+                            <!-- Dịch -->
+                            <h2 class="widget-title">Xem thông tin</h2>
+                            <div class="widget-body">
+                                <!-- Dịch -->
+                                <address>399 Nguyễn Kiệm, Đà Nẵng<br>Điện thoại: <a href="tel:01234567890">01234 567 890</a><br>Email: <a href="mailto:nguyencamlyly1903@gmail.com">nhom1@support.com</a></address> <!-- Thêm link tel: và mailto: -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright-area">
+            <div class="container custom-area">
+                <div class="row">
+                    <div class="col-12 text-center col-custom">
+                        <div class="copyright-content">
+                            <!-- Dịch -->
+                            <p>Bản quyền © @DateTime.Now.Year | Xây dựng bởi Nhóm 1.</p> <!-- Cập nhật năm tự động -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Footer Area End-->
+    <!-- jQuery JS -->
+    <script src="~/js/vendor/jquery-3.6.0.min.js"></script>
+    <!-- jQuery Migrate JS -->
+    <script src="~/js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <!-- Modernizer JS -->
+    <script src="~/js/vendor/modernizr-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="~/js/vendor/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Swiper Slider JS -->
+    <script src="~/js/plugins/swiper-bundle.min.js"></script>
+    <!-- nice select JS -->
+    <script src="~/js/plugins/nice-select.min.js"></script>
+    <!-- Ajaxchimpt js -->
+    <script src="~/js/plugins/jquery.ajaxchimp.min.js"></script>
+    <!-- Jquery Ui js -->
+    <script src="~/js/plugins/jquery-ui.min.js"></script>
+    <!-- Jquery Countdown js -->
+    <script src="~/js/plugins/jquery.countdown.min.js"></script>
+    <!-- jquery magnific popup js -->
+    <script src="~/js/plugins/jquery.magnific-popup.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/js/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        // Cấu hình toastr
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        
+        // Hàm xử lý chuyển hướng khi chưa đăng nhập
+        function handleAjaxAuthRedirect(xhr) {
+            if (xhr.status === 401 || xhr.status === 403) {
+                toastr.warning('Bạn cần đăng nhập để sử dụng chức năng này');
+                setTimeout(function() {
+                window.location.href = '/Home/Login';
+                }, 1500);
+                return true;
+            }
+            if (xhr.responseText && xhr.responseText.indexOf('form id="loginForm"') !== -1) {
+                toastr.warning('Bạn cần đăng nhập để sử dụng chức năng này');
+                setTimeout(function() {
+                window.location.href = '/Home/Login';
+                }, 1500);
+                return true;
+            }
+            return false;
+        }
+
+        function addToWishlist(productId) {
+            $.ajax({
+                url: '@Url.Action("AddToWishlistAjax", "Wishlist")',
+                type: 'POST',
+                data: {
+                    id: productId,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.warning(response.message);
+                    }
+                    $('.wishlist-item_count').first().text(response.count);
+                },
+                error: function (xhr) {
+                    if (!handleAjaxAuthRedirect(xhr)) {
+                    toastr.error("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                }
+            });
+        }
+
+        function removeFromWishlist(productId, btn) {
+            $.ajax({
+                url: '@Url.Action("RemoveFromWishlistAjax", "Wishlist")',
+                type: 'POST',
+                data: {
+                    id: productId,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        // Xóa dòng sản phẩm khỏi bảng nếu có truyền btn
+                        if (btn) {
+                            var row = $(btn).closest('tr');
+                            row.remove();
+                            // Nếu không còn sản phẩm nào, hiển thị dòng thông báo
+                            if ($('.wishlist-table tbody tr').length === 0) {
+                                $('.wishlist-table tbody').append(
+                                    '<tr><td colspan="5" class="text-center text-muted py-4">Không có sản phẩm nào trong danh sách yêu thích.</td></tr>'
+                                );
+                            }
+                        }
+                    } else {
+                        toastr.warning(response.message);
+                    }
+                    // Cập nhật số lượng wishlist trên header
+                    $('.wishlist-item_count').first().text(response.count);
+                },
+                error: function (xhr) {
+                    if (!handleAjaxAuthRedirect(xhr)) {
+                        toastr.error("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                }
+            });
+        }
+
+        function addToCart(productId, quantity) {
+            $.ajax({
+                url: '/Cart/AddToCartAjax',
+                type: 'POST',
+                data: {
+                    id: productId,
+                    quantity: quantity || 1,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.warning(response.message);
+                    }
+                    // Cập nhật số lượng giỏ hàng trên header
+                    if(typeof response.count !== 'undefined')
+                        $('.minicart-btn .cart-item_count').eq(0).text(response.count);
+                },
+                error: function (xhr) {
+                    if (!handleAjaxAuthRedirect(xhr)) {
+                        toastr.error("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                }
+            });
+        }
+
+        function removeFromCart(productId, btn) {
+            $.ajax({
+                url: '/Cart/RemoveFromCartAjax',
+                type: 'POST',
+                data: {
+                    id: productId,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    if (response.success) {
+                        toastr.success(response.message);
+                        // Xóa dòng sản phẩm khỏi bảng nếu có truyền btn
+                        if (btn) {
+                            var row = $(btn).closest('tr');
+                            row.remove();
+                            // Nếu không còn sản phẩm nào, hiển thị dòng thông báo
+                            if ($('.cart-table tbody tr').length === 0) {
+                                $('.cart-table tbody').append(
+                                    '<tr><td colspan="7" class="text-center text-muted py-4">Không có sản phẩm nào trong giỏ hàng.</td></tr>'
+                                );
+                            }
+                        }
+                        // Cập nhật tổng tiền
+                        updateCartTotal();
+                    } else {
+                        toastr.warning(response.message);
+                    }
+                    // Cập nhật số lượng giỏ hàng trên header
+                    if(typeof response.count !== 'undefined')
+                        $('.minicart-btn .cart-item_count').eq(0).text(response.count);
+                },
+                error: function (xhr) {
+                    if (!handleAjaxAuthRedirect(xhr)) {
+                        toastr.error("Có lỗi xảy ra. Vui lòng thử lại.");
+                    }
+                }
+            });
+        }
+
+        // Hàm cập nhật realtime số lượng sản phẩm giỏ hàng trên header
+        function updateCartCountHeader() {
+            $.get('/Cart/GetCartCount', function (data) {
+                // Tìm đúng span cart-item_count cho giỏ hàng (span thứ 2, sau wishlist)
+                $('.minicart-btn .wishlist-item_count').eq(0).text(data);
+            });
+        }
+    </script>
+
+    <script>
+        // Tích chọn tất cả
+        $(document).on('change', '#checkAll', function () {
+            $('.chon-mua').prop('checked', this.checked);
+            updateCartTotal();
+        });
+
+        // Khi tick chọn/bỏ chọn sản phẩm, cũng cập nhật tổng tiền
+        $(document).on('change', '.chon-mua', function () {
+            updateCartTotal();
+        });
+
+        // (QUAN TRỌNG) Đảm bảo sự kiện cập nhật số lượng giỏ hàng chỉ áp dụng cho trang giỏ hàng, không áp dụng cho modal
+        // Ví dụ: chỉ áp dụng cho input nằm trong bảng giỏ hàng
+        $(document).on('input change', '.cart-table .cart-plus-minus-box', function () {
+            var input = this;
+            var row = $(input).closest('tr');
+            var productId = row.find('input.chon-mua').val();
+            var qty = parseInt($(input).val()) || 1;
+            if (qty < 1) qty = 1;
+            $(input).val(qty);
+            // Cập nhật tổng phụ dòng
+            var price = parseFloat(row.find('.pro-price span').text().replace(/[^\d]/g, '')) || 0;
+            var subtotal = price * qty;
+            row.find('.pro-subtotal span').text(subtotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+            // Cập nhật tổng tiền
+            if (typeof updateCartTotal === 'function') updateCartTotal();
+            // Gửi Ajax lên server để lưu số lượng mới
+            if (typeof updateCartQuantity === 'function') updateCartQuantity(productId, qty, input);
+        });
+
+        // Nếu plugin không trigger sự kiện input/change khi nhấn +/-, ta chủ động trigger lại
+        $(document).on('click', '.inc.qtybutton, .dec.qtybutton', function () {
+            var input = $(this).siblings('input.cart-plus-minus-box');
+            setTimeout(function() {
+                $(input).trigger('input');
+            }, 10);
+        });
+
+        // Cập nhật tổng tiền giỏ hàng
+        function updateCartTotal() {
+            var total = 0;
+            $('.cart-table tbody tr').each(function () {
+                var checked = $(this).find('.chon-mua').is(':checked');
+                if (checked) {
+                    var price = parseFloat($(this).find('.pro-price span').text().replace(/[^\d]/g, '')) || 0;
+                    var qty = parseInt($(this).find('.cart-plus-minus-box').val()) || 1;
+                    total += price * qty;
+                }
+            });
+            $('#tamTinh').text(total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+            $('#tongCong').text(total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+        }
+
+        // Gọi cập nhật tổng tiền khi trang vừa load
+        $(document).ready(function () {
+            updateCartTotal();
+        });
+
+        // Hàm Ajax cập nhật số lượng lên server
+            function updateCartQuantity(productId, newQuantity, inputElement) {
+            $.ajax({
+                url: '@Url.Action("UpdateQuantityAjax", "Cart")',
+                type: 'POST',
+                data: {
+                    id: productId,
+                    quantity: newQuantity,
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                },
+                success: function (response) {
+                    if (inputElement && typeof response.newQuantity !== 'undefined') {
+                        $(inputElement).val(response.newQuantity);
+                    }
+                    if (response.success) {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.warning(response.message);
+                    }
+                    // Cập nhật tổng phụ dòng
+                    if (inputElement && typeof response.subtotal !== 'undefined') {
+                        var row = $(inputElement).closest('tr');
+                        row.find('.pro-subtotal span').text(response.subtotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+                    }
+                    // Cập nhật tổng tiền
+                    if (typeof response.total !== 'undefined') {
+                        $('#tamTinh').text(response.total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+                        $('#tongCong').text(response.total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+                    }
+                    // Cập nhật số lượng giỏ hàng trên header (giống wishlist)
+                    if(typeof response.count !== 'undefined')
+                        $('.minicart-btn .cart-item_count').eq(0).text(response.count);
+                },
+                error: function () {
+                    toastr.error("Có lỗi xảy ra. Vui lòng thử lại.");
+                }
+            });
+        }
+
+        // Xóa sản phẩm khỏi giỏ hàng
+        $(document).on('click', '.cart-remove', function (e) {
+            e.preventDefault();
+            var productId = $(this).closest('tr').find('input.chon-mua').val();
+            removeFromCart(productId, this);
+        });
+        // Xóa sản phẩm khỏi wishlist
+        $(document).on('click', '.wishlist-remove', function (e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
+            removeFromWishlist(productId, this);
+        });
+
+        function extractProductIdFromUrl(url) {
+            if (!url) return '';
+            // Tìm id dạng id=123 hoặc /123 ở cuối
+            var match = url.match(/id=(\d+)/) || url.match(/\/(\d+)(\?|$)/);
+            return match ? match[1] : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.add-action [data-bs-toggle="modal"]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    // Cập nhật thông tin cơ bản
+                    document.getElementById('modalProductName').textContent = btn.getAttribute('data-name');
+                    document.getElementById('modalProductPrice').textContent = btn.getAttribute('data-price');
+                    document.getElementById('modalProductImage').src = btn.getAttribute('data-image');
+                    document.getElementById('modalProductDesc').textContent = btn.getAttribute('data-desc');
+                    
+                    // Lấy id sản phẩm từ data-cart
+                    var cartUrl = btn.getAttribute('data-cart');
+                    var productId = extractProductIdFromUrl(cartUrl);
+                    document.getElementById('modalAddToCart').setAttribute('data-id', productId);
+                    
+                    // Lấy id sản phẩm từ data-wishlist
+                    var wishlistUrl = btn.getAttribute('data-wishlist');
+                    var wishlistId = extractProductIdFromUrl(wishlistUrl);
+                    document.getElementById('modalAddToWishlist').setAttribute('data-id', wishlistId);
+                    
+                    // Reset số lượng về 1 khi mở modal
+                    var qtyInput = document.querySelector('#exampleModalCenter .cart-plus-minus-box');
+                    if(qtyInput) qtyInput.value = 1;
+                    
+                    // Lấy thông tin đánh giá từ data attributes
+                    var ratingStr = btn.getAttribute('data-rating') || "0";
+                    var reviewCount = btn.getAttribute('data-reviews') || "0";
+                    var rating = parseInt(ratingStr);
+                    
+                    // Cập nhật hiển thị sao trong modal
+                    var ratingContainer = document.getElementById('modalProductRating');
+                    ratingContainer.innerHTML = '';
+                    
+                    // Thêm các ngôi sao
+                    for (var i = 1; i <= 5; i++) {
+                        var star = document.createElement('i');
+                        star.className = i <= rating ? 'fa fa-star' : 'fa fa-star-o';
+                        ratingContainer.appendChild(star);
+                    }
+                    
+                    // Thêm số lượt đánh giá
+                    var reviewSpan = document.createElement('span');
+                    reviewSpan.textContent = ' (' + reviewCount + ' đánh giá)';
+                    ratingContainer.appendChild(reviewSpan);
+                });
+            });
+
+            // Xử lý nút thêm vào giỏ hàng trong modal
+            var modalAddToCartBtn = document.getElementById('modalAddToCart');
+            if (modalAddToCartBtn) {
+                modalAddToCartBtn.onclick = function() {
+                    var productId = this.getAttribute('data-id');
+                    var quantity = parseInt(document.querySelector('#exampleModalCenter .cart-plus-minus-box').value) || 1;
+                    if (!productId) {
+                        toastr.error("Không xác định được sản phẩm.");
+                        return false;
+                    }
+                    addToCart(productId, quantity);
+                    return false;
+                };
+            }
+            // Xử lý nút thêm vào yêu thích trong modal
+            var modalAddToWishlistBtn = document.getElementById('modalAddToWishlist');
+            if (modalAddToWishlistBtn) {
+                modalAddToWishlistBtn.onclick = function() {
+                    var productId = this.getAttribute('data-id');
+                    if (!productId) {
+                        toastr.error("Không xác định được sản phẩm.");
+                        return false;
+                    }
+                    addToWishlist(productId);
+                    return false;
+                };
+            }
+        });
+
+        // Thêm sản phẩm từ wishlist vào giỏ hàng
+        $(document).on('click', '.add-to-cart-wishlist', function (e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
+            if (!productId) {
+                toastr.error('Không xác định được sản phẩm.');
+                return false;
+            }
+            addToCart(productId, 1);
+            return false;
+        });
+    </script>
+    
+    <script>
+        // Xử lý hiển thị thông báo TempData từ controller
+        $(document).ready(function() {
+            // Hiển thị thông báo thành công
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <text>toastr.success('@TempData["SuccessMessage"]');</text>
+            }
+            
+            // Hiển thị thông báo cảnh báo
+            @if (TempData["WarningMessage"] != null)
+            {
+                <text>toastr.warning('@TempData["WarningMessage"]');</text>
+            }
+            
+            // Hiển thị thông báo lỗi
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <text>toastr.error('@TempData["ErrorMessage"]');</text>
+            }
+            
+            // Hiển thị thông báo thông tin
+            @if (TempData["InfoMessage"] != null)
+            {
+                <text>toastr.info('@TempData["InfoMessage"]');</text>
+            }
+        });
+    </script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+    
+    <!-- Chat Widget -->
+    <partial name="_ChatWidget" />
+</body>
+</html>

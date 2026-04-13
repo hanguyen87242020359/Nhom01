@@ -1,0 +1,166 @@
+@{
+    ViewData["Title"] = "Liên hệ";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Liên hệ</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li>Liên hệ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+
+<!-- Contact Us Area Start Here -->
+<div class="contact-us-area mt-no-text mb-5 py-5">
+    <div class="container custom-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-custom">
+                <div class="contact-info-sidebar section-title text-center">
+                    <h3 class="section-title-3 pb-0 mb-5">Thông tin liên hệ với chúng tôi</h3>
+                    <div class="contact-info-list d-flex flex-wrap justify-content-around">
+                        <div class="info-item text-center mb-5 px-4">
+                            <div class="info-icon mb-4">
+                                <i class="fa fa-map-marker fa-3x" style="color: #E72463;"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4 class="title-4 mb-3">Địa chỉ</h4>
+                                <p class="mb-0">48 Cao Thắng, Đà Nẵng</p>
+                            </div>
+                        </div>
+                        <div class="info-item text-center mb-5 px-4">
+                            <div class="info-icon mb-4">
+                                <i class="fa fa-phone fa-3x" style="color: #E72463;"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4 class="title-4 mb-3">Điện thoại</h4>
+                                <p class="mb-0">
+                                    <a href="tel:01234567890">01234 567 890</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-item text-center mb-5 px-4">
+                            <div class="info-icon mb-4">
+                                <i class="fa fa-envelope fa-3x" style="color: #E72463;"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4 class="title-4 mb-3">Email</h4>
+                                <p class="mb-0">
+                                    <a href="mailto:nguyencamlyly1903@gmail.com">nhom1@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="info-item text-center mb-5 px-4">
+                            <div class="info-icon mb-4">
+                                <i class="fa fa-clock-o fa-3x" style="color: #E72463;"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4 class="title-4 mb-3">Giờ mở cửa</h4>
+                                <p class="mb-0">Thứ Hai - Chủ Nhật: 8:00 - 20:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links mt-5 text-center">
+                        <h4 class="section-title-3">Theo dõi chúng tôi</h4>
+                        <ul class="d-flex justify-content-center">
+                            <li class="mx-2">
+                                <a class="rounded-circle" href="#" title="Facebook" style="background-color: #E72463; color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-facebook fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a class="rounded-circle" href="#" title="Twitter" style="background-color: #E72463; color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-twitter fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a class="rounded-circle" href="#" title="Instagram" style="background-color: #E72463; color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-instagram fa-lg"></i>
+                                </a>
+                            </li>
+                            <li class="mx-2">
+                                <a class="rounded-circle" href="#" title="Youtube" style="background-color: #E72463; color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-youtube fa-lg"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Us Area End Here -->
+
+<!-- Google Map Area Start Here -->
+<div class="google-map-area pb-5">
+    <div id="google-map">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="contact-form-section mt-4">
+                        <h4 class="section-title-3 text-center mb-3" style="font-size: 36px;
+                            font-weight: 700;
+                            margin-bottom: 0px;
+                            padding-bottom: 25px;
+                            text-transform: uppercase;">
+                            Gửi tin nhắn cho chúng tôi
+                        </h4>
+                        <style>
+                            .contact-form .form-control {
+                                border: 1px solid #e6e6e6;
+                                padding: 10px;
+                                border-radius: 4px;
+                            }
+
+                            .contact-form .btn-submit {
+                                background-color: #E72463;
+                                color: #fff;
+                                padding: 8px 20px;
+                                border: none;
+                                border-radius: 4px;
+                            }
+                        </style>
+                        <form class="contact-form mt-3">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="First name" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Last name" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="tel" class="form-control" placeholder="Phone" />
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Email" />
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control" rows="5" placeholder="Note"></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="button" class="btn btn-submit">Gửi</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.8025459042235!2d108.218759676699!3d16.07763308462757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218297669116b%3A0x711bc51a750170e4!2zNDggQ2FvIFRo4bqvbmcsIFRoYW5oIELDrG5oLCBI4bqjaSBDaMOidSwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1718175174953!5m2!1svi!2s"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Google Map Area End Here --> 

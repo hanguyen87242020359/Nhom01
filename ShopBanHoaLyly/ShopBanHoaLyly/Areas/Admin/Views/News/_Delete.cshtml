@@ -1,0 +1,39 @@
+@model ShopBanHoaLyly.Models.TinTuc
+<div class="modal fade" id="deleteNewsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title text-danger">
+                    <i class="fa fa-exclamation-triangle me-2"></i>Xác nhận xóa tin tức
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa tin tức <b>@Model.TieuDe</b> không?</p>
+                <input type="hidden" id="deleteNewsId" value="@Model.MaTinTuc" />
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-danger" id="confirmDeleteNewsBtn">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).off('click', '#confirmDeleteNewsBtn').on('click', '#confirmDeleteNewsBtn', function () {
+        var id = $('#deleteNewsId').val();
+        $.ajax({
+            url: '/Admin/News/Delete',
+            type: 'POST',
+            data: { id: id },
+            success: function (res) {
+                if (res.success) {
+                    $('#deleteNewsModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert(res.message || 'Xóa tin tức thất bại!');
+                }
+            }
+        });
+    });
+</script> 

@@ -1,0 +1,298 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var currentArea = ViewContext.RouteData.Values["area"]?.ToString();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Nhân viên - @ViewData["Title"]</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="~/images/favicon.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="~/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+          google: { families: ["Public Sans:300,400,500,600,700"] },
+          custom: {
+            families: [
+              "Font Awesome 5 Solid",
+              "Font Awesome 5 Regular",
+              "Font Awesome 5 Brands",
+              "simple-line-icons",
+            ],
+            urls: ["/css/fonts.min.css"],
+          },
+          active: function () {
+            sessionStorage.fonts = true;
+          },
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/css/vendor/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="~/css/kaiadmin.min.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="~/css/demo.css" />
+
+    <style>
+        /* Style toàn cục cho badge */
+        .badge {
+            font-size: 1em !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar" data-background-color="dark">
+            <div class="sidebar-logo">
+                <!-- Logo Header -->
+                <div class="logo-header" data-background-color="dark">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="logo">
+                        <img src="~/images/logo/logo-footer.png" alt="navbar brand" class="navbar-brand" width="130" />
+                    </a>
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
+                        </button>
+                    </div>
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
+                </div>
+                <!-- End Logo Header -->
+            </div>
+            <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                <div class="sidebar-content">
+                    <ul class="nav nav-secondary">
+
+
+                        <li class="nav-item @(currentController == "Category" && currentAction == "Index" ? "active" : "")">
+                            <a asp-area="Employee" asp-controller="Category" asp-action="Index" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-folder"></i>
+                                <p>Cập nhật danh mục</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(currentController == "Product" && currentAction == "Index" ? "active" : "")">
+                            <a asp-area="Employee" asp-controller="Product" asp-action="Index" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-box"></i>
+                                <p>Cập nhật sản phẩm</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(currentController == "Order" && currentAction == "Index" ? "active" : "")">
+                            <a asp-area="Employee" asp-controller="Order" asp-action="Index" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                                <p>Cập nhật đơn hàng</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="main-panel">
+            <div class="main-header">
+                <div class="main-header-logo">
+                    <!-- Logo Header -->
+                    <div class="logo-header" data-background-color="dark">
+                        <a href="index.html" class="logo">
+                            <img src="~/images/logo/logo-footer.png" alt="navbar brand" class="navbar-brand" height="20" />
+                        </a>
+                        <div class="nav-toggle">
+                            <button class="btn btn-toggle toggle-sidebar">
+                                <i class="gg-menu-right"></i>
+                            </button>
+                            <button class="btn btn-toggle sidenav-toggler">
+                                <i class="gg-menu-left"></i>
+                            </button>
+                        </div>
+                        <button class="topbar-toggler more">
+                            <i class="gg-more-vertical-alt"></i>
+                        </button>
+                    </div>
+                    <!-- End Logo Header -->
+                </div>
+                <!-- Navbar Header -->
+                <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+                    <div class="container-fluid">
+                        <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button type="submit" class="btn btn-search pe-1">
+                                        <i class="fa fa-search search-icon"></i>
+                                    </button>
+                                </div>
+                                <input type="text" placeholder="Tìm kiếm ..." class="form-control" />
+                            </div>
+                        </nav>
+
+                        <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                            <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                   aria-expanded="false" aria-haspopup="true">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-search animated fadeIn">
+                                    <form class="navbar-left navbar-form nav-search">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Tìm kiếm ..." class="form-control" />
+                                        </div>
+                                    </form>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item topbar-user dropdown hidden-caret">
+                                <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" aria-expanded="false">
+                                    <span class="profile-username">
+                                        <span class="op-7">Xin chào,</span>
+                                        <span class="fw-bold">@User.FindFirst("FullName")?.Value</span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user animated fadeIn">
+                                    <div class="dropdown-user-scroll scrollbar-outer">
+                                    <li>
+                                        <div class="user-box">
+                                            <div class="u-text">
+                                                <h4>@User.FindFirst("FullName")?.Value</h4>
+                                                <p class="text-muted">@User.Identity.Name</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                        <a asp-area="" asp-controller="Home" asp-action="Logout" class="dropdown-item">Đăng xuất</a>
+                                    </li>
+                    </div>
+                    </ul>
+                    </li>
+                    </ul>
+            </div>
+            </nav>
+            <!-- End Navbar -->
+        </div>
+
+        <div class="container">
+            <div class="page-inner">
+                <div class="page-header">
+                    <h4 class="page-title">@ViewData["Title"]</h4>
+                    <ul class="breadcrumbs">
+                        <li class="nav-home">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="icon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="icon-arrow-right"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">@ViewData["Title"]</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="page-category">@RenderBody()</div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid d-flex justify-content-between">
+                <div class="copyright">
+                    2025, made with <i class="fa fa-heart heart text-danger"></i> by Nguyễn Thị Cẩm Ly
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="~/js/core/jquery-3.7.1.min.js"></script>
+    <script src="~/js/core/popper.min.js"></script>
+    <script src="~/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="~/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="~/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="~/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="~/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="~/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="~/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="~/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="~/js/plugin/gmaps/gmaps.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="~/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="~/js/kaiadmin.min.js"></script>
+
+    <script src="~/js/demo.js"></script>
+
+    <script>
+        $(document).ready(function () {
+          // Định nghĩa đối tượng ngôn ngữ
+        var language = {
+          'search': 'Tìm kiếm:',
+          'lengthMenu': 'Hiển thị _MENU_ dòng mỗi trang',
+          'zeroRecords': 'Không tìm thấy kết quả',
+          'info': 'Đang xem _START_ đến _END_ trong _TOTAL_ dòng',
+          'infoEmpty': 'Không có dòng nào',
+          'infoFiltered': '(lọc từ _MAX_ dòng)',
+          // Thêm đối tượng oPaginate cho các nút phân trang
+          'oPaginate': {
+              'sFirst':    'Đầu',   // Nút trang đầu (Tùy chọn, nhưng nên có)
+              'sPrevious': 'Trước', // Nút trang trước
+              'sNext':     'Tiếp',  // Nút trang tiếp theo
+              'sLast':     'Cuối'   // Nút trang cuối (Tùy chọn, nhưng nên có)
+          },
+          // Thêm Aria Labels để cải thiện khả năng truy cập (Tùy chọn)
+          'oAria': {
+              'sSortAscending':  ": Sắp xếp cột tăng dần",
+              'sSortDescending': ": Sắp xếp cột giảm dần"
+          }
+        };
+
+          $('#add-row').DataTable({
+            "language": language,
+          });
+
+          // Đoạn mã này để thêm tooltips sau khi thêm row
+          $('#add-row').on('draw.dt', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('#add-row [data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+              return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+          });
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

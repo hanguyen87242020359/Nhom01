@@ -1,0 +1,220 @@
+@model IEnumerable<ShopBanHoaLyly.Models.TinTuc>
+
+@{
+    ViewData["Title"] = "Cập nhật tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Danh sách tin tức</h4>
+                    <button class="btn btn-primary btn-round ms-auto" id="btnShowCreateModal">
+                        <i class="fa fa-plus"></i>
+                        Thêm tin tức mới
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3 align-items-center">
+                    <div class="col-md-3">
+                        <select id="filterStatus" class="form-select">
+                            <option value="">-- Lọc trạng thái --</option>
+                            <option value="Hiển thị">Hiển thị</option>
+                            <option value="Ẩn">Ẩn</option>
+                        </select>
+                    </div>
+                    <div class="col-md-9 d-flex justify-content-end">
+                        <div id="custom-search-container" style="width: 300px;"></div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table id="add-row" class="display table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th style="width: 200px;">Tiêu đề</th>
+                                <th>Hình ảnh</th>
+                                <th>Ngày đăng</th>
+                                <th>Người đăng</th>
+                                <th>Trạng thái</th>
+                                <th style="width: 10%">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.MaTinTuc</td>
+                                    <td>
+                                        <span data-bs-toggle="tooltip" data-bs-placement="top" title="@item.TieuDe">
+                                            @(item.TieuDe?.Length > 30 ? item.TieuDe.Substring(0, 30) + "..." : item.TieuDe)
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(item.HinhAnhDaiDien))
+                                        {
+                                            <img src="~/images/blog/@item.HinhAnhDaiDien" alt="@item.TieuDe" style="height: 50px; width: auto;" />
+                                        }
+                                        else
+                                        {
+                                            <span>Không có ảnh</span>
+                                        }
+                                    </td>
+                                    <td>@item.NgayCapNhat.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td>@item.MaTaiKhoanNavigation?.HoVaTen</td>
+                                    <td>
+                                        @if (item.TrangThaiHienThi == true)
+                                        {
+                                            <span class="badge bg-success">Hiển thị</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger">Ẩn</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="form-button-action">
+                                            <button type="button" class="btn btn-link btn-warning btn-edit-news" data-id="@item.MaTinTuc" data-bs-toggle="tooltip" title="Sửa">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-link btn-info btn-view-news" data-id="@item.MaTinTuc" data-bs-toggle="tooltip" title="Xem">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-link btn-danger btn-delete-news" data-id="@item.MaTinTuc" data-bs-toggle="tooltip" title="Xóa">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalContainer"></div>
+
+@section Scripts {
+
+<!-- CSS cho CKEditor -->
+<style>
+    .ck.ck-content.ck-editor__editable {
+        min-height: 300px !important;
+        max-height: 600px;
+        overflow-y: auto;
+    }
+</style>
+
+<!-- jQuery Validation -->
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(function () {
+        var table = $('#add-row').DataTable();
+        
+        // Đưa ô tìm kiếm lên cùng hàng với combobox
+        $("#custom-search-container").html($("#add-row_filter input").detach().addClass("form-control").attr("placeholder", "Tìm kiếm...").css("width", "100%"));
+        $("#add-row_filter").hide();
+        
+        // Thêm tin tức
+        $('#btnShowCreateModal').on('click', function () {
+            $.get('/Admin/News/Create', function (res) {
+                $('#modalContainer').html(res);
+                $('#addNewsModal').modal('show');
+                
+                // Khởi tạo CKEditor sau khi modal hiển thị
+                initCKEditorInModal();
+            });
+        });
+        
+        // Sửa tin tức
+        $('.btn-edit-news').on('click', function () {
+            var id = $(this).data('id');
+            $.get('/Admin/News/Edit/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#addNewsModal').modal('show');
+                
+                // Khởi tạo CKEditor sau khi modal hiển thị
+                initCKEditorInModal();
+            });
+        });
+        
+        // Hàm khởi tạo CKEditor trong modal
+        function initCKEditorInModal() {
+            const {
+                ClassicEditor,
+                Essentials,
+                Bold,
+                Italic,
+                Underline,
+                Heading,
+                Link,
+                BlockQuote,
+                List,
+                Indent,
+                Table,
+                TableToolbar,
+                Font,
+                Paragraph
+            } = CKEDITOR;
+
+            ClassicEditor
+                .create(document.querySelector('#editor'), {
+                    licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3ODE2NTQzOTksImp0aSI6ImFhMTRlNzE2LTQ1NmQtNDU1NC05NzVlLTc5MGI5YTg0MDcxNCIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIiwiRTJQIiwiRTJXIl0sInZjIjoiODc0YjI2YjcifQ.FWHHUxNvSefty_OISRtDayWeNgl5MqFrMuCaNlksqzhy6omT5kr_BW5qAuDJX6xaO8HEZVGArExrrIkDj1sYVw',
+                    plugins: [
+                        Essentials, Bold, Italic, Underline, Heading, Link, BlockQuote,
+                        List, Indent, Table, TableToolbar, Font, Paragraph
+                    ],
+                    toolbar: [
+                        'undo', 'redo', '|',
+                        'heading', '|',
+                        'bold', 'italic', 'underline', '|',
+                        'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+                        'link', 'blockQuote', '|',
+                        'bulletedList', 'numberedList', 'outdent', 'indent', '|',
+                        'insertTable'
+                    ],
+                    table: {
+                        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                    }
+                })
+                .then(editor => {
+                    window.editor = editor;
+                    console.log('CKEditor đã được khởi tạo!');
+                })
+                .catch(error => {
+                    console.error('Lỗi khi khởi tạo CKEditor:', error);
+                });
+        }
+
+        
+        // Xem tin tức
+        $('.btn-view-news').on('click', function() {
+            var id = $(this).data('id');
+            window.open('/Admin/News/Preview/' + id, '_blank');
+        });
+        
+        // Xóa tin tức
+        $('.btn-delete-news').on('click', function () {
+            var id = $(this).data('id');
+            $.get('/Admin/News/DeleteConfirm/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#deleteNewsModal').modal('show');
+            });
+        });
+        
+        // Lọc theo trạng thái hiển thị/ẩn
+        $('#filterStatus').on('change', function () {
+            var val = $(this).val();
+            table.column(5).search(val).draw(); // Cột trạng thái là cột thứ 6 (index 5)
+        });
+    });
+</script>
+} 

@@ -1,0 +1,173 @@
+@model ShopBanHoaLyly.Models.DonHang
+@{
+    ViewData["Title"] = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Đặt hàng thành công</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li>Đặt hàng thành công</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="thank-you-area mt-no-text mb-no-text">
+    <div class="container custom-container">
+        <div class="row">
+            <div class="col-md-12 text-center mb-30">
+                <div class="thank-you-content">
+                    <i class="fa fa-check-circle text-success" style="font-size: 5rem;"></i>
+                    <h2 class="my-4">Cảm ơn bạn đã đặt hàng!</h2>
+                    <p>Đơn hàng của bạn đã được đặt thành công và đang được xử lý.</p>
+                    @if(Model.MaPhuongThucThanhToan == 2 && Model.TrangThaiThanhToan == true)
+                    {
+                        <p class="text-success">Thanh toán qua VNPay đã thành công!</p>
+                    }
+                    <p>Mã đơn hàng của bạn: <strong>#@Model.MaDonHang</strong></p>
+                    <div class="mt-4">
+                        <a asp-controller="Home" asp-action="Index" class="btn flosun-button secondary-btn theme-color rounded-0 mt-4 me-3">Tiếp tục mua sắm</a>
+                        <a asp-controller="ClientAccount" asp-action="Index" class="btn flosun-button primary-btn theme-color rounded-0 mt-4">Xem đơn hàng trong tài khoản của tôi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Thông tin đơn hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Mã đơn hàng:</strong> #@Model.MaDonHang</p>
+                                <p><strong>Ngày đặt hàng:</strong> @Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
+                                <p><strong>Phương thức thanh toán:</strong> @(Model.MaPhuongThucThanhToan == 1 ? "Thanh toán khi nhận hàng (COD)" : "VNPay")</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Tổng tiền:</strong> @((Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0) + (Model.PhiVanChuyen ?? 0)).ToString("C0"))</p>
+                                <p><strong>Phí vận chuyển:</strong> @(Model.PhiVanChuyen > 0 ? Model.PhiVanChuyen?.ToString("C0") : "Miễn phí")</p>
+                                <p>
+                                    <strong>Trạng thái đơn hàng:</strong> 
+                                    @{
+                                        string badgeColor = "bg-info";
+                                        string trangThaiText = "Không xác định";
+
+                                        switch (Model.MaTrangThaiDonHang)
+                                        {
+                                            case 1:
+                                                badgeColor = "bg-primary";
+                                                trangThaiText = "Hoàn tất đặt hàng";
+                                                break;
+                                            case 2:
+                                                badgeColor = "bg-info";
+                                                trangThaiText = "Đang chuẩn bị hàng";
+                                                break;
+                                            case 3:
+                                                badgeColor = "bg-warning";
+                                                trangThaiText = "Đang giao hàng";
+                                                break;
+                                            case 4:
+                                                badgeColor = "bg-success";
+                                                trangThaiText = "Đã giao hàng";
+                                                break;
+                                            case 5:
+                                                badgeColor = "bg-danger";
+                                                trangThaiText = "Đã hủy";
+                                                break;
+                                        }
+                                    }
+                                    <span class="badge @badgeColor">@trangThaiText</span>
+                                </p>
+                                <p><strong>Trạng thái thanh toán:</strong> 
+                                    @if(Model.TrangThaiThanhToan == true)
+                                    {
+                                        <span class="badge bg-success">Đã thanh toán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">Chưa thanh toán</span>
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Thông tin giao hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Người nhận:</strong> @Model.NguoiNhan</p>
+                        <p><strong>Địa chỉ:</strong> @Model.DiaChiGiaoHang</p>
+                        <p><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.GhiChu) ? "Không có" : Model.GhiChu)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Chi tiết đơn hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th class="text-center">Đơn giá</th>
+                                        <th class="text-center">Số lượng</th>
+                                        <th class="text-end">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.ChiTietDonHangs)
+                                    {
+                                        <tr>
+                                            <td>@item.TenSanPham</td>
+                                            <td class="text-center">@(item.DonGia?.ToString("C0"))</td>
+                                            <td class="text-center">@item.SoLuongDat</td>
+                                            <td class="text-end">@(item.ThanhTien?.ToString("C0"))</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="3" class="text-end">Tạm tính:</th>
+                                        <td class="text-end">@(Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0).ToString("C0"))</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="3" class="text-end">Phí vận chuyển:</th>
+                                        <td class="text-end">@(Model.PhiVanChuyen > 0 ? Model.PhiVanChuyen?.ToString("C0") : "Miễn phí")</td>
+                                    </tr>
+                                    <tr class="table-active">
+                                        <th colspan="3" class="text-end">Tổng cộng:</th>
+                                        <td class="text-end"><strong>@((Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0) + (Model.PhiVanChuyen ?? 0)).ToString("C0"))</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-no-text"></div> 

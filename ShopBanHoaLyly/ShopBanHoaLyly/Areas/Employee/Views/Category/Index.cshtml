@@ -1,0 +1,92 @@
+﻿@model List<ShopBanHoaLyly.Models.DanhMuc>
+@{
+    ViewData["Title"] = "Cập nhật danh mục";
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeeLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách danh mục</h4>
+                <button class="btn btn-primary btn-round ms-auto" id="btnShowCreateModal">
+                    <i class="fa fa-plus"></i>
+                    Thêm danh mục
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="add-row"
+                       class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã danh mục</th>
+                            <th>Tên danh mục</th>
+                            <th style="width: 10%">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaDanhMuc</td>
+                                <td>@item.TenDanhMuc</td>
+                                <td>
+                                    <div class="form-button-action">
+                                        <button type="button"
+                                                class="btn btn-link btn-primary btn-lg btn-edit-category"
+                                                data-id="@item.MaDanhMuc"
+                                                data-bs-toggle="tooltip"
+                                                title="Sửa">
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-link btn-danger btn-delete-category"
+                                                data-id="@item.MaDanhMuc"
+                                                data-bs-toggle="tooltip"
+                                                title="Xóa">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal sẽ được load động vào đây -->
+<div id="modalContainer"></div>
+@section Scripts {
+<script>
+    $(function () {
+        // Thêm danh mục
+        $('#btnShowCreateModal').on('click', function () {
+            $.get('/Employee/Category/Create', function (res) {
+                $('#modalContainer').html(res);
+                $('#addCategoryModal').modal('show');
+            });
+        });
+        // Sửa danh mục
+        $('#add-row').on('click', '.btn-edit-category', function () {
+            var id = $(this).data('id');
+            $.get('/Employee/Category/Edit/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#addCategoryModal').modal('show');
+            });
+        });
+        // Xóa danh mục
+        $('#add-row').on('click', '.btn-delete-category', function () {
+            var id = $(this).data('id');
+            $.get('/Employee/Category/DeleteConfirm/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#deleteCategoryModal').modal('show');
+            });
+        });
+    });
+</script>
+}

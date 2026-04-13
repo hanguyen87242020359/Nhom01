@@ -1,0 +1,103 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|d:\\my hoa\\nam 4 - hk 2\\shopbanhoalyly\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|d:\\my hoa\\nam 4 - hk 2\\shopbanhoalyly\\areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|d:\\my hoa\\nam 4 - hk 2\\shopbanhoalyly\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|d:\\my hoa\\nam 4 - hk 2\\shopbanhoalyly\\views\\news\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\news\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|d:\\my hoa\\nam 4 - hk 2\\shopbanhoalyly\\views\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\news\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\ViewModels\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\RegisterViewModel.cs",
+              "ToolTip": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\ViewModels\\RegisterViewModel.cs",
+              "RelativeToolTip": "ViewModels\\RegisterViewModel.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA3wB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T11:30:37.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Areas\\Admin\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAAABwBAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-27T08:53:51.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-27T07:10:37.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Views\\News\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\News\\Index.cshtml",
+              "ToolTip": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Views\\News\\Index.cshtml",
+              "RelativeToolTip": "Views\\News\\Index.cshtml",
+              "ViewState": "AgIAAOkAAAAAAAAAAADwv/kAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T16:02:32.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Views\\News\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\News\\Details.cshtml",
+              "ToolTip": "D:\\My Hoa\\Nam 4 - HK 2\\ShopBanHoaLyly\\Views\\News\\Details.cshtml",
+              "RelativeToolTip": "Views\\News\\Details.cshtml",
+              "ViewState": "AgIAABABAAAAAAAAAADwvxkBAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-26T16:02:22.917Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

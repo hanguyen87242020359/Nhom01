@@ -1,0 +1,67 @@
+@model List<ShopBanHoaLyly.Models.DonHang>
+
+<div class="myaccount-table table-responsive text-center">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Mã đơn hàng</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Tổng cộng</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || !Model.Any())
+            {
+                <tr>
+                    <td colspan="5" class="text-center">Không có đơn hàng nào.</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var donHang in Model)
+                {
+                    string badgeColor = "bg-info";
+                    string trangThaiText = "Không xác định";
+
+                    switch (donHang.MaTrangThaiDonHang)
+                    {
+                        case 1:
+                            badgeColor = "bg-primary";
+                            trangThaiText = "Hoàn tất đặt hàng";
+                            break;
+                        case 2:
+                            badgeColor = "bg-info";
+                            trangThaiText = "Đang chuẩn bị hàng";
+                            break;
+                        case 3:
+                            badgeColor = "bg-warning";
+                            trangThaiText = "Đang giao hàng";
+                            break;
+                        case 4:
+                            badgeColor = "bg-success";
+                            trangThaiText = "Đã giao hàng";
+                            break;
+                        case 5:
+                            badgeColor = "bg-danger";
+                            trangThaiText = "Đã hủy";
+                            break;
+                    }
+
+                    <tr>
+                        <td>#@donHang.MaDonHang</td>
+                        <td>@donHang.NgayDatHang.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <span class="badge @badgeColor">@trangThaiText</span>
+                        </td>
+                        <td>@String.Format("{0:C0}", (donHang.ChiTietDonHangs?.Sum(c => c.ThanhTien ?? 0) ?? 0) + (donHang.PhiVanChuyen ?? 0))</td>
+                        <td>
+                            <a asp-controller="Order" asp-action="Details" asp-route-id="@donHang.MaDonHang" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0">Xem</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div> 

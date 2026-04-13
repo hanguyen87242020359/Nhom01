@@ -1,0 +1,59 @@
+@model List<ShopBanHoaLyly.ViewModels.OrderSummaryViewModel>
+
+<div class="table-responsive">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4>Danh sách đơn hàng</h4>
+        @if (Model != null && Model.Any())
+        {
+            <div class="d-flex">
+                <div class="badge badge-primary p-2 me-3" style="font-size: 14px;">
+                    <i class="fas fa-shopping-cart me-1"></i> Tổng số: <strong>@Model.Count đơn hàng</strong>
+                </div>
+                <div class="badge badge-success p-2" style="font-size: 14px;">
+                    <i class="fas fa-money-bill-wave me-1"></i> Tổng tiền: <strong>@Model.Sum(x => x.TongTien).ToString("C0")</strong>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Mã ĐH</th>
+                <th>Ngày đặt</th>
+                <th>Trạng thái</th>
+                <th>Người nhận</th>
+                <th>SĐT</th>
+                <th>Tổng tiền</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var order in Model)
+                {
+                    <tr>
+                        <td>@order.MaDonHang</td>
+                        <td>@order.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@order.TrangThaiDonHang</td>
+                        <td>@order.NguoiNhan</td>
+                        <td>@order.SoDienThoaiNhan</td>
+                        <td>@order.TongTien.ToString("C0")</td>
+                        <td>
+                            <a href="/Admin/Order/Details/@order.MaDonHang" class="btn btn-sm btn-info">
+                                <i class="fa fa-eye"></i> Chi tiết
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center">Không có đơn hàng nào trong khoảng thời gian này</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> 

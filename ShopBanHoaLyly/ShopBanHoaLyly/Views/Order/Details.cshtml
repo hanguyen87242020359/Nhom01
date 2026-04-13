@@ -1,0 +1,671 @@
+@model ShopBanHoaLyly.Models.DonHang
+@inject ShopBanHoaLyly.Models.ShopHoaLyLyContext _context
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng #" + Model.MaDonHang;
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    
+    string GetTrangThaiClass()
+    {
+        return Model.MaTrangThaiDonHang switch
+        {
+            1 => "primary", // Hoàn tất đặt hàng
+            2 => "info",    // Đang chuẩn bị hàng
+            3 => "warning", // Đang giao hàng
+            4 => "success", // Đã giao hàng
+            5 => "danger",  // Đã hủy
+            _ => "secondary"
+        };
+    }
+    
+    string GetTrangThaiText()
+    {
+        return Model.MaTrangThaiDonHangNavigation?.TenTrangThaiDonHang ?? "Không xác định";
+    }
+}
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Chi tiết đơn hàng</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li><a asp-controller="ClientAccount" asp-action="Index">Tài khoản của tôi</a></li>
+                        <li>Đơn hàng #@Model.MaDonHang</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+
+<div class="order-details-area mt-no-text mb-no-text">
+    <div class="container custom-container">
+        @if (TempData["ReviewSuccess"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["ReviewSuccess"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        
+        @if (TempData["ReviewError"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ReviewError"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        
+        <!-- Thông tin đơn hàng -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Thông tin đơn hàng #@Model.MaDonHang</h5>
+                        <span class="badge bg-@GetTrangThaiClass()">@GetTrangThaiText()</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Ngày đặt hàng:</strong> @Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</p>
+                                <p>
+                                    <strong>Phương thức thanh toán:</strong> 
+                                    @Model.MaPhuongThucThanhToanNavigation?.TenPhuongThucThanhToan
+                                </p>
+                                <p>
+                                    <strong>Trạng thái thanh toán:</strong>
+                                    @if(Model.TrangThaiThanhToan == true)
+                                    {
+                                        <span class="badge bg-success">Đã thanh toán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">Chưa thanh toán</span>
+                                    }
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Tổng tiền:</strong> @String.Format("{0:C0}", Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0) + (Model.PhiVanChuyen ?? 0))</p>
+                                <p><strong>Phí vận chuyển:</strong> @(Model.PhiVanChuyen > 0 ? String.Format("{0:C0}", Model.PhiVanChuyen) : "Miễn phí")</p>
+                                @if (Model.MaTrangThaiDonHang == 4)
+                                {
+                                    <p><strong>Ngày giao hàng:</strong> @Model.NgayGiaoHang?.ToString("dd/MM/yyyy HH:mm")</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <!-- Tiến độ đơn hàng -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Tiến độ đơn hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="progress-track">
+                            <ul class="list-unstyled d-flex justify-content-between mb-4 text-center tracking-list">
+                                <li class="@(Model.MaTrangThaiDonHang >= 1 ? "active" : "")">
+                                    <div class="tracking-icon">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <div class="mt-1">Đã đặt hàng</div>
+                                </li>
+                                <li class="@(Model.MaTrangThaiDonHang >= 2 ? "active" : "")">
+                                    <div class="tracking-icon">
+                                        <i class="fa fa-archive"></i>
+                                    </div>
+                                    <div class="mt-1">Đang chuẩn bị hàng</div>
+                                </li>
+                                <li class="@(Model.MaTrangThaiDonHang >= 3 ? "active" : "")">
+                                    <div class="tracking-icon">
+                                        <i class="fa fa-truck fa-flip-horizontal"></i>
+                                    </div>
+                                    <div class="mt-1">Đang giao hàng</div>
+                                </li>
+                                <li class="@(Model.MaTrangThaiDonHang >= 4 ? "active" : "")">
+                                    <div class="tracking-icon">
+                                        <i class="fa fa-home"></i>
+                                    </div>
+                                    <div class="mt-1">Đã giao hàng</div>
+                                </li>
+                            </ul>
+                            
+                            @{
+                                var progressPercentage = Model.MaTrangThaiDonHang switch
+                                {
+                                    1 => "12%",
+                                    2 => "37%",
+                                    3 => "63%",
+                                    4 => "100%",
+                                    5 => "0%",
+                                    _ => "0%"
+                                };
+                                
+                                var progressClass = Model.MaTrangThaiDonHang switch
+                                {
+                                    4 => "bg-success",
+                                    5 => "bg-danger",
+                                    _ => ""
+                                };
+                            }
+                            
+                            @if(Model.MaTrangThaiDonHang != 5) {
+                                <div class="progress" style="height: 5px;">
+                                    <div class="progress-bar @progressClass" role="progressbar" style="width: @progressPercentage"></div>
+                                </div>
+                            } else {
+                                <div class="alert alert-danger text-center">
+                                    Đơn hàng đã bị hủy vào @Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông tin giao hàng -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Thông tin giao hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Người nhận:</strong> @Model.NguoiNhan</p>
+                        <p><strong>Địa chỉ:</strong> @Model.DiaChiGiaoHang</p>
+                        <p><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.GhiChu) ? "Không có" : Model.GhiChu)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Tùy chọn</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <a asp-controller="ClientAccount" asp-action="Index" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0">
+                                <i class="fa fa-arrow-left me-2"></i> Quay lại tài khoản của tôi
+                            </a>
+                            
+                            @if (Model.MaTrangThaiDonHang == 1)
+                            {
+                                <button type="button" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0" 
+                                    data-bs-toggle="modal" data-bs-target="#cancelOrderModal">
+                                    <i class="fa fa-times me-2"></i> Hủy đơn hàng
+                                </button>
+                            }
+                            
+                            @if (Model.MaTrangThaiDonHang == 4)
+                            {
+                                <a asp-controller="Order" asp-action="Reorder" asp-route-id="@Model.MaDonHang" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0">
+                                    <i class="fa fa-plus me-2"></i> Đặt lại
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chi tiết đơn hàng -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Chi tiết đơn hàng</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                                                        <table class="table table-bordered align-middle">
+                                <thead class="bg-light">
+                                    <tr class="align-middle">
+                                        <th class="justify-content-center" width="70">#</th>
+                                        <th width="80">Hình ảnh</th>
+                                        <th>Sản phẩm</th>
+                                        <th class="text-center">Đơn giá</th>
+                                        <th class="text-center">Số lượng</th>
+                                        <th class="text-end">Thành tiền</th>
+                                        @if(Model.MaTrangThaiDonHang == 4)
+                                        {
+                                            <th class="text-center">Đánh giá</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                                                <tbody>
+                                    @foreach (var item in Model.ChiTietDonHangs.Select((value, i) => new { value, i }))
+                                    {
+                                        var chiTiet = item.value;
+                                        var index = item.i + 1;
+                                        var hinhAnh = chiTiet.MaSanPhamNavigation?.HinhAnhs.FirstOrDefault()?.DuongDan ?? "noimage.jpg";
+                                        
+                                        <tr class="align-middle">
+                                            <td class="align-middle">@index</td>
+                                            <td class="align-middle">
+                                                <img src="~/images/product/@hinhAnh" alt="@chiTiet.TenSanPham" style="width: 70px; height: auto;">
+                                            </td>
+                                            <td class="align-middle">@chiTiet.TenSanPham</td>
+                                            <td class="text-center align-middle">@String.Format("{0:C0}", chiTiet.DonGia)</td>
+                                            <td class="text-center align-middle">@chiTiet.SoLuongDat</td>
+                                            <td class="text-end align-middle">@String.Format("{0:C0}", chiTiet.ThanhTien)</td>
+                                    @if(Model.MaTrangThaiDonHang == 4)
+                                    {
+                                        <td class="text-center align-middle">
+                                            @{
+                                                var sanPhamId = chiTiet.MaSanPham;
+                                                var daDanhGia = _context.DanhGia.Any(d => d.MaSanPham == sanPhamId && d.MaDonHang == Model.MaDonHang);
+                                            }
+                                            @if(daDanhGia)
+                                            {
+                                                <span class="badge bg-success"><i class="fa fa-check"></i> Đã đánh giá</span>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0"
+                                                        data-bs-toggle="modal" data-bs-target="#reviewModal"
+                                                        data-product-id="@chiTiet.MaSanPham"
+                                                        data-product-name="@chiTiet.TenSanPham"
+                                                        data-order-id="@Model.MaDonHang">
+                                                    <i class="fa fa-star"></i> Đánh giá
+                                                </button>
+                                            }
+                                        </td>
+                                    }
+                                </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="@(Model.MaTrangThaiDonHang == 4 ? "6" : "5")" class="text-end">Tạm tính:</th>
+                                        <td class="text-end">@String.Format("{0:C0}", Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0))</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="@(Model.MaTrangThaiDonHang == 4 ? "6" : "5")" class="text-end">Phí vận chuyển:</th>
+                                        <td class="text-end">@(Model.PhiVanChuyen > 0 ? String.Format("{0:C0}", Model.PhiVanChuyen) : "Miễn phí")</td>
+                                    </tr>
+                                    <tr class="table-active">
+                                        <th colspan="@(Model.MaTrangThaiDonHang == 4 ? "6" : "5")" class="text-end">Tổng cộng:</th>
+                                        <td class="text-end"><strong>@String.Format("{0:C0}", Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0) + (Model.PhiVanChuyen ?? 0))</strong></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Modal Hủy đơn hàng -->
+<div class="modal fade" id="cancelOrderModal" tabindex="-1" aria-labelledby="cancelOrderModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelOrderModalLabel">Xác nhận hủy đơn hàng</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc chắn muốn hủy đơn hàng #@Model.MaDonHang không?</p>
+        <p class="text-danger">Lưu ý: Hành động này không thể hoàn tác sau khi xác nhận.</p>
+        
+        <form id="cancelOrderForm" asp-action="CancelOrder" asp-controller="Order" method="post" asp-antiforgery="true">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="orderId" value="@Model.MaDonHang" />
+            <div class="mb-3">
+                <label for="cancelReason" class="form-label">Lý do hủy đơn:</label>
+                <select class="form-select" id="cancelReason" name="cancelReason" required>
+                    <option value="">-- Chọn lý do --</option>
+                    <option value="Thay đổi ý định mua hàng">Thay đổi ý định mua hàng</option>
+                    <option value="Tìm thấy sản phẩm tốt hơn">Tìm thấy sản phẩm tốt hơn</option>
+                    <option value="Thời gian giao hàng quá lâu">Thời gian giao hàng quá lâu</option>
+                    <option value="Muốn thay đổi phương thức thanh toán">Muốn thay đổi phương thức thanh toán</option>
+                    <option value="Lý do khác">Lý do khác</option>
+                </select>
+            </div>
+            <div class="mb-3" id="otherReasonDiv" style="display: none;">
+                <label for="otherReason" class="form-label">Lý do khác:</label>
+                <textarea class="form-control" id="otherReason" name="otherReason" rows="3"></textarea>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Đóng</button>
+        <button type="submit" form="cancelOrderForm" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0">Hủy đơn hàng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal đánh giá sản phẩm -->
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalLabel">Đánh giá sản phẩm</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="reviewForm" asp-action="AddReview" asp-controller="Order" method="post" asp-antiforgery="true">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="maDonHang" id="reviewOrderId" value="" />
+            <input type="hidden" name="maSanPham" id="reviewProductId" value="" />
+            
+            <div class="mb-3">
+                <h5 id="reviewProductName" class="text-center mb-3"></h5>
+            </div>
+            
+            <div class="single-input-item mb-4">
+                <label class="required mb-1">Đánh giá của bạn</label>
+                <div class="rating-stars text-center mb-3">
+                    <i class="fa fa-star-o fa-2x" data-rating="1"></i>
+                    <i class="fa fa-star-o fa-2x" data-rating="2"></i>
+                    <i class="fa fa-star-o fa-2x" data-rating="3"></i>
+                    <i class="fa fa-star-o fa-2x" data-rating="4"></i>
+                    <i class="fa fa-star-o fa-2x" data-rating="5"></i>
+                    <input type="hidden" name="soSao" id="selectedRating" value="0">
+                </div>
+                <span id="ratingError" class="text-danger" style="display: none;">
+                    Vui lòng chọn số sao đánh giá
+                </span>
+            </div>
+            
+            <div class="single-input-item mb-3">
+                <label for="reviewContent" class="required mb-1">Nội dung đánh giá</label>
+                <textarea id="reviewContent" name="noiDung" rows="4" required minlength="5" maxlength="500"></textarea>
+                <span class="text-danger" id="reviewContentError" style="display: none;">Vui lòng nhập nội dung đánh giá (tối thiểu 5 ký tự)</span>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" id="submitReview" class="btn btn-sm flosun-button secondary-btn theme-color rounded-0">Gửi đánh giá</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-no-text"></div> 
+
+@section Styles {
+    <style>
+        .tracking-list {
+            position: relative;
+        }
+
+        .tracking-list::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e5e5e5;
+            z-index: 1;
+        }
+
+        .tracking-list li {
+            position: relative;
+            z-index: 5;
+            width: 25%;
+        }
+
+        .tracking-list .tracking-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+        }
+
+        .tracking-list li.active .tracking-icon {
+            background: #E72463;
+            color: white;
+            border-color: #E72463;
+        }
+        
+        /* CSS cho nút trong modal */
+        .modal-footer .btn {
+            font-weight: bold !important;
+            opacity: 1 !important;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-footer .btn-secondary {
+            background-color: #6c757d !important;
+            color: white !important;
+            border-color: #6c757d !important;
+            padding: 12px 30px;
+            font-size: 15px;
+        }
+        
+        .modal-footer .btn-secondary:hover {
+            background-color: #5a6268 !important;
+            border-color: #5a6268 !important;
+        }
+        
+        /* CSS cho hệ thống đánh giá sao */
+        .rating-stars {
+            cursor: pointer;
+        }
+        
+        .rating-stars .fa {
+            margin: 0 5px;
+            color: #ddd;
+            transition: all 0.2s ease;
+        }
+        
+        .rating-stars .fa.fa-star {
+            color: #E72463;
+        }
+        
+        .rating-stars .fa:hover {
+            transform: scale(1.2);
+        }
+        
+        /* CSS cho input giống ClientAccount */
+        .single-input-item > input, 
+        .single-input-item > textarea, 
+        .single-input-item > select {
+            width: 100%;
+            padding: 12px 10px 12px 10px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0;
+            outline: none;
+        }
+        
+        .single-input-item > input:focus, 
+        .single-input-item > textarea:focus, 
+        .single-input-item > select:focus {
+            border-color: #E72463;
+        }
+        
+        .single-input-item label.required:after {
+            content: "*";
+            color: red;
+            margin-left: 3px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#cancelReason').change(function() {
+                if ($(this).val() === 'Lý do khác') {
+                    $('#otherReasonDiv').show();
+                } else {
+                    $('#otherReasonDiv').hide();
+                }
+            });
+            
+            // Thêm validation trước khi submit form
+            $('#cancelOrderForm').submit(function(e) {
+                var selectedReason = $('#cancelReason').val();
+                if (selectedReason === '') {
+                    e.preventDefault();
+                    alert('Vui lòng chọn lý do hủy đơn hàng');
+                    return false;
+                }
+                
+                if (selectedReason === 'Lý do khác') {
+                    var otherReason = $('#otherReason').val().trim();
+                    if (otherReason === '') {
+                        e.preventDefault();
+                        alert('Vui lòng nhập lý do khác');
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+            
+            // Xử lý modal đánh giá
+            $('#reviewModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var productId = button.data('product-id');
+                var productName = button.data('product-name');
+                var orderId = button.data('order-id');
+                
+                var modal = $(this);
+                modal.find('#reviewProductId').val(productId);
+                modal.find('#reviewOrderId').val(orderId);
+                modal.find('#reviewProductName').text(productName);
+                
+                // Reset form
+                modal.find('#selectedRating').val(0);
+                modal.find('#reviewContent').val('');
+                modal.find('.rating-stars .fa').removeClass('fa-star').addClass('fa-star-o');
+                modal.find('#ratingError').hide();
+                modal.find('#reviewContentError').hide();
+            });
+            
+            // Xử lý sự kiện chọn số sao đánh giá
+            $('.rating-stars .fa').on('click', function() {
+                var rating = $(this).data('rating');
+                $('#selectedRating').val(rating);
+                
+                // Cập nhật hiển thị các ngôi sao
+                $('.rating-stars .fa').each(function() {
+                    var starValue = $(this).data('rating');
+                    if (starValue <= rating) {
+                        $(this).removeClass('fa-star-o').addClass('fa-star');
+                    } else {
+                        $(this).removeClass('fa-star').addClass('fa-star-o');
+                    }
+                });
+                
+                // Ẩn thông báo lỗi nếu có
+                $('#ratingError').hide();
+            });
+            
+            // Hiệu ứng hover cho sao
+            $('.rating-stars .fa').hover(
+                function() {
+                    var current = $(this).data('rating');
+                    $('.rating-stars .fa').each(function() {
+                        if ($(this).data('rating') <= current) {
+                            $(this).removeClass('fa-star-o').addClass('fa-star');
+                        }
+                    });
+                },
+                function() {
+                    var current = $('#selectedRating').val();
+                    $('.rating-stars .fa').each(function() {
+                        if ($(this).data('rating') <= current) {
+                            $(this).removeClass('fa-star-o').addClass('fa-star');
+                        } else {
+                            $(this).removeClass('fa-star').addClass('fa-star-o');
+                        }
+                    });
+                }
+            );
+            
+            // Xử lý submit form đánh giá
+            $('#submitReview').on('click', function() {
+                var rating = $('#selectedRating').val();
+                var content = $('#reviewContent').val().trim();
+                var hasError = false;
+                
+                // Kiểm tra đã chọn số sao chưa
+                if (rating == 0) {
+                    $('#ratingError').show();
+                    hasError = true;
+                } else {
+                    $('#ratingError').hide();
+                }
+                
+                // Kiểm tra nội dung đánh giá
+                if (content.length < 5) {
+                    $('#reviewContentError').show();
+                    hasError = true;
+                } else {
+                    $('#reviewContentError').hide();
+                }
+                
+                // Submit form nếu không có lỗi
+                if (!hasError) {
+                    // Sử dụng AJAX để gửi form thay vì submit thông thường
+                    $.ajax({
+                        type: "POST",
+                        url: "/Order/AddReview",
+                        data: {
+                            maDonHang: $('#reviewOrderId').val(),
+                            maSanPham: $('#reviewProductId').val(),
+                            soSao: rating,
+                            noiDung: content,
+                            __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                        },
+                        success: function(response) {
+                            $('#reviewModal').modal('hide');
+                            toastr.success('Đánh giá của bạn đã được gửi thành công!');
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        },
+                        error: function(error) {
+                            toastr.error('Có lỗi xảy ra khi gửi đánh giá. Vui lòng thử lại sau.');
+                        }
+                    });
+                }
+            });
+            
+            // Hiển thị thông báo kết quả đánh giá nếu có
+            @if (TempData["ReviewSuccess"] != null)
+            {
+                <text>
+                    $(document).ready(function() {
+                        toastr.success('@TempData["ReviewSuccess"]');
+                    });
+                </text>
+            }
+            
+            @if (TempData["ReviewError"] != null)
+            {
+                <text>
+                    $(document).ready(function() {
+                        toastr.error('@TempData["ReviewError"]');
+                    });
+                </text>
+            }
+        });
+    </script>
+} 

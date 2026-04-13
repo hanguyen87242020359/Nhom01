@@ -1,0 +1,262 @@
+@model ShopBanHoaLyly.Models.SanPham
+@{
+    var categories = ViewBag.Categories as List<ShopBanHoaLyly.Models.DanhMuc>;
+    var isEdit = Model.MaSanPham != 0;
+}
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold"> @(isEdit ? "Chỉnh sửa sản phẩm" : "Thêm sản phẩm mới") </span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createOrEditProductForm" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @if (isEdit)
+                    {
+                        <input type="hidden" name="MaSanPham" value="@Model.MaSanPham" />
+                    }
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group form-group-default">
+                                <label>Tên sản phẩm</label>
+                                <input name="TenSanPham" type="text" class="form-control" value="@Model.TenSanPham" placeholder="Nhập tên sản phẩm" />
+                                <div class="text-danger">@Html.ValidationMessage("TenSanPham")</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group form-group-default">
+                                <label>Danh mục</label>
+                                <select name="MaDanhMuc" class="form-select form-control">
+                                    <option value="0">-- Chọn danh mục --</option>
+                                    @if (categories != null)
+                                    {
+                                        foreach (var cat in categories)
+                                        {
+                                            <option value="@cat.MaDanhMuc" @(Model.MaDanhMuc == cat.MaDanhMuc ? "selected" : "")>@cat.TenDanhMuc</option>
+                                        }
+                                    }
+                                </select>
+                                <div class="text-danger">@Html.ValidationMessage("MaDanhMuc")</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group form-group-default">
+                                <label>Giá bán (₫)</label>
+                                <input name="GiaBan" type="number" min="0" class="form-control" value="@Model.GiaBan" placeholder="Nhập giá bán" />
+                                <div class="text-danger">@Html.ValidationMessage("GiaBan")</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group form-group-default">
+                                <label>Số lượng</label>
+                                <input name="SoLuongCon" type="number" min="0" class="form-control" value="@Model.SoLuongCon" placeholder="Nhập số lượng" />
+                                <div class="text-danger">@Html.ValidationMessage("SoLuongCon")</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Mô tả</label>
+                                <textarea name="MoTa" class="form-control" rows="3" placeholder="Nhập mô tả sản phẩm">@Model.MoTa</textarea>
+                                <div class="text-danger">@Html.ValidationMessage("MoTa")</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Ảnh sản phẩm</label>
+                                <input id="productImages" name="productImages" type="file" class="form-control" accept="image/*" multiple />
+                                <div class="text-danger">
+                                    @Html.ValidationMessage("productImages")
+                                    <span id="imageError"></span>
+                                </div>
+                                <div class="d-flex flex-wrap gap-2 mt-2" id="imagePreviewContainer">
+                                    <!-- Preview ảnh mới sẽ render ở đây bằng JS -->
+                                </div>
+                                @if (isEdit && Model.HinhAnhs != null && Model.HinhAnhs.Any())
+                                {
+                                    <div class="mt-3">
+                                        <label>Ảnh hiện có:</label>
+                                        <div class="d-flex flex-wrap gap-2" id="oldImageContainer">
+                                            @foreach (var img in Model.HinhAnhs)
+                                            {
+                                                <div class="position-relative" style="width: 120px; height: 120px;">
+                                                    <img src="~/images/product/@img.DuongDan" class="rounded border" style="width: 100%; height: 100%; object-fit: cover;" />
+                                                    <button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 btn-remove-old-image" data-id="@img.MaAnh" style="z-index:2;">
+                                                        <i class="fa fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                <input type="hidden" name="RemoveImageIds" id="RemoveImageIds" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" id="saveProductBtn" class="btn btn-primary">
+                    @(isEdit ? "Lưu" : "Thêm")
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #imagePreviewContainer img, #oldImageContainer img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+    }
+</style>
+
+<script>
+    // Biến lưu trữ thông tin ảnh đã chọn - đặt vào namespace toàn cục
+    if (typeof window.productImageHandler === 'undefined') {
+        window.productImageHandler = {
+            previewFiles: [],
+            previewUrls: []
+        };
+    }
+    
+    // Hàm hiển thị ảnh từ URLs
+    function displayImagesFromUrls() {
+        var preview = $('#imagePreviewContainer');
+        preview.empty();
+        
+        window.productImageHandler.previewUrls.forEach((url, idx) => {
+            if (!url) return;
+            
+            var imgDiv = $('<div class="position-relative" style="width:120px;height:120px;display:inline-block;">');
+            var img = $('<img>').attr('src', url);
+            imgDiv.append(img);
+            var btn = $('<button type="button" class="btn btn-sm btn-danger position-absolute top-0 end-0 btn-remove-new-image" style="z-index:2;"><i class="fa fa-times"></i></button>');
+            btn.attr('data-idx', idx);
+            imgDiv.append(btn);
+            preview.append(imgDiv);
+        });
+    }
+
+    // Preview ảnh mới với nút xóa
+    $(document).on('change', '#productImages', function (e) {
+        var files = Array.from(e.target.files);
+        window.productImageHandler.previewFiles = files; // Lưu lại danh sách file đang chọn
+        
+        // Đọc và lưu trữ URLs của ảnh
+        window.productImageHandler.previewUrls = [];
+        renderPreview();
+        $('#imageError').text(''); // Xóa lỗi ảnh nếu có
+    });
+
+    function renderPreview() {
+        window.productImageHandler.previewFiles.forEach((file, idx) => {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var imgUrl = e.target.result;
+                window.productImageHandler.previewUrls[idx] = imgUrl; // Lưu URL của ảnh
+                displayImagesFromUrls(); // Hiển thị ảnh sau khi đọc xong
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    // Xóa ảnh mới vừa chọn (chỉ xóa khỏi previewFiles, không gửi lên server)
+    $(document).on('click', '.btn-remove-new-image', function () {
+        var idx = $(this).data('idx');
+        window.productImageHandler.previewFiles.splice(idx, 1);
+        window.productImageHandler.previewUrls.splice(idx, 1); // Xóa URL tương ứng
+        
+        // Cập nhật lại hiển thị
+        displayImagesFromUrls();
+        
+        // Reset lại input file để tránh lỗi khi chọn lại cùng file
+        var dt = new DataTransfer();
+        window.productImageHandler.previewFiles.forEach(f => dt.items.add(f));
+        $('#productImages')[0].files = dt.files;
+    });
+
+    // Khi đóng modal, reset input và preview
+    $(document).on('hidden.bs.modal', '#addProductModal', function () {
+        window.productImageHandler.previewFiles = [];
+        window.productImageHandler.previewUrls = []; // Reset cả mảng URLs
+        $('#imagePreviewContainer').empty();
+        $('#productImages').val('');
+        $('#imageError').text('');
+    });
+
+    // Chọn ảnh cũ để xóa
+    $(document).on('click', '.btn-remove-old-image', function () {
+        var id = $(this).data('id');
+        $(this).closest('.position-relative').remove();
+        var removeIds = $('#RemoveImageIds').val();
+        var arr = removeIds ? removeIds.split(',') : [];
+        arr.push(id);
+        $('#RemoveImageIds').val(arr.join(','));
+    });
+
+    // Xử lý submit form
+    $(document).off('click', '#saveProductBtn').on('click', '#saveProductBtn', function () {
+        var form = $('#createOrEditProductForm');
+        var formData = new FormData(form[0]);
+        var isEdit = form.find('input[name="MaSanPham"]').length > 0;
+        var url = isEdit ? '/Employee/Product/Edit' : '/Employee/Product/Create';
+        
+        // Kiểm tra ảnh khi thêm mới
+        var oldImagesCount = $('#oldImageContainer .position-relative').length;
+        var hasRemovedAllImages = isEdit && oldImagesCount === 0 && window.productImageHandler.previewFiles.length === 0;
+        var isNewWithoutImages = !isEdit && window.productImageHandler.previewFiles.length === 0;
+        
+        if (hasRemovedAllImages || isNewWithoutImages) {
+            $('#imageError').text('Vui lòng chọn ít nhất một ảnh cho sản phẩm');
+            return false;
+        }
+
+        // Thêm các file ảnh vào formData
+        if (window.productImageHandler.previewFiles.length > 0) {
+            // Xóa file cũ trong formData nếu có
+            formData.delete('productImages');
+            // Thêm lại từng file mới
+            window.productImageHandler.previewFiles.forEach(file => {
+                formData.append('productImages', file);
+            });
+        }
+        
+        // Hiển thị loading hoặc vô hiệu hóa nút để tránh nhấn nhiều lần
+        var btn = $('#saveProductBtn');
+        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang xử lý...');
+        
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                // Kích hoạt lại nút
+                btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                
+                if (typeof res === 'string') {
+                    // Nếu response là HTML, thay thế nội dung modal
+                    $('#addProductModal .modal-content').html($(res).find('.modal-content').html());
+                } else if (res.success) {
+                    // Nếu thành công
+                    $('#addProductModal').modal('hide');
+                    location.reload();
+                }
+            },
+            error: function (xhr, status, error) {
+                // Kích hoạt lại nút
+                btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                console.error("Lỗi AJAX:", error);
+                alert("Có lỗi xảy ra khi xử lý yêu cầu. Vui lòng thử lại.");
+            }
+        });
+    });
+</script> 

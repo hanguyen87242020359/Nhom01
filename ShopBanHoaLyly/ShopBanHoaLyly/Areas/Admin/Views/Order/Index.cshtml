@@ -1,0 +1,151 @@
+﻿@model List<ShopBanHoaLyly.Models.DonHang>
+@{
+    ViewData["Title"] = "Cập nhật đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var trangThaiDonHangs = ViewBag.TrangThaiDonHangs as List<ShopBanHoaLyly.Models.TrangThaiDonHang>;
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách Đơn Hàng</h4>
+                <a href="@Url.Action("Create")" class="btn btn-primary btn-round ms-auto">
+                    <i class="fa fa-plus"></i>
+                    Tạo đơn hàng
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-3">
+                    <select id="filterStatus" class="form-select">
+                        <option value="">-- Lọc trạng thái --</option>
+                        @if (trangThaiDonHangs != null)
+                        {
+                            foreach (var trangThai in trangThaiDonHangs)
+                            {
+                                <option value="@trangThai.TenTrangThaiDonHang">@trangThai.TenTrangThaiDonHang</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="filterPayment" class="form-select">
+                        <option value="">-- Lọc thanh toán --</option>
+                        <option value="Đã thanh toán">Đã thanh toán</option>
+                        <option value="Chưa thanh toán">Chưa thanh toán</option>
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <div id="custom-search-container" style="width: 300px;"></div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="add-row" class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã ĐH</th>
+                            <th>Khách Hàng</th>
+                            <th>Ngày Đặt</th>
+                            <th>Ngày Giao</th>
+                            <th>Địa Chỉ Nhận</th>
+                            <th>SĐT Nhận</th>
+                            <th>Trạng Thái</th>
+                            <th>Thanh Toán</th>
+                            <th style="width: 10%">Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            string badgeClass = item.MaTrangThaiDonHang switch
+                            {
+                                1 => "primary", // Hoàn tất đặt hàng/Chờ xác nhận
+                                2 => "info",    // Đang chuẩn bị hàng
+                                3 => "warning", // Đang giao hàng
+                                4 => "success", // Đã giao hàng
+                                5 => "danger",  // Đã hủy
+                                _ => "secondary"
+                            };
+
+                            <tr data-order-row-id="@item.MaDonHang">
+                                <td>@item.MaDonHang</td>
+                                <td>@item.MaTaiKhoanNavigation?.HoVaTen</td>
+                                <td>@item.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@(item.NgayGiaoHang.HasValue ? item.NgayGiaoHang.Value.ToString("dd/MM/yyyy HH:mm") : "")</td>
+                                <td>@item.DiaChiGiaoHang</td>
+                                <td>@item.SoDienThoaiNhan</td>
+                                <td>
+                                    <span class="badge bg-@badgeClass">
+                                        @item.MaTrangThaiDonHangNavigation?.TenTrangThaiDonHang
+                                    </span>
+                                </td>
+                                <td>
+                                    @if (item.TrangThaiThanhToan == true)
+                                    {
+                                        <span class="badge bg-success">Đã thanh toán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning">Chưa thanh toán</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="form-button-action">
+                                        <a href="@Url.Action("Details", "Order", new { id = item.MaDonHang })" 
+                                           class="btn btn-link btn-primary btn-lg" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Chi tiết & Cập nhật">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    $(function () {
+        var table = $('#add-row').DataTable();
+        
+        // Đưa ô tìm kiếm lên cùng hàng với combobox
+        $("#custom-search-container").html($("#add-row_filter input").detach().addClass("form-control").attr("placeholder", "Tìm kiếm...").css("width", "100%"));
+        $("#add-row_filter").hide();
+        
+        // Lọc theo trạng thái đơn hàng
+        $('#filterStatus').on('change', function () {
+            var val = $(this).val();
+            table.column(6).search(val).draw(); // Cột trạng thái đơn hàng là cột thứ 7 (index 6)
+        });
+        
+        // Lọc theo trạng thái thanh toán
+        $('#filterPayment').on('change', function () {
+            var val = $(this).val();
+            table.column(7).search(val).draw(); // Cột trạng thái thanh toán là cột thứ 8 (index 7)
+        });
+    });
+</script>
+}

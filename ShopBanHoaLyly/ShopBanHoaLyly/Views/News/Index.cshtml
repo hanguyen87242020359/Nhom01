@@ -1,0 +1,437 @@
+﻿@model IEnumerable<ShopBanHoaLyly.Models.TinTuc>
+@{
+    ViewData["Title"] = "Tin tức";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    
+    int currentPage = ViewBag.CurrentPage;
+    int totalPages = ViewBag.TotalPages;
+    bool hasPrevious = ViewBag.HasPreviousPage;
+    bool hasNext = ViewBag.HasNextPage;
+}
+
+<!-- Thêm CSS để blog item cùng kích thước -->
+<style>
+    .blog-lst {
+        height: 100%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        background-color: #fff;
+    }
+    
+    .blog-lst:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    
+    .single-blog {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .blog-image {
+        height: 250px; /* Tăng chiều cao ảnh */
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .blog-image::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.2) 100%);
+        z-index: 1;
+    }
+    
+    .blog-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .blog-lst:hover .blog-image img {
+        transform: scale(1.08);
+    }
+    
+    .blog-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        position: relative;
+    }
+    
+    .blog-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .blog-text h4 {
+        height: auto;
+        min-height: 50px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    
+    .blog-lst:hover .blog-text h4 a {
+        color: #E72463;
+    }
+    
+    .blog-text h4 a {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.2rem;
+    }
+    
+    .blog-post-info {
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        color: #777;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .blog-post-info span {
+        display: flex;
+        align-items: center;
+    }
+    
+    .blog-post-info i {
+        margin-right: 5px;
+        color: #E72463;
+    }
+    
+    .blog-text p {
+        flex: 1;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin-bottom: 20px;
+        color: #666;
+        line-height: 1.6;
+    }
+    
+    .readmore {
+        display: inline-block;
+        margin-top: auto;
+        color: #E72463;
+        font-weight: 600;
+        position: relative;
+        transition: all 0.3s ease;
+        padding-bottom: 2px;
+    }
+    
+    .readmore::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #E72463;
+        transition: width 0.3s ease;
+    }
+    
+    .readmore:hover::after {
+        width: 100%;
+    }
+    
+    .readmore i {
+        transition: transform 0.3s ease;
+        margin-left: 5px;
+    }
+    
+    .readmore:hover i {
+        transform: translateX(5px);
+    }
+    
+    .blog-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    
+    .blog-header h2 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        color: #333;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .blog-header h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #E72463;
+    }
+    
+    .blog-header p {
+        max-width: 700px;
+        margin: 0 auto;
+        color: #666;
+    }
+    
+    .pagination {
+        margin-top: 20px;
+    }
+    
+    .pagination li a {
+        border-radius: 50%;
+        margin: 0 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .pagination li.active a {
+        background-color: #E72463;
+        color: #fff;
+        border-color: #E72463;
+    }
+    
+    .pagination li a:hover:not(.active) {
+        background-color: #f8f8f8;
+    }
+    
+    .blog-category {
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        background-color: #E72463;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+        box-shadow: 0 3px 10px rgba(231, 36, 99, 0.3);
+    }
+    
+    .no-posts {
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        margin: 30px 0;
+    }
+    
+    .no-posts h4 {
+        color: #666;
+        font-weight: 500;
+    }
+    
+    .no-posts i {
+        font-size: 3rem;
+        color: #ddd;
+        margin-bottom: 20px;
+        display: block;
+    }
+    
+    @@media (max-width: 767px) {
+        .blog-image {
+            height: 200px;
+        }
+        
+        .blog-text h4 {
+            min-height: 40px;
+        }
+        
+        .blog-content {
+            padding: 15px;
+        }
+        
+        .blog-header h2 {
+            font-size: 1.8rem;
+        }
+    }
+</style>
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Tin tức</h3>
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li>Tin tức</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+
+<!-- Blog Main Area Start Here -->
+<div class="blog-main-area pt-5 pb-5">
+    <div class="container container-default custom-area">
+        <div class="row">
+            <div class="col-12 col-custom">
+                <!-- Blog Header -->
+                <div class="blog-header">
+                    <h2>Tin Tức Mới Nhất</h2>
+                    <p>Cập nhật những thông tin mới nhất về xu hướng hoa, cách chăm sóc và những ý tưởng trang trí từ cửa hàng hoa Lyly</p>
+                </div>
+                
+                <!-- Blog Wrapper Start -->
+                <div class="row">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div class="col-12 col-md-6 col-lg-4 col-custom mb-30" data-aos="fade-up" data-aos-delay="100">
+                                <div class="blog-lst">
+                                    <div class="single-blog">
+                                        <div class="blog-image">
+                                            <a class="d-block" href="@Url.Action("Details", "News", new { id = item.MaTinTuc })">
+                                                @if (!string.IsNullOrEmpty(item.HinhAnhDaiDien))
+                                                {
+                                                    <img src="~/images/blog/@item.HinhAnhDaiDien" alt="@item.TieuDe">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/images/blog/blog1.jpg" alt="@item.TieuDe">
+                                                }
+                                            </a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <div class="blog-text">
+                                                <h4><a href="@Url.Action("Details", "News", new { id = item.MaTinTuc })" title="@item.TieuDe">@item.TieuDe</a></h4>
+                                                <div class="blog-post-info">
+                                                    <span><i class="fa fa-user"></i> @item.MaTaiKhoanNavigation.HoVaTen</span>
+                                                    <span><i class="fa fa-calendar"></i> @item.NgayCapNhat.ToString("dd/MM/yyyy")</span>
+                                                </div>
+                                                <p>@(item.TomTat ?? "Không có tóm tắt")</p>
+                                                <a href="@Url.Action("Details", "News", new { id = item.MaTinTuc })" class="readmore">Xem thêm <i class="fa fa-long-arrow-right"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-12">
+                            <div class="no-posts">
+                                <i class="fa fa-newspaper-o"></i>
+                                <h4>Không có tin tức nào được tìm thấy</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- Blog Wrapper End -->
+                
+                <!-- Pagination Start -->
+                @if (totalPages > 1)
+                {
+                    <div class="row">
+                        <div class="col-sm-12 col-custom mt-30">
+                            <div class="toolbar-bottom d-flex justify-content-center">
+                                <nav class="pagination pagination-wrap mb-10 mb-sm-0">
+                                    <ul class="pagination">
+                                        @if (hasPrevious)
+                                        {
+                                            <li class="prev">
+                                                <a href="@Url.Action("Index", "News", new { page = currentPage - 1 })">
+                                                    <i class="fa fa-angle-left"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="disabled prev">
+                                                <i class="fa fa-angle-left"></i>
+                                            </li>
+                                        }
+
+                                        @for (int i = 1; i <= totalPages; i++)
+                                        {
+                                            if (i == currentPage)
+                                            {
+                                                <li class="active"><a>@i</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "News", new { page = i })">@i</a>
+                                                </li>
+                                            }
+                                        }
+
+                                        @if (hasNext)
+                                        {
+                                            <li class="next">
+                                                <a href="@Url.Action("Index", "News", new { page = currentPage + 1 })" title="Trang tiếp">
+                                                    <i class="fa fa-angle-right"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="disabled next">
+                                                <i class="fa fa-angle-right"></i>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- Pagination End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog Main Area End Here -->
+
+<!-- Scroll to Top Start -->
+<a class="scroll-to-top" href="#">
+    <i class="lnr lnr-arrow-up"></i>
+</a>
+<!-- Scroll to Top End -->
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Thêm hiệu ứng khi cuộn trang
+            $(window).scroll(function() {
+                var windowTop = $(window).scrollTop();
+                $('.blog-lst').each(function() {
+                    var elementTop = $(this).offset().top;
+                    var elementVisible = 150;
+                    
+                    if (windowTop > elementTop - elementVisible) {
+                        $(this).addClass('visible');
+                    }
+                });
+            });
+            
+            // Kích hoạt hiệu ứng khi tải trang
+            $(window).scroll();
+        });
+    </script>
+}

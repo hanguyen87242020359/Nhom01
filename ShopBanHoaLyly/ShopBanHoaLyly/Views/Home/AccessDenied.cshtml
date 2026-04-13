@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+    Layout = null;
+}
+
+<div class="access-denied-container">
+    <div class="access-denied-icon">
+        <svg width="64" height="64" fill="none" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="32" fill="#F8D7DA"/>
+            <path d="M20 44L44 20M44 44L20 20" stroke="#E72463" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+    </div>
+    <h2>Truy cập bị từ chối</h2>
+    <p>Bạn không có quyền truy cập vào trang này.</p>
+    <a href="/" class="btn-back-home">Quay về trang chủ</a>
+</div>
+
+<style>
+.access-denied-container {
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 32px 24px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.access-denied-icon {
+    margin-bottom: 16px;
+}
+h2 {
+    color: #E72463;
+    margin-bottom: 12px;
+}
+p {
+    color: #555;
+    margin-bottom: 24px;
+}
+.btn-back-home {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #E72463;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.btn-back-home:hover {
+    background: #000;
+	color: #fff;
+}
+</style>

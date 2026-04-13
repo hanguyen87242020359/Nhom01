@@ -1,0 +1,158 @@
+@using System.Text.Json;
+@model List<ShopBanHoaLyly.ViewModels.BestSellProductViewModel>
+
+@if(Model == null || !Model.Any())
+{
+    <div class="alert alert-info">
+        Không có dữ liệu sản phẩm bán chạy theo doanh thu trong khoảng thời gian đã chọn.
+    </div>
+    return;
+}
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Số lượng đặt</th>
+                        <th>Giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@Model[i].TenSanPham</td>
+                            <td>@Model[i].DanhMuc</td>
+                            <td>@Model[i].SoLuongDat</td>
+                            <td>@Model[i].GiaBan?.ToString("C0")</td>
+                            <td>@Model[i].ThanhTien?.ToString("C0")</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right font-weight-bold">TỔNG</td>
+                        <td class="font-weight-bold">@Model.Sum(x => x.SoLuongDat)</td>
+                        <td class="font-weight-bold"></td>
+                        <td class="font-weight-bold">@Model.Sum(x => x.ThanhTien)?.ToString("C0")</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="chart-container">
+            <canvas id="revenueChartCanvas" width="100%" height="300"></canvas>
+        </div>
+    </div>
+</div>
+
+@{
+    // Chuẩn bị dữ liệu cho biểu đồ
+    var chartLabels = Model.OrderByDescending(p => p.ThanhTien).Take(5).Select(p => p.TenSanPham).ToList();
+    var chartValues = Model.OrderByDescending(p => p.ThanhTien).Take(5).Select(p => p.ThanhTien).ToList();
+    
+    var options = new JsonSerializerOptions
+    {
+        Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+    };
+    
+    var chartLabelsJson = JsonSerializer.Serialize(chartLabels, options);
+    var chartValuesJson = JsonSerializer.Serialize(chartValues, options);
+}
+
+<script>
+    // Biến toàn cục để lưu dữ liệu biểu đồ
+    window.chartLabels = @Html.Raw(chartLabelsJson);
+    window.chartValues = @Html.Raw(chartValuesJson);
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Đảm bảo script chỉ chạy một lần
+        if (window._revenueChartInitialized) return;
+        window._revenueChartInitialized = true;
+        
+        // Hàm vẽ biểu đồ doanh thu
+        window.drawRevenueChart = function() {
+            try {
+                console.log("Chuẩn bị vẽ biểu đồ doanh thu...");
+                
+                // Lấy dữ liệu từ biến toàn cục
+                const labels = window.chartLabels;
+                const data = window.chartValues;
+                
+                console.log("Chart data:", { labels, data });
+                
+                if (!labels || !data) {
+                    console.error("Không tìm thấy dữ liệu biểu đồ");
+                    return;
+                }
+                
+                // Kiểm tra canvas
+                const canvas = document.getElementById('revenueChartCanvas');
+                if (!canvas) {
+                    console.error("Không tìm thấy canvas 'revenueChartCanvas'");
+                    return;
+                }
+                
+                // Nếu có chart cũ, phải hủy trước khi vẽ chart mới
+                // Kiểm tra xem revenueChart có tồn tại và có phương thức destroy không
+                if (window.revenueChart && typeof window.revenueChart.destroy === 'function') {
+                    window.revenueChart.destroy();
+                }
+                
+                // Lấy context của canvas
+                const ctx = canvas.getContext('2d');
+                
+                // Tạo biểu đồ mới
+                window.revenueChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(153, 102, 255, 0.7)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Top 5 sản phẩm theo doanh thu'
+                            }
+                        }
+                    }
+                });
+                
+                console.log("Biểu đồ doanh thu đã được vẽ thành công");
+            } catch (error) {
+                console.error("Lỗi khi vẽ biểu đồ:", error);
+            }
+        };
+        
+        // Gọi hàm vẽ biểu đồ ngay khi partial view được tải
+        // Chờ một chút để đảm bảo DOM đã sẵn sàng
+        setTimeout(function() {
+            drawRevenueChart();
+        }, 500);
+    });
+</script> 

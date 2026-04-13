@@ -1,0 +1,132 @@
+﻿@model List<ShopBanHoaLyly.Models.SanPham>
+@{
+    ViewData["Title"] = "Cập nhật sản phẩm";
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeeLayout.cshtml";
+    var categories = ViewBag.Categories as List<ShopBanHoaLyly.Models.DanhMuc>;
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh sách sản phẩm</h4>
+                <button class="btn btn-primary btn-round ms-auto" id="btnShowCreateModal">
+                    <i class="fa fa-plus"></i>
+                    Thêm sản phẩm
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row mb-3 align-items-center">
+                <div class="col-md-3">
+                    <select id="filterCategory" class="form-select">
+                        <option value="">-- Lọc danh mục --</option>
+                        @if (categories != null)
+                        {
+                            foreach (var cat in categories)
+                            {
+                                <option value="@cat.TenDanhMuc">@cat.TenDanhMuc</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="filterStock" class="form-select">
+                        <option value="">-- Lọc trạng thái --</option>
+                        <option value="Còn hàng">Còn hàng</option>
+                        <option value="Hết hàng">Hết hàng</option>
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <div id="custom-search-container" style="width: 300px;"></div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="add-row" class="display table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá bán</th>
+                            <th>Số lượng</th>
+                            <th>Mô tả</th>
+                            <th>Danh mục</th>
+                            <th>Trạng thái</th>
+                            <th style="width: 10%">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaSanPham</td>
+                            <td>@item.TenSanPham</td>
+                            <td>@String.Format("{0:C0}", item.GiaBan)</td>
+                            <td>@item.SoLuongCon</td>
+                            <td title="@item.MoTa">
+                                @(item.MoTa != null && item.MoTa.Length > 40 ? item.MoTa.Substring(0, 40) + "..." : item.MoTa)
+                            </td>
+                            <td>@item.MaDanhMucNavigation?.TenDanhMuc</td>
+                            <td>@((item.SoLuongCon ?? 0) > 0 ? "Còn hàng" : "Hết hàng")</td>
+                            <td>
+                                <div class="form-button-action">
+                                    <button type="button" class="btn btn-link btn-primary btn-lg btn-edit-product" data-id="@item.MaSanPham" data-bs-toggle="tooltip" title="Sửa">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link btn-danger btn-delete-product" data-id="@item.MaSanPham" data-bs-toggle="tooltip" title="Xóa">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalContainer"></div>
+@section Scripts {
+<script>
+    $(function () {
+        var table = $('#add-row').DataTable();
+        // Đưa ô tìm kiếm lên cùng hàng với combobox
+        $("#custom-search-container").html($("#add-row_filter input").detach().addClass("form-control").attr("placeholder", "Tìm kiếm...").css("width", "100%"));
+        $("#add-row_filter").hide();
+        // Thêm sản phẩm
+        $('#btnShowCreateModal').on('click', function () {
+            $.get('/Employee/Product/Create', function (res) {
+                $('#modalContainer').html(res);
+                $('#addProductModal').modal('show');
+            });
+        });
+        // Sửa sản phẩm
+        $('#add-row').on('click', '.btn-edit-product', function () {
+            var id = $(this).data('id');
+            $.get('/Employee/Product/Edit/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#addProductModal').modal('show');
+            });
+        });
+        // Xóa sản phẩm
+        $('#add-row').on('click', '.btn-delete-product', function () {
+            var id = $(this).data('id');
+            $.get('/Employee/Product/DeleteConfirm/' + id, function (res) {
+                $('#modalContainer').html(res);
+                $('#deleteProductModal').modal('show');
+            });
+        });
+        // Lọc theo danh mục
+        $('#filterCategory').on('change', function () {
+            var val = $(this).val();
+            table.column(5).search(val).draw(); // Cột danh mục là cột thứ 6 (index 5)
+        });
+        // Lọc theo trạng thái còn hàng/hết hàng
+        $('#filterStock').on('change', function () {
+            var val = $(this).val();
+            table.column(6).search(val).draw(); // Cột trạng thái là cột thứ 7 (index 6)
+        });
+    });
+</script>
+}

@@ -1,0 +1,416 @@
+@model ShopBanHoaLyly.Models.DonHang
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng #" + Model.MaDonHang;
+    Layout = "~/Areas/Employee/Views/Shared/_EmployeeLayout.cshtml";
+    var trangThaiDonHangs = ViewBag.TrangThaiDonHangs as List<ShopBanHoaLyly.Models.TrangThaiDonHang>;
+    
+    string GetTrangThaiClass()
+    {
+        return Model.MaTrangThaiDonHang switch
+        {
+            1 => "primary", // Hoàn tất đặt hàng/Chờ xác nhận
+            2 => "info",    // Đang chuẩn bị hàng
+            3 => "warning", // Đang giao hàng
+            4 => "success", // Đã giao hàng
+            5 => "danger",  // Đã hủy
+            _ => "secondary"
+        };
+    }
+    
+    // Tính tổng tiền từ chi tiết đơn hàng
+    var tamTinh = Model.ChiTietDonHangs.Sum(c => c.ThanhTien ?? 0);
+    var phiVanChuyen = Model.PhiVanChuyen ?? 0;
+    var tongCong = tamTinh + phiVanChuyen;
+}
+
+<div class="page-inner mt-2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center">
+                        <a href="@Url.Action("Index", "Order")" class="btn btn-primary btn-round ml-auto">
+                            <i class="fa fa-arrow-left mr-2"></i> Quay lại danh sách
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @TempData["ErrorMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    @if (TempData["WarningMessage"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            @TempData["WarningMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <!-- Thông tin cơ bản -->
+                        <div class="col-md-6">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Thông tin đơn hàng</h5>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Mã đơn hàng:</div>
+                                        <div class="col-md-7">#@Model.MaDonHang</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Khách hàng:</div>
+                                        <div class="col-md-7">@Model.MaTaiKhoanNavigation?.HoVaTen</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Email:</div>
+                                        <div class="col-md-7">@Model.MaTaiKhoanNavigation?.Email</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Số điện thoại:</div>
+                                        <div class="col-md-7">@Model.SoDienThoaiNhan</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Người nhận:</div>
+                                        <div class="col-md-7">@Model.NguoiNhan</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Địa chỉ nhận:</div>
+                                        <div class="col-md-7">@Model.DiaChiGiaoHang</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Ngày đặt hàng:</div>
+                                        <div class="col-md-7">@Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Ngày giao hàng:</div>
+                                        <div class="col-md-7">
+                                            @(Model.NgayGiaoHang.HasValue ? Model.NgayGiaoHang.Value.ToString("dd/MM/yyyy HH:mm") : "Chưa giao")
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Ghi chú:</div>
+                                        <div class="col-md-7">@(string.IsNullOrEmpty(Model.GhiChu) ? "Không có" : Model.GhiChu)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Thanh toán và trạng thái -->
+                        <div class="col-md-6">
+                            <div class="card shadow-none border mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Thanh toán & Trạng thái</h5>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Phương thức thanh toán:</div>
+                                        <div class="col-md-7">@Model.MaPhuongThucThanhToanNavigation?.TenPhuongThucThanhToan</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Trạng thái thanh toán:</div>
+                                        <div class="col-md-7">
+                                            @if (Model.TrangThaiThanhToan == true)
+                                            {
+                                                <span class="badge bg-success">Đã thanh toán</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-warning">Chưa thanh toán</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Trạng thái đơn hàng:</div>
+                                        <div class="col-md-7">
+                                            <span class="badge bg-@GetTrangThaiClass()">
+                                                @Model.MaTrangThaiDonHangNavigation?.TenTrangThaiDonHang
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Tạm tính:</div>
+                                        <div class="col-md-7">@String.Format("{0:C0}", Model.ChiTietDonHangs.Sum(c => c.ThanhTien))</div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Phí vận chuyển:</div>
+                                        <div class="col-md-7">
+                                            @(Model.PhiVanChuyen > 0 ? String.Format("{0:C0}", Model.PhiVanChuyen) : "Miễn phí")
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-5 fw-bold">Tổng thanh toán:</div>
+                                        <div class="col-md-7 fw-bold text-danger fs-5">
+                                            @String.Format("{0:C0}", tongCong)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Form cập nhật trạng thái đơn hàng -->
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Cập nhật trạng thái đơn hàng</h5>
+                                    <form id="updateStatusForm" method="post" action="@Url.Action("UpdateStatus", "Order")" class="needs-validation" novalidate>
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="maDonHang" value="@Model.MaDonHang" />
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label d-block">Trạng thái đơn hàng hiện tại:</label>
+                                            <span class="badge bg-@GetTrangThaiClass()">@Model.MaTrangThaiDonHangNavigation?.TenTrangThaiDonHang</span>
+                                        </div>
+                                        
+                                        <!-- input ẩn để gán trạng thái mới -->
+                                        <input type="hidden" id="selectedStatus" name="maTrangThaiDonHang" value="@Model.MaTrangThaiDonHang" />
+                                        <div class="mb-3">
+                                            <label class="form-label d-block">Chuyển sang:</label>
+                                            @{
+                                                int stt = Model.MaTrangThaiDonHang ?? 1;
+                                                // Danh sách nút hợp lệ
+                                                void RenderBtn(int value, string text, string cls)
+                                                {
+                                                    <button type="button" data-value="@value" data-label="@text" class="btn @cls me-2 mb-2 status-btn">@text</button>;
+                                                }
+                                                switch (stt)
+                                                {
+                                                    case 1:
+                                                        RenderBtn(2, "Chuẩn bị hàng", "btn-warning");
+                                                        break;
+                                                    case 2:
+                                                        RenderBtn(3, "Đang giao", "btn-info");
+                                                        break;
+                                                    case 3:
+                                                        RenderBtn(4, "Đã giao", "btn-success");
+                                                        break;
+                                                }
+                                                if (stt < 5)
+                                                {
+                                                    RenderBtn(5, "Huỷ đơn", "btn-danger");
+                                                }
+                                            }
+                                        </div>
+                                        
+                                        <!-- Trạng thái thanh toán -->
+                                        <div class="mb-3">
+                                            <label class="form-label d-block">Trạng thái thanh toán</label>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" id="trangThaiThanhToan_true" name="trangThaiThanhToan" value="true" class="form-check-input" @(Model.TrangThaiThanhToan == true ? "checked" : "") />
+                                                <label class="form-check-label" for="trangThaiThanhToan_true">Đã thanh toán</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" id="trangThaiThanhToan_false" name="trangThaiThanhToan" value="false" class="form-check-input" @(Model.TrangThaiThanhToan != true ? "checked" : "") />
+                                                <label class="form-check-label" for="trangThaiThanhToan_false">Chưa thanh toán</label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3" id="thoiGianGiaoHangContainer" style="display: @(Model.MaTrangThaiDonHang >= 4 ? "block" : "none");">
+                                            <label for="thoiGianGiaoHang" class="form-label">Thời gian giao hàng</label>
+                                            <input type="datetime-local" class="form-control" id="thoiGianGiaoHang" name="thoiGianGiaoHang" 
+                                                   value="@(Model.NgayGiaoHang.HasValue ? Model.NgayGiaoHang.Value.ToString("yyyy-MM-ddTHH:mm") : DateTime.Now.ToString("yyyy-MM-ddTHH:mm"))">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chi tiết đơn hàng -->
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="card shadow-none border">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-3">Chi tiết sản phẩm</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-light">
+                                                <tr>
+                                                    <th width="50">STT</th>
+                                                    <th width="70">Hình ảnh</th>
+                                                    <th>Sản phẩm</th>
+                                                    <th class="text-end">Đơn giá</th>
+                                                    <th class="text-center">Số lượng</th>
+                                                    <th class="text-end">Thành tiền</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.ChiTietDonHangs.Select((value, i) => new { value, i }))
+                                                {
+                                                    var chiTiet = item.value;
+                                                    var index = item.i + 1;
+                                                    var hinhAnh = chiTiet.MaSanPhamNavigation?.HinhAnhs.FirstOrDefault()?.DuongDan ?? "noimage.jpg";
+                                                    
+                                                    <tr>
+                                                        <td>@index</td>
+                                                        <td>
+                                                            <img src="~/images/product/@hinhAnh" alt="@chiTiet.TenSanPham" style="width: 50px; height: auto;">
+                                                        </td>
+                                                        <td>@chiTiet.TenSanPham</td>
+                                                        <td class="text-end">@String.Format("{0:C0}", chiTiet.DonGia)</td>
+                                                        <td class="text-center">@chiTiet.SoLuongDat</td>
+                                                        <td class="text-end">@String.Format("{0:C0}", chiTiet.ThanhTien)</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th colspan="5" class="text-end">Tạm tính:</th>
+                                                    <td class="text-end">@String.Format("{0:C0}", Model.ChiTietDonHangs.Sum(c => c.ThanhTien))</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="5" class="text-end">Phí vận chuyển:</th>
+                                                    <td class="text-end">@(Model.PhiVanChuyen > 0 ? String.Format("{0:C0}", Model.PhiVanChuyen) : "Miễn phí")</td>
+                                                </tr>
+                                                <tr class="table-active">
+                                                    <th colspan="5" class="text-end">Tổng cộng:</th>
+                                                    <td class="text-end"><strong>@String.Format("{0:C0}", tongCong)</strong></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal xác nhận -->
+<div class="modal fade" id="confirmStatusModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận cập nhật trạng thái</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmStatusText">Bạn có chắc chắn?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" id="btnConfirmStatus">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal xác nhận đơn chưa thanh toán -->
+<div class="modal fade" id="confirmUnpaidModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xác nhận thanh toán</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle me-2"></i>
+            Đơn hàng này chưa được đánh dấu là đã thanh toán.
+        </div>
+        <p>Để chuyển sang trạng thái <strong>"Đã giao"</strong>, đơn hàng phải được đánh dấu là <strong>"Đã thanh toán"</strong>.</p>
+        <p>Xác nhận rằng khách hàng đã thanh toán đơn hàng này?</p>
+        <form id="unpaidConfirmForm" method="post" action="@Url.Action("UpdateStatus", "Order")">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="maDonHang" value="@Model.MaDonHang" />
+            <input type="hidden" name="maTrangThaiDonHang" id="unpaidStatusValue" />
+            <input type="hidden" name="thoiGianGiaoHang" id="unpaidDeliveryTime" />
+            <input type="hidden" name="daXacNhanThanhToan" value="true" />
+            <input type="hidden" name="trangThaiThanhToan" value="true" />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" id="btnConfirmUnpaid">Xác nhận đã thanh toán</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+<script>
+    $(document).ready(function() {
+        var pendingStatus = null;
+        var pendingLabel = null;
+        
+        // Kiểm tra nếu có trạng thái đang chờ xác nhận
+        @if (TempData["PendingStatus"] != null)
+        {
+            <text>
+            // Hiển thị modal xác nhận đơn chưa thanh toán
+            var pendingStatus = @TempData["PendingStatus"];
+            var pendingTime = '@TempData["PendingDeliveryTime"]';
+            
+            $('#unpaidStatusValue').val(pendingStatus);
+            $('#unpaidDeliveryTime').val(pendingTime);
+            
+            var unpaidModal = new bootstrap.Modal(document.getElementById('confirmUnpaidModal'));
+            unpaidModal.show();
+            </text>
+        }
+        
+        // khi click nút chuyển trạng thái
+        $('.status-btn').on('click', function(){
+            pendingStatus = $(this).data('value');
+            pendingLabel = $(this).data('label');
+            
+            // Nếu đang chuyển sang "Đã giao"
+            if (pendingStatus == 4) {
+                // Luôn tự động chọn trạng thái đã thanh toán
+                $('#trangThaiThanhToan_true').prop('checked', true);
+                
+                // Nếu đơn hàng chưa được đánh dấu là đã thanh toán từ trước
+                if (@(Model.TrangThaiThanhToan != true ? "true" : "false")) {
+                    $('#unpaidStatusValue').val(pendingStatus);
+                    $('#unpaidDeliveryTime').val($('#thoiGianGiaoHang').val());
+                    
+                    var unpaidModal = new bootstrap.Modal(document.getElementById('confirmUnpaidModal'));
+                    unpaidModal.show();
+                    return;
+                }
+                
+                // Hiển thị modal xác nhận thông thường
+                $('#confirmStatusText').text('Bạn có chắc muốn chuyển đơn hàng sang \"' + pendingLabel + '\"?');
+                var modal = new bootstrap.Modal(document.getElementById('confirmStatusModal'));
+                modal.show();
+            } else {
+                // Hiển thị modal xác nhận thông thường
+                $('#confirmStatusText').text('Bạn có chắc muốn chuyển đơn hàng sang \"' + pendingLabel + '\"?');
+            var modal = new bootstrap.Modal(document.getElementById('confirmStatusModal'));
+            modal.show();
+            }
+        });
+        
+        // xác nhận modal thông thường
+        $('#btnConfirmStatus').on('click', function(){
+            if(pendingStatus){
+                $('#selectedStatus').val(pendingStatus);
+                $('#updateStatusForm').submit();
+            }
+        });
+        
+        // xác nhận modal đơn chưa thanh toán
+        $('#btnConfirmUnpaid').on('click', function(){
+            $('#unpaidConfirmForm').submit();
+        });
+        
+        // Hiển thị/ẩn trường thời gian giao hàng khi chọn trạng thái "Đã giao"
+        $('.status-btn').on('click', function(){
+            var status = $(this).data('value');
+            if (status == 4) {
+                $('#thoiGianGiaoHangContainer').show();
+            } else {
+                $('#thoiGianGiaoHangContainer').hide();
+            }
+        });
+    });
+</script>
+} 

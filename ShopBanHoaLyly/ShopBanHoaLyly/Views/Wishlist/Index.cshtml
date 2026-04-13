@@ -1,0 +1,82 @@
+﻿@model List<ShopBanHoaLyly.ViewModels.WishlistItemViewModel>
+@{
+    ViewData["Title"] = "Danh sách yêu thích";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Danh sách yêu thích</h3> <!-- Changed -->
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li> <!-- Changed -->
+                        <li>Danh sách yêu thích</li> <!-- Changed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- Wishlist main wrapper start -->
+<div class="wishlist-main-wrapper mt-no-text mb-no-text">
+    <!-- Thêm mb-no-text -->
+    <div class="container container-default-2 custom-area">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Wishlist Table Area -->
+                <div class="wishlist-table table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="pro-thumbnail">Ảnh</th> <!-- Changed -->
+                                <th class="pro-title">Sản phẩm</th> <!-- Changed -->
+                                <th class="pro-price">Giá</th> <!-- Changed -->
+                                <th class="pro-date">Ngày thêm</th>
+                                <th class="pro-cart">Thêm vào giỏ</th> <!-- Changed -->
+                                <th class="pro-remove">Xóa</th> <!-- Changed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted py-4">
+                                        Không có sản phẩm nào trong danh sách yêu thích.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="pro-thumbnail">
+                                            <a asp-controller="Home" asp-action="Details" asp-route-id="@item.MaSanPham" class="d-block"><img class="img-fluid" src="~/images/product/@item.HinhAnhDaiDien" alt="@item.TenSanPham" /></a>
+                                        </td>
+                                        <td class="pro-title"><a asp-controller="Home" asp-action="Details" asp-route-id="@item.MaSanPham">@item.TenSanPham</a></td>
+                                        <td class="pro-price"><span>@item.GiaBan?.ToString("C0")</span></td>
+										<td class="pro-date">
+                                            <span>@item.NgayThem?.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                        <td class="pro-cart">
+                                            <a href="javascript:void(0);" class="btn product-cart button-icon flosun-button dark-btn add-to-cart-wishlist" data-id="@item.MaSanPham">Thêm vào giỏ</a>
+                                        </td>
+                                        <td class="pro-remove">
+                                            <a href="javascript:void(0);" class="wishlist-remove text-danger" title="Xóa khỏi yêu thích" data-id="@item.MaSanPham">
+                                                <i class="lnr lnr-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Wishlist main wrapper end -->
+<div class="mt-no-text"></div>

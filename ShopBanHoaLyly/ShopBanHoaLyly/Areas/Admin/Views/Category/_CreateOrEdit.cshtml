@@ -1,0 +1,103 @@
+@model ShopBanHoaLyly.Models.DanhMuc
+
+<div class="modal fade"
+     id="addCategoryModal"
+     tabindex="-1"
+     role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold"> @(Model.MaDanhMuc == 0 ? "Thêm danh mục mới" : "Chỉnh sửa danh mục") </span>
+                </h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Đóng">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createOrEditCategoryForm">
+                    @if (Model.MaDanhMuc != 0)
+                    {
+                        <input type="hidden" name="MaDanhMuc" value="@Model.MaDanhMuc" />
+                    }
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Tên danh mục</label>
+                                <input name="TenDanhMuc"
+                                       type="text"
+                                       class="form-control"
+                                       value="@Model.TenDanhMuc"
+                                       placeholder="Nhập tên danh mục" />
+                                <div class="text-danger">@Html.ValidationMessage("TenDanhMuc")</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button"
+                        id="saveCategoryBtn"
+                        class="btn btn-primary">
+                    @(Model.MaDanhMuc == 0 ? "Thêm" : "Lưu")
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Định nghĩa hàm xử lý submit form
+    function submitCategoryForm() {
+        var form = $('#createOrEditCategoryForm');
+        var formData = form.serialize();
+        var isEdit = form.find('input[name="MaDanhMuc"]').length > 0;
+        var url = isEdit ? '/Admin/Category/Edit' : '/Admin/Category/Create';
+        
+        // Hiển thị loading hoặc vô hiệu hóa nút để tránh nhấn nhiều lần
+        var btn = $('#saveCategoryBtn');
+        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang xử lý...');
+        
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            success: function (res) {
+                // Kích hoạt lại nút
+                btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                
+                if (typeof res === 'string') {
+                    // Nếu response là HTML, thay thế nội dung modal
+                    $('#addCategoryModal .modal-content').html($(res).find('.modal-content').html());
+                    
+                    // Gắn lại sự kiện cho nút lưu
+                    $('#saveCategoryBtn').off('click').on('click', submitCategoryForm);
+                } else if (res.success) {
+                    // Nếu thành công
+                    $('#addCategoryModal').modal('hide');
+                    location.reload();
+                }
+            },
+            error: function (xhr, status, error) {
+                // Kích hoạt lại nút
+                btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                console.error("Lỗi AJAX:", error);
+                alert("Có lỗi xảy ra khi xử lý yêu cầu. Vui lòng thử lại.");
+            }
+        });
+    }
+
+    $(function () {
+        // Gắn sự kiện cho nút lưu
+        $('#saveCategoryBtn').off('click').on('click', submitCategoryForm);
+    });
+</script> 

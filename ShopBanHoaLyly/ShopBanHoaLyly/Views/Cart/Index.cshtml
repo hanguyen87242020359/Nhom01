@@ -1,0 +1,236 @@
+﻿@model List<ShopBanHoaLyly.ViewModels.CartItemViewModel>
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Giỏ hàng</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li>Giỏ hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- cart main wrapper start -->
+<div class="cart-main-wrapper mt-no-text mb-no-text">
+    <div class="container custom-area">
+        <div class="row">
+            <div class="col-lg-12 col-custom">
+                <div class="cart-table table-responsive">
+                    <form id="cartForm" method="post" asp-controller="Order" asp-action="Index">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="pro-check">
+                                    <div class="form-check m-0">
+                                        <input class="form-check-input" type="checkbox" id="checkAll" checked>
+                                        <label class="form-check-label" for="checkAll"></label>
+                                    </div>
+                                </th>
+                                <th class="pro-thumbnail">Ảnh</th>
+                                <th class="pro-title">Sản phẩm</th>
+                                <th class="pro-price">Giá</th>
+                                <th class="pro-quantity">Số lượng</th>
+                                <th class="pro-subtotal">Tổng cộng</th>
+                                <th class="pro-remove">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-4">
+                                        Không có sản phẩm nào trong giỏ hàng.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                for (int i = 0; i < Model.Count; i++)
+                                {
+                                    <tr>
+                                        <td class="pro-check">
+                                            <div class="form-check m-0">
+                                                <input class="form-check-input chon-mua" type="checkbox" name="chonMua" value="@Model[i].MaSanPham" id="chonMua_@Model[i].MaSanPham" checked>
+                                                <label class="form-check-label" for="chonMua_@Model[i].MaSanPham"></label>
+                                            </div>
+                                        </td>
+                                        <td class="pro-thumbnail">
+                                            <a asp-controller="Home" asp-action="Details" asp-route-id="@Model[i].MaSanPham" class="d-block"><img class="img-fluid" src="~/images/product/@Model[i].HinhAnhDaiDien" alt="@Model[i].TenSanPham" /></a>
+                                        </td>
+                                        <td class="pro-title"><a asp-controller="Home" asp-action="Details" asp-route-id="@Model[i].MaSanPham">@Model[i].TenSanPham</a><br/><small class="text-muted">SL còn: @Model[i].SoLuongCon</small></td>
+                                        <td class="pro-price"><span>@Model[i].GiaBan?.ToString("C0")</span></td>
+                                        <td class="pro-quantity">
+                                            <div class="quantity">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box" value="@Model[i].SoLuong" type="text" name="SoLuong" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="pro-subtotal"><span>@((Model[i].GiaBan * Model[i].SoLuong)?.ToString("C0"))</span></td>
+                                        <td class="pro-remove">
+                                            <a href="javascript:void(0);" class="cart-remove text-danger" title="Xóa khỏi giỏ hàng">
+                                                <i class="lnr lnr-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 ml-auto col-custom">
+                <div class="cart-calculator-wrapper mt-sm-16">
+                    <div class="cart-calculate-items">
+                        <h3>Tổng cộng giỏ hàng</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td>Tạm tính</td>
+                                    <td id="tamTinh">@Model.Where(x=>x.ChonMua).Sum(x => x.GiaBan * x.SoLuong)?.ToString("C0")</td>
+                                </tr>
+                                <tr>
+                                    <td>Phí vận chuyển</td>
+                                    <td id="phiVanChuyen">
+                                        @{
+                                            var tamTinh = Model.Where(x=>x.ChonMua).Sum(x => x.GiaBan * x.SoLuong) ?? 0;
+                                            if (tamTinh >= 500000)
+                                            {
+                                                <span class="text-success">Miễn phí</span>
+                                            }
+                                            else
+                                            {
+                                                <span>@(30000.ToString("C0"))</span>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr class="total">
+                                    <td>Tổng cộng</td>
+                                    <td class="total-amount" id="tongCong">
+                                        @{
+                                            var phiVanChuyen = tamTinh >= 500000 ? 0 : 30000;
+                                        }
+                                        @((tamTinh + phiVanChuyen).ToString("C0"))
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-3 mb-3">
+                        <i class="fa fa-info-circle"></i> Miễn phí giao hàng cho đơn hàng từ 500.000₫ trở lên. Đơn hàng dưới 500.000₫ sẽ áp dụng phí giao hàng 30.000₫.
+                    </div>
+                    <button type="submit" form="cartForm" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Tiến hành thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- cart main wrapper end -->
+<div class="mt-no-text"></div>
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        // Gọi Ajax xoá sản phẩm hết hàng khi trang tải
+        $.post({
+            url: '/Cart/CleanOutOfStockAjax',
+            headers: { 'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val() },
+            success: function (res) {
+                if (res.removedCount && res.removedCount > 0) {
+                    toastr.warning(res.message);
+                    // Reload để cập nhật giao diện
+                    setTimeout(function(){ location.reload(); }, 1500);
+                }
+            }
+        });
+
+        // Xử lý khi submit form
+        $('#cartForm').on('submit', function (e) {
+            // Xóa hết input hidden cũ
+            $('input[name="chonMuaHidden"]').remove();
+            // Thêm input hidden cho từng sản phẩm được chọn
+            $('.chon-mua:checked').each(function () {
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'chonMua',
+                    value: $(this).val(),
+                    id: 'chonMuaHidden_' + $(this).val(),
+                    'data-dynamic': true
+                }).appendTo('#cartForm');
+            });
+        });
+
+        // Xử lý khi checkbox chọn mua thay đổi
+        $('.chon-mua, #checkAll').on('change', function() {
+            // Nếu là checkbox "chọn tất cả"
+            if ($(this).attr('id') === 'checkAll') {
+                $('.chon-mua').prop('checked', $(this).prop('checked'));
+            } else {
+                // Kiểm tra nếu tất cả đều được chọn thì chọn "checkAll"
+                $('#checkAll').prop('checked', $('.chon-mua:checked').length === $('.chon-mua').length);
+            }
+            
+            updateCartSummary();
+        });
+
+        // Xử lý khi số lượng thay đổi
+        $('.cart-plus-minus-box').on('change', function() {
+            updateCartSummary();
+        });
+
+        // Xử lý khi nút + hoặc - được nhấn
+        $(document).on('click', '.inc.qtybutton, .dec.qtybutton', function() {
+            setTimeout(function() {
+                updateCartSummary();
+            }, 100);
+        });
+
+        // Cập nhật tổng cộng giỏ hàng
+        function updateCartSummary() {
+            var tamTinh = 0;
+            
+            // Tính tạm tính từ các sản phẩm đã chọn
+            $('.chon-mua:checked').each(function() {
+                var productId = $(this).val();
+                var row = $(this).closest('tr');
+                var price = parseFloat(row.find('.pro-price span').text().replace(/[^\d]/g, ''));
+                var quantity = parseInt(row.find('.cart-plus-minus-box').val());
+                
+                tamTinh += price * quantity;
+            });
+            
+            // Định dạng giá trị tạm tính
+            var formattedTamTinh = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tamTinh);
+            $('#tamTinh').text(formattedTamTinh);
+            
+            // Tính phí vận chuyển
+            var phiVanChuyen = tamTinh >= 500000 ? 0 : 30000;
+            var phiVanChuyenText = phiVanChuyen === 0 ? 
+                '<span class="text-success">Miễn phí</span>' : 
+                new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(phiVanChuyen);
+            $('#phiVanChuyen').html(phiVanChuyenText);
+            
+            // Cập nhật tổng cộng
+            var tongCong = tamTinh + phiVanChuyen;
+            var formattedTongCong = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tongCong);
+            $('#tongCong').text(formattedTongCong);
+        }
+
+        // Khởi tạo giá trị ban đầu
+        updateCartSummary();
+    });
+</script>
+}

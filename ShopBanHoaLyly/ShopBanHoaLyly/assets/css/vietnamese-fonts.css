@@ -1,0 +1,27 @@
+/*-- Google Font cho tiếng Việt --*/
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Override font family */
+body {
+  font-family: "Roboto", sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+/* Font cho các phần trang trí thường dùng Great Vibes */
+.section-title-1, 
+.title-slider, 
+.slider-small-title,
+.testimonial-author {
+  font-family: "Dancing Script", cursive !important;
+}
+
+/* Override cho các lớp dùng Josefin Slab */
+.footer-title,
+.sidebar-title {
+  font-family: "Montserrat", sans-serif !important;
+} 

@@ -1,0 +1,304 @@
+﻿@model ShopBanHoaLyly.ViewModels.OrderViewModel
+@{
+    ViewData["Title"] = "Thanh toán";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+@section Styles {
+    <style>
+        /* Base styles for textarea to match input (from previous answer) */
+        .checkbox-form .checkout-form-list textarea {
+            background: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 0;
+            width: 100%;
+            min-height: 80px; /* Adjust as needed */
+            padding: 10px; /* Adjust as needed */
+            resize: vertical; /* or 'none' if you don't want resize */
+        }
+
+        /* Focus state for textarea to match input */
+        .checkbox-form .checkout-form-list textarea:focus,
+        .checkbox-form .checkout-form-list textarea:focus-visible {
+            border: 1px solid #E72463 !important; /* Đặt viền màu hồng */
+            outline: none !important; /* Loại bỏ outline mặc định của trình duyệt */
+            box-shadow: none !important; /* Loại bỏ box-shadow có thể gây ra hiệu ứng vòng sáng */
+        }
+
+        .checkbox-form select {
+            width: 100%;
+            padding: 12px 10px 12px 10px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0; /* Vuông */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20,50 70,100 120,50' stroke='%23333' stroke-width='20' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Khi select được focus */
+        .checkbox-form select:focus {
+            outline: none;
+            border-color: #E72463;
+            box-shadow: none;
+        }
+
+        /* Vuông góc cho dropdown list trên Chrome/Safari */
+        .checkbox-form select option {
+            border-radius: 0;
+        }
+        
+        .validation-summary-errors {
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+        
+        .field-validation-error {
+            color: #dc3545;
+            font-size: 13px;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .input-validation-error {
+            border-color: #dc3545 !important;
+        }
+    </style>
+}
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Thanh toán</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li>Thanh toán</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- Checkout Area Start Here -->
+<div class="checkout-area mt-no-text mb-no-text">
+    <!-- Thêm mb-no-text -->
+    <div class="container custom-container">
+        <div class="row">
+            <form id="checkoutForm" asp-action="Checkout" asp-controller="Order" method="post">
+                <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+                
+        <div class="row">
+            <div class="col-lg-6 col-12 col-custom">
+                    <div class="checkbox-form">
+                            <h3>Chi tiết thanh toán</h3>
+                        <div class="row">
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                        <label>Tên người nhận <span class="required">*</span></label>
+                                        <input asp-for="NguoiNhan" class="form-control" placeholder="Tên người nhận">
+                                        <span asp-validation-for="NguoiNhan" class="field-validation-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-custom">
+                                <div class="checkout-form-list">
+                                        <label>Tỉnh / Thành phố <span class="required">*</span></label>
+                                        <input asp-for="TinhThanhPho" class="form-control" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-custom">
+                                <div class="checkout-form-list">
+                                        <label>Quận / Huyện <span class="required">*</span></label>
+                                        <select asp-for="MaQuanHuyen" asp-items="Model.QuanHuyenList" class="form-control">
+                                            <option value="">-- Chọn Quận/Huyện --</option>
+                                        </select>
+                                        <span asp-validation-for="MaQuanHuyen" class="field-validation-error"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-custom">
+                                <div class="checkout-form-list">
+                                        <label>Phường / Xã <span class="required">*</span></label>
+                                        <select asp-for="MaPhuongXa" asp-items="Model.PhuongXaList" class="form-control">
+                                            <option value="">-- Chọn Phường/Xã --</option>
+                                        </select>
+                                        <span asp-validation-for="MaPhuongXa" class="field-validation-error"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-custom">
+                                    <div class="checkout-form-list">
+                                        <label>Địa chỉ nhận hàng <span class="required">*</span></label>
+                                        <input asp-for="DiaChi" class="form-control" placeholder="Địa chỉ đường">
+                                        <span asp-validation-for="DiaChi" class="field-validation-error"></span>
+                            </div>
+                                </div>
+                                <div class="col-md-12 col-custom">
+                                    <div class="checkout-form-list">
+                                        <label>Điện thoại nhận hàng <span class="required">*</span></label>
+                                        <input asp-for="SoDienThoai" class="form-control" placeholder="Số điện thoại">
+                                        <span asp-validation-for="SoDienThoai" class="field-validation-error"></span>
+                            </div>
+                                </div>
+                                <div class="col-md-12 col-custom">
+                                    <div class="checkout-form-list">
+                                        <label>Ghi chú</label>
+                                        <textarea asp-for="GhiChu" class="form-control" rows="2" placeholder="Ghi chú về đơn hàng"></textarea>
+                                        <span asp-validation-for="GhiChu" class="field-validation-error"></span>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            <div class="col-lg-6 col-12 col-custom">
+                <div class="your-order">
+                            <h3>Đơn hàng của bạn</h3>
+                    <div class="your-order-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                            <th class="cart-product-name">Sản phẩm</th>
+                                            <th class="cart-product-total">Tổng cộng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                        @foreach (var item in Model.CartItems)
+                                        {
+                                <tr class="cart_item">
+                                    <td class="cart-product-name">
+                                                    @item.TenSanPham<strong class="product-quantity">× @item.SoLuong</strong>
+                                                    <input type="hidden" name="sanPhamIds" value="@item.MaSanPham" />
+                                                    <input type="hidden" name="soLuongs" value="@item.SoLuong" />
+                                                </td>
+                                                <td class="cart-product-total text-center"><span class="amount">@((item.GiaBan * item.SoLuong)?.ToString("C0"))</span></td>
+                                </tr>
+                                        }
+                            </tbody>
+                            <tfoot>
+                                <tr class="cart-subtotal">
+                                            <th>Tạm tính giỏ hàng</th>
+                                            <td class="text-center"><span class="amount">@Model.TamTinh.ToString("C0")</span></td>
+                                        </tr>
+                                        <tr class="shipping">
+                                            <th>Phí vận chuyển</th>
+                                            <td class="text-center">
+                                                @if (Model.PhiVanChuyen > 0)
+                                                {
+                                                    <span class="amount">@Model.PhiVanChuyen.ToString("C0")</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="amount text-success">Miễn phí</span>
+                                                }
+                                            </td>
+                                </tr>
+                                <tr class="order-total">
+                                            <th>Tổng cộng đơn hàng</th>
+                                            <td class="text-center"><strong><span class="amount">@Model.TongCong.ToString("C0")</span></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="payment-method">
+                        <div class="payment-accordion">
+                            <div id="accordion">
+                                        <!-- Thanh toán khi nhận hàng (COD) -->
+                                <div class="card">
+                                            <div class="card-header" id="headingCOD">
+                                                <h5 class="panel-title mb-3 d-flex align-items-center">
+                                                    <input type="radio" asp-for="PhuongThucThanhToan" value="COD" checked class="me-2">
+                                                    <a href="#" class="d-flex align-items-center w-100 flex-grow-1 payment-toggle" data-bs-toggle="collapse" data-bs-target="#collapseCOD" aria-expanded="true" aria-controls="collapseCOD" data-radio-target="PhuongThucThanhToan_COD">
+                                                        <span class="me-auto">Thanh toán khi nhận hàng (COD)</span>
+                                                        <i class="fa fa-chevron-down"></i>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                            <div id="collapseCOD" class="collapse show" data-bs-parent="#accordion" aria-labelledby="headingCOD">
+                                        <div class="card-body mb-2 mt-2">
+                                                    <p>Bạn sẽ thanh toán tiền mặt cho nhân viên giao hàng khi nhận được đơn hàng.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <!-- Thanh toán qua VNPay -->
+                                <div class="card">
+                                            <div class="card-header" id="headingVNPay">
+                                                <h5 class="panel-title mb-3 d-flex align-items-center">
+                                                    <input type="radio" asp-for="PhuongThucThanhToan" value="VNPay" class="me-2">
+                                                    <a href="#" class="d-flex align-items-center w-100 flex-grow-1 payment-toggle" data-bs-toggle="collapse" data-bs-target="#collapseVNPay" aria-expanded="false" aria-controls="collapseVNPay" data-radio-target="PhuongThucThanhToan_VNPay">
+                                                        <span class="me-auto">Thanh toán qua VNPay</span>
+                                                        <i class="fa fa-chevron-down"></i>
+                                            </a>
+                                        </h5>
+                                    </div>
+                                            <div id="collapseVNPay" class="collapse" data-bs-parent="#accordion" aria-labelledby="headingVNPay">
+                                        <div class="card-body mb-2 mt-2">
+                                                    <p>Bạn sẽ được chuyển hướng đến cổng thanh toán VNPay để hoàn tất đơn hàng. Vui lòng đảm bảo bạn có ứng dụng ngân hàng hoặc thông tin thẻ cần thiết.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-button-payment mt-4">
+                                    <button type="submit" class="btn flosun-button secondary-btn black-color rounded-0 w-100">Đặt hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Checkout Area End Here -->
+<div class="mt-no-text"></div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Lắng nghe sự kiện click trên các toggle link của accordion
+            $('.payment-toggle').on('click', function (e) {
+                e.preventDefault();
+                var target = $(this).data('bs-target');
+                $(target).collapse('toggle');
+                
+                // Chọn radio button tương ứng
+                var radioValue = $(this).closest('.card-header').find('input[type="radio"]').val();
+                $('input[name="PhuongThucThanhToan"][value="' + radioValue + '"]').prop('checked', true);
+            });
+
+            // Lắng nghe sự kiện change trên các radio button
+            $('input[name="PhuongThucThanhToan"]').on('change', function () {
+                var targetCollapseId = $(this).closest('.card').find('.collapse').attr('id');
+                $('#accordion .collapse.show').not('#' + targetCollapseId).collapse('hide');
+                $('#' + targetCollapseId).collapse('show');
+            });
+
+            // Xử lý khi chọn quận huyện - load phường xã từ API
+            $('#MaQuanHuyen').change(function () {
+                var maQuanHuyen = $(this).val();
+                var $phuongXa = $('#MaPhuongXa');
+                
+                // Xóa tất cả các option cũ
+                $phuongXa.empty();
+                $phuongXa.append($('<option>', { value: '', text: '-- Chọn Phường/Xã --' }));
+                
+                // Lấy danh sách phường/xã từ server
+                if (maQuanHuyen) {
+                    $.getJSON('@Url.Action("GetPhuongXa", "Order")', { maQuanHuyen: maQuanHuyen }, function (data) {
+                        $.each(data, function (i, item) {
+                            $phuongXa.append($('<option>', { value: item.value, text: item.text }));
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

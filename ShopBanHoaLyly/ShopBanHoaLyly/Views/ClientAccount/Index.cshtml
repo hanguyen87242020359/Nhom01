@@ -1,0 +1,288 @@
+﻿@model ShopBanHoaLyly.ViewModels.AccountViewModel
+
+@{
+    ViewData["Title"] = "Tài khoản của tôi";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+@section Styles {
+    <style>
+        .myaccount-content select {
+            width: 100%;
+            padding: 12px 10px 12px 10px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 0; /* Vuông */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20,50 70,100 120,50' stroke='%23333' stroke-width='20' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Khi select được focus */
+        .myaccount-content select:focus {
+            outline: none;
+            border-color: #E72463;
+            box-shadow: none;
+        }
+
+        /* Vuông góc cho dropdown list trên Chrome/Safari */
+        .myaccount-content select option {
+            border-radius: 0;
+        }
+        
+        /* Style cho nav-tabs đơn hàng */
+        .order-status-tabs {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .order-status-tabs .nav-item {
+            flex-grow: 1;
+            text-align: center;
+            min-width: 120px;
+            margin-bottom: 5px;
+        }
+        
+        .order-status-tabs .nav-link {
+            padding: 0.5rem 0.2rem;
+            margin-right: 2px;
+            border: 1px solid transparent;
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+            color: #333;
+            width: 100%;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .order-status-tabs .nav-link:hover {
+            border-color: #e9ecef #e9ecef #dee2e6;
+        }
+        
+        .order-status-tabs .nav-link.active {
+            color: #E72463;
+            background-color: #fff;
+            border-color: #dee2e6 #dee2e6 #fff;
+            font-weight: 500;
+        }
+        
+        .badge {
+            padding: 0.35em 0.65em;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+    </style>
+}
+<!-- Breadcrumb giữ nguyên -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Tài khoản của tôi</h3>
+                    <ul>
+                        <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li>Tài khoản của tôi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+
+<div class="my-account-wrapper mt-no-text mb-no-text">
+    <div class="container container-default-2 custom-area">
+        <div class="row">
+            <div class="col-lg-12 col-custom">
+                <div class="myaccount-page-wrapper">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-custom">
+                            <div class="myaccount-tab-menu nav" role="tablist">
+                                <a href="#account-info" class="nav-link active" data-bs-toggle="pill"><i class="fa fa-user me-2"></i> Chi tiết tài khoản</a>
+                                <a href="#orders" class="nav-link" data-bs-toggle="pill"><i class="fa fa-cart-arrow-down me-2"></i> Đơn hàng</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-custom">
+                            <div class="tab-content" id="myaccountContent">
+                                <!-- Tab Chi tiết tài khoản -->
+                                <div class="tab-pane fade show active" id="account-info" role="tabpanel">
+                                    <div class="myaccount-content">
+                                        <h3>Chi tiết tài khoản</h3>
+                                        <div class="account-details-form">
+                                            <form method="post" asp-action="Index" asp-controller="ClientAccount" autocomplete="off">
+												<input type="hidden" asp-for="MaTaiKhoan" />
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-custom">
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="required mb-1">Tên tài khoản</label>
+                                                            <input type="text"  asp-for="TenTaiKhoan" readonly />
+                                                        </div>
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="required mb-1">Họ và tên</label>
+                                                            <input type="text" asp-for="HoVaTen" required />
+                                                            <span asp-validation-for="HoVaTen" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="mb-1">Địa chỉ chi tiết</label>
+                                                            <input type="text" asp-for="DiaChi" placeholder="Địa chỉ chi tiết" />
+                                                            <span asp-validation-for="DiaChi" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="mb-1">Tỉnh/Thành phố</label>
+                                                            <input type="text" asp-for="TenTinhThanh" placeholder="Tỉnh/Thành phố" disabled />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-custom">
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="required mb-1">Email</label>
+                                                            <input type="email" asp-for="Email" required />
+                                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="mb-1">Số điện thoại</label>
+                                                            <input type="tel" asp-for="SoDienThoai" />
+                                                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="mb-1">Quận/Huyện</label>
+                                                            <select asp-for="MaQuanHuyen" asp-items="Model.QuanHuyenList">
+                                                                <option value="">-- Chọn Quận/Huyện --</option>
+                                                            </select>
+                                                            <span asp-validation-for="MaQuanHuyen" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="single-input-item mb-3">
+                                                            <label class="mb-1">Phường/Xã</label>
+                                                            <select asp-for="MaPhuongXa" asp-items="Model.PhuongXaList">
+                                                                <option value="">-- Chọn Phường/Xã --</option>
+                                                            </select>
+                                                            <span asp-validation-for="MaPhuongXa" class="text-danger"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <fieldset>
+                                                    <legend>Đổi mật khẩu (Để trống nếu không muốn đổi)</legend>
+                                                    <div class="single-input-item mb-3">
+                                                        <label for="current-pwd" class="required mb-1">Mật khẩu hiện tại</label>
+                                                        <input type="password" asp-for="MatKhauHienTai" placeholder="Mật khẩu hiện tại" />
+                                                        <span asp-validation-for="MatKhauHienTai" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-custom">
+                                                            <div class="single-input-item mb-3">
+                                                                <label class="mb-1">Mật khẩu mới</label>
+                                                                <input type="password" asp-for="MatKhauMoi" placeholder="Nhập mật khẩu mới" />
+                                                                <span asp-validation-for="MatKhauMoi" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-custom">
+                                                            <div class="single-input-item mb-3">
+                                                                <label class="mb-1">Xác nhận mật khẩu mới</label>
+                                                                <input type="password" asp-for="XacNhanMatKhauMoi" placeholder="Xác nhận mật khẩu mới" />
+                                                                <span asp-validation-for="XacNhanMatKhauMoi" class="text-danger"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                <div class="single-input-item single-item-button mt-3">
+                                                    <button type="submit" class="btn flosun-button secondary-btn theme-color rounded-0">Lưu thay đổi</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tab Đơn hàng  -->
+                                <div class="tab-pane fade" id="orders" role="tabpanel">
+                                    <div class="myaccount-content">
+                                        <h3>Đơn hàng</h3>
+                                        
+                                        <!-- Thêm nav tabs cho trạng thái đơn hàng -->
+                                        <ul class="nav nav-tabs order-status-tabs" id="orderStatusTabs" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="all-orders-tab" data-bs-toggle="tab" data-bs-target="#all-orders" type="button" role="tab" aria-selected="true">
+                                                    Tất cả
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="status-1-tab" data-bs-toggle="tab" data-bs-target="#status-1" type="button" role="tab" aria-selected="false">
+                                                    Hoàn tất đặt hàng
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="status-2-tab" data-bs-toggle="tab" data-bs-target="#status-2" type="button" role="tab" aria-selected="false">
+                                                    Đang chuẩn bị hàng
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="status-3-tab" data-bs-toggle="tab" data-bs-target="#status-3" type="button" role="tab" aria-selected="false">
+                                                    Đang giao hàng
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="status-4-tab" data-bs-toggle="tab" data-bs-target="#status-4" type="button" role="tab" aria-selected="false">
+                                                    Đã giao hàng
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="status-5-tab" data-bs-toggle="tab" data-bs-target="#status-5" type="button" role="tab" aria-selected="false">
+                                                    Đã hủy
+                                                </button>
+                                            </li>
+                                        </ul>
+                                        
+                                        <!-- Nội dung tab theo trạng thái -->
+                                        <div class="tab-content" id="orderStatusTabsContent">
+                                            <!-- Tab tất cả đơn hàng -->
+                                            <div class="tab-pane fade show active" id="all-orders" role="tabpanel" aria-labelledby="all-orders-tab">
+                                                <partial name="_OrderTablePartial" model="Model.DanhSachDonHang" />
+                                            </div>
+                                            
+                                            <!-- Tab đơn hàng theo từng trạng thái -->
+                                            @for (int status = 1; status <= 5; status++)
+                                            {
+                                                <div class="tab-pane fade" id="status-@status" role="tabpanel" aria-labelledby="status-@status-tab">
+                                                    <partial name="_OrderTablePartial" model="Model.DanhSachDonHang?.Where(d => d.MaTrangThaiDonHang == status).ToList()" />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mt-no-text"></div>
+
+@section Scripts {
+    <script>
+        // AJAX load phường/xã khi chọn quận/huyện trong form chi tiết tài khoản
+        $(document).ready(function () {
+            $('#MaQuanHuyen').change(function () {
+                var maQuanHuyen = $(this).val();
+                var $phuongXa = $('#MaPhuongXa');
+                $phuongXa.empty();
+                $phuongXa.append($('<option>', { value: '', text: '-- Chọn Phường/Xã --' }));
+                if (maQuanHuyen) {
+                    $.getJSON('@Url.Action("GetPhuongXaByQuanHuyen", "ClientAccount")', { maQuanHuyen: maQuanHuyen }, function (data) {
+                        $.each(data, function (i, item) {
+                            $phuongXa.append($('<option>', { value: item.value, text: item.text }));
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+}

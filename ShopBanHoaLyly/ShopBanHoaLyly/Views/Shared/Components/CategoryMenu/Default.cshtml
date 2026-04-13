@@ -1,0 +1,28 @@
+@model List<ShopBanHoaLyly.Models.DanhMuc>
+
+<div class="mega-menu dropdown-hover">
+    @{
+        int itemsPerColumn = 5;
+        int totalItems = Model.Count;
+        int columnsNeeded = (int)Math.Ceiling((double)totalItems / itemsPerColumn);
+        
+        for (int colIndex = 0; colIndex < columnsNeeded; colIndex++)
+        {
+            <div class="menu-colum">
+                <ul>
+                    @{
+                        int startIdx = colIndex * itemsPerColumn;
+                        int endIdx = Math.Min(startIdx + itemsPerColumn, totalItems);
+                        
+                        for (int i = startIdx; i < endIdx; i++)
+                        {
+                            <li>
+                                <a href="@Url.Action("Search", "Home", new { cId = Model[i].MaDanhMuc })">@Model[i].TenDanhMuc</a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+    }
+</div> 

@@ -1,0 +1,1024 @@
+﻿@using System.Text.Json;
+@model List<ShopBanHoaLyly.ViewModels.BestSellProductViewModel>
+
+@{
+    ViewData["Title"] = "Thống kê";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var labelsJson = JsonSerializer.Serialize(ViewBag.Labels);
+    var dataJson = JsonSerializer.Serialize(ViewBag.Data);
+    var fromDate = ViewBag.FromDate ?? "";
+    var toDate = ViewBag.ToDate ?? "";
+    // Sử dụng FromDateInput/ToDateInput nếu có lỗi validation
+    var fromDateInput = ViewBag.FromDateInput ?? fromDate;
+    var toDateInput = ViewBag.ToDateInput ?? toDate;
+    var kieuThongKe = ViewBag.KieuThongKe ?? "ngay";
+    var orders = ViewBag.Orders as List<ShopBanHoaLyly.ViewModels.OrderSummaryViewModel>;
+    var tongDoanhThu = ViewBag.TongDoanhThu ?? 0;
+    var tongDonHang = ViewBag.TongDonHang ?? 0;
+    var trungBinhDonHang = ViewBag.TrungBinhDonHang ?? 0;
+    var bestSellersByRevenue = ViewBag.BestSellersByRevenue as List<ShopBanHoaLyly.ViewModels.BestSellProductViewModel>;
+    
+    // Dữ liệu cho biểu đồ sản phẩm theo số lượng
+    var topProductsLabels = JsonSerializer.Serialize(Model.Take(5).Select(p => p.TenSanPham));
+    var topProductsData = JsonSerializer.Serialize(Model.Take(5).Select(p => p.SoLuongDat));
+    
+    // Dữ liệu cho biểu đồ sản phẩm theo doanh thu
+    var topRevenueLabels = bestSellersByRevenue != null ? JsonSerializer.Serialize(bestSellersByRevenue.OrderByDescending(p => p.ThanhTien).Take(5).Select(p => p.TenSanPham)) : "[]";
+    var topRevenueData = bestSellersByRevenue != null ? JsonSerializer.Serialize(bestSellersByRevenue.OrderByDescending(p => p.ThanhTien).Take(5).Select(p => p.ThanhTien)) : "[]";
+}
+
+<style>
+    .chart-container {
+        position: relative; 
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        margin: 0 auto 20px auto;
+    }
+    
+    canvas#chartQuantity, canvas#chartRevenue, canvas#revenueChart {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 400px;
+    }
+    
+    .chart-title {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+    
+    .tab-content {
+        min-height: 400px; /* Đảm bảo chiều cao nhất quán khi chuyển tab */
+    }
+    
+    @@media (max-width: 768px) {
+        .chart-container {
+            min-height: 250px;
+        }
+    }
+</style>
+
+<!-- Mã JavaScript để đảm bảo biểu đồ được khởi tạo ngay khi trang được load -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script>
+    // Đảm bảo biểu đồ được vẽ ngay khi trang load
+    window.onload = function() {
+        // Đảm bảo các biểu đồ được khởi tạo đúng cách
+            setTimeout(function() {
+            initializeCharts();
+        }, 100);
+    };
+</script>
+
+<h2>
+    Thống kê theo đơn hàng
+</h2>
+
+<!-- Hiển thị thông báo lỗi validation nếu có -->
+@if (ViewBag.DateError != null)
+{
+    <div class="alert alert-warning">
+        <i class="fas fa-exclamation-triangle"></i> @ViewBag.DateError
+    </div>
+}
+
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card card-body bg-light">
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Loại thống kê:</label>
+                    <select id="kieuThongKeSelect" name="kieuThongKe" class="form-control" onchange="updateDateInputs()">
+                        <option value="ngay" @(kieuThongKe == "ngay" ? "selected" : "")>Theo ngày</option>
+                        <option value="thang" @(kieuThongKe == "thang" ? "selected" : "")>Theo tháng</option>
+                        <option value="nam" @(kieuThongKe == "nam" ? "selected" : "")>Theo năm</option>
+                    </select>
+                </div>
+                
+                <!-- Bộ lọc theo ngày -->
+                @{
+                    // Định nghĩa các biến toàn cục để tránh xung đột
+                    int dayCurrentYear = DateTime.Now.Year;
+                    int daySelectedFromYear = !string.IsNullOrEmpty(fromDateInput) ? 
+                        int.Parse(fromDateInput.Substring(0, 4)) : DateTime.Now.AddDays(-30).Year;
+                    int daySelectedToYear = !string.IsNullOrEmpty(toDateInput) ? 
+                        int.Parse(toDateInput.Substring(0, 4)) : DateTime.Now.Year;
+                    
+                    string[] monthNames = { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", 
+                                         "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" };
+                }
+                
+                <div id="filterByDay" class="col-md-6" style="@(kieuThongKe == "ngay" ? "" : "display: none;")">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Từ ngày:</label>
+                            <div class="d-flex">
+                                <select id="fromDaySelect" class="form-control mr-2" style="width: 90px;">
+                                    @for (int day = 1; day <= 31; day++)
+                                    {
+                                        int selectedDay = !string.IsNullOrEmpty(fromDateInput) ? 
+                                            int.Parse(fromDateInput.Substring(8, 2)) : DateTime.Now.AddDays(-30).Day;
+                                        <option value="@day.ToString().PadLeft(2, '0')" @(day == selectedDay ? "selected" : "")>
+                                            @day
+                                        </option>
+                                    }
+                                </select>
+                                <select id="fromMonthDaySelect" class="form-control mr-2" style="width: 120px;">
+                                    @for (int month = 1; month <= 12; month++)
+                                    {
+                                        int selectedMonth = !string.IsNullOrEmpty(fromDateInput) ? 
+                                            int.Parse(fromDateInput.Substring(5, 2)) : DateTime.Now.AddDays(-30).Month;
+                                        <option value="@month.ToString().PadLeft(2, '0')" @(month == selectedMonth ? "selected" : "")>
+                                            @monthNames[month-1]
+                                        </option>
+                                    }
+                                </select>
+                                <select id="fromYearDaySelect" class="form-control">
+                                    @for (int year = 2022; year <= dayCurrentYear; year++)
+                                    {
+                                        <option value="@year" @(year == daySelectedFromYear ? "selected" : "")>@year</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" id="fromDateDay" value="@fromDateInput" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Đến ngày:</label>
+                            <div class="d-flex">
+                                <select id="toDaySelect" class="form-control mr-2" style="width: 90px;">
+                                    @for (int day = 1; day <= 31; day++)
+                                    {
+                                        int selectedDay = !string.IsNullOrEmpty(toDateInput) ? 
+                                            int.Parse(toDateInput.Substring(8, 2)) : DateTime.Now.Day;
+                                        <option value="@day.ToString().PadLeft(2, '0')" @(day == selectedDay ? "selected" : "")>
+                                            @day
+                                        </option>
+                                    }
+                                </select>
+                                <select id="toMonthDaySelect" class="form-control mr-2" style="width: 120px;">
+                                    @for (int month = 1; month <= 12; month++)
+                                    {
+                                        int selectedMonth = !string.IsNullOrEmpty(toDateInput) ? 
+                                            int.Parse(toDateInput.Substring(5, 2)) : DateTime.Now.Month;
+                                        <option value="@month.ToString().PadLeft(2, '0')" @(month == selectedMonth ? "selected" : "")>
+                                            @monthNames[month-1]
+                                        </option>
+                                    }
+                                </select>
+                                <select id="toYearDaySelect" class="form-control">
+                                    @for (int year = 2022; year <= dayCurrentYear; year++)
+                                    {
+                                        <option value="@year" @(year == daySelectedToYear ? "selected" : "")>@year</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" id="toDateDay" value="@toDateInput" />
+                        </div>
+                    </div>
+                </div>
+                
+                @{
+                    // Định nghĩa các biến cho bộ lọc tháng
+                    int monthCurrentYear = DateTime.Now.Year;
+                    int monthSelectedFromYear = kieuThongKe == "thang" && !string.IsNullOrEmpty(fromDateInput) ? 
+                        int.Parse(fromDateInput.Substring(0, 4)) : DateTime.Now.AddMonths(-6).Year;
+                    int monthSelectedToYear = kieuThongKe == "thang" && !string.IsNullOrEmpty(toDateInput) ? 
+                        int.Parse(toDateInput.Substring(0, 4)) : DateTime.Now.Year;
+                }
+                
+                <!-- Bộ lọc theo tháng -->
+                <div id="filterByMonth" class="col-md-6" style="@(kieuThongKe == "thang" ? "" : "display: none;")">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Từ tháng:</label>
+                            <div class="d-flex">
+                                <select id="fromMonthSelect" class="form-control mr-2">
+                                    @for (int month = 1; month <= 12; month++)
+                                    {
+                                        int selectedMonth = kieuThongKe == "thang" && !string.IsNullOrEmpty(fromDateInput) ? 
+                                            int.Parse(fromDateInput.Substring(5, 2)) : DateTime.Now.AddMonths(-6).Month;
+                                        <option value="@month.ToString().PadLeft(2, '0')" @(month == selectedMonth ? "selected" : "")>
+                                            Tháng @month
+                                        </option>
+                                    }
+                                </select>
+                                <select id="fromYearSelect" class="form-control">
+                                    @for (int year = 2022; year <= monthCurrentYear; year++)
+                                    {
+                                        <option value="@year" @(year == monthSelectedFromYear ? "selected" : "")>@year</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" id="fromDateMonth" value="@(kieuThongKe == "thang" && !string.IsNullOrEmpty(fromDateInput) ? fromDateInput.Substring(0, 7) : DateTime.Now.AddMonths(-6).ToString("yyyy-MM"))" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Đến tháng:</label>
+                            <div class="d-flex">
+                                <select id="toMonthSelect" class="form-control mr-2">
+                                    @for (int month = 1; month <= 12; month++)
+                                    {
+                                        int selectedMonth = kieuThongKe == "thang" && !string.IsNullOrEmpty(toDateInput) ? 
+                                            int.Parse(toDateInput.Substring(5, 2)) : DateTime.Now.Month;
+                                        <option value="@month.ToString().PadLeft(2, '0')" @(month == selectedMonth ? "selected" : "")>
+                                            Tháng @month
+                                        </option>
+                                    }
+                                </select>
+                                <select id="toYearSelect" class="form-control">
+                                    @for (int year = 2022; year <= monthCurrentYear; year++)
+                                    {
+                                        <option value="@year" @(year == monthSelectedToYear ? "selected" : "")>@year</option>
+                                    }
+                                </select>
+                            </div>
+                            <input type="hidden" id="toDateMonth" value="@(kieuThongKe == "thang" && !string.IsNullOrEmpty(toDateInput) ? toDateInput.Substring(0, 7) : DateTime.Now.ToString("yyyy-MM"))" />
+                        </div>
+                    </div>
+                </div>
+                
+                @{
+                    // Định nghĩa các biến cho bộ lọc năm
+                    int yearCurrentYear = DateTime.Now.Year;
+                    int yearFromYear = kieuThongKe == "nam" && !string.IsNullOrEmpty(fromDateInput) ? 
+                        int.Parse(fromDateInput.Substring(0, 4)) : yearCurrentYear - 5;
+                    int yearToYear = kieuThongKe == "nam" && !string.IsNullOrEmpty(toDateInput) ? 
+                        int.Parse(toDateInput.Substring(0, 4)) : yearCurrentYear;
+                }
+                
+                <!-- Bộ lọc theo năm -->
+                <div id="filterByYear" class="col-md-6" style="@(kieuThongKe == "nam" ? "" : "display: none;")">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Từ năm:</label>
+                            <select id="fromDateYear" class="form-control">
+                                @for (int year = 2022; year <= yearCurrentYear; year++)
+                                {
+                                    <option value="@year" @(year == yearFromYear ? "selected" : "")>@year</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Đến năm:</label>
+                            <select id="toDateYear" class="form-control">
+                                @for (int year = 2022; year <= yearCurrentYear; year++)
+                                {
+                                    <option value="@year" @(year == yearToYear ? "selected" : "")>@year</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="button" onclick="submitForm()" class="btn btn-primary form-control">Thống kê</button>
+                </div>
+                
+                <!-- Ẩn input thực tế để submit -->
+                <input type="hidden" id="realFromDate" name="fromDate" value="@fromDateInput" />
+                <input type="hidden" id="realToDate" name="toDate" value="@toDateInput" />
+            </div>
+            
+            <!-- Thông báo từ client-side -->
+            <div id="client-message" class="mt-3" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Tổng quan thống kê -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card shadow h-100 py-2" style="background: linear-gradient(45deg, #007bff, #00d2ff); border: none;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Tổng doanh thu</div>
+                        <div class="h3 mb-0 font-weight-bold text-white">@String.Format("{0:C0}", tongDoanhThu)</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-money-bill-wave fa-2x text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow h-100 py-2" style="background: linear-gradient(45deg, #28a745, #5fd275); border: none;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Số đơn hàng</div>
+                        <div class="h3 mb-0 font-weight-bold text-white">@tongDonHang</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-shopping-cart fa-2x text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow h-100 py-2" style="background: linear-gradient(45deg, #e83e8c, #fd7e98); border: none;">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-white text-uppercase mb-1">Trung bình đơn hàng</div>
+                        <div class="h3 mb-0 font-weight-bold text-white">@String.Format("{0:C0}", trungBinhDonHang)</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-calculator fa-2x text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Biểu đồ thống kê -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Biểu đồ doanh thu</h4>
+    </div>
+    <div class="card-body">
+        <div class="chart-container" style="height: 400px;">
+            <canvas id="revenueChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Danh sách đơn hàng -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Đơn hàng trong khoảng thời gian</h4>
+    </div>
+    <div class="card-body">
+        <div id="order-list-container">
+            @await Html.PartialAsync("_OrderList", orders)
+        </div>
+    </div>
+</div>
+
+<!-- Top sản phẩm bán chạy -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Sản phẩm bán chạy nhất</h4>
+    </div>
+    <div class="card-body">
+        <!-- Buttons instead of tabs -->
+        <div class="mb-4">
+            <div class="btn-group" role="group" aria-label="Sắp xếp theo">
+                <button type="button" class="btn btn-primary active" id="btnQuantity" onclick="showQuantityTab()">Theo số lượng</button>
+                <button type="button" class="btn btn-outline-primary" id="btnRevenue" onclick="showRevenueTab()">Theo doanh thu</button>
+            </div>
+        </div>
+        
+        <!-- Content panels -->
+        <div class="tab-content">
+            <div id="quantityContent">
+                @if(Model == null || !Model.Any())
+                {
+                    <div class="alert alert-info">
+                        Không có dữ liệu sản phẩm bán chạy theo số lượng trong khoảng thời gian đã chọn.
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Số lượng đặt</th>
+                                            <th>Giá</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>@Model[i].TenSanPham</td>
+                                                <td>@Model[i].DanhMuc</td>
+                                                <td>@Model[i].SoLuongDat</td>
+                                                <td>@Model[i].GiaBan?.ToString("C0")</td>
+                                                <td>@Model[i].ThanhTien?.ToString("C0")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" class="text-right font-weight-bold">TỔNG</td>
+                                            <td class="font-weight-bold">@Model.Sum(x => x.SoLuongDat)</td>
+                                            <td class="font-weight-bold"></td>
+                                            <td class="font-weight-bold">@Model.Sum(x => x.ThanhTien)?.ToString("C0")</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h5 class="chart-title">Top 5 sản phẩm theo số lượng</h5>
+                            <div class="chart-container">
+                                <canvas id="chartQuantity"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            
+            <div id="revenueContent" style="display: none;">
+                @if(bestSellersByRevenue == null || !bestSellersByRevenue.Any())
+                {
+                    <div class="alert alert-info">
+                        Không có dữ liệu sản phẩm bán chạy theo doanh thu trong khoảng thời gian đã chọn.
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Danh mục</th>
+                                            <th>Số lượng đặt</th>
+                                            <th>Giá</th>
+                                            <th>Thành tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < bestSellersByRevenue.Count; i++)
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>@bestSellersByRevenue[i].TenSanPham</td>
+                                                <td>@bestSellersByRevenue[i].DanhMuc</td>
+                                                <td>@bestSellersByRevenue[i].SoLuongDat</td>
+                                                <td>@bestSellersByRevenue[i].GiaBan?.ToString("C0")</td>
+                                                <td>@bestSellersByRevenue[i].ThanhTien?.ToString("C0")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3" class="text-right font-weight-bold">TỔNG</td>
+                                            <td class="font-weight-bold">@bestSellersByRevenue.Sum(x => x.SoLuongDat)</td>
+                                            <td class="font-weight-bold"></td>
+                                            <td class="font-weight-bold">@bestSellersByRevenue.Sum(x => x.ThanhTien)?.ToString("C0")</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h5 class="chart-title">Top 5 sản phẩm theo doanh thu</h5>
+                            <div class="chart-container">
+                                <canvas id="chartRevenue"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Dữ liệu thống kê doanh thu
+    const labels = @Html.Raw(labelsJson);
+    const data = @Html.Raw(dataJson);
+
+    // Vẽ biểu đồ doanh thu
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctxRevenue, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh thu',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                pointBorderColor: '#fff',
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                tension: 0.1,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let value = context.raw;
+                            return 'Doanh thu: ' + new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Thời gian'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Doanh thu (₫)'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                        }
+                    }
+                }
+            },
+            onClick: function(e, elements) {
+                if (elements.length > 0) {
+                    const index = elements[0].index;
+                    const selectedPeriod = labels[index];
+                    loadOrdersByPeriod(selectedPeriod);
+                } else {
+                    // Nếu người dùng không chọn điểm nào trên biểu đồ, hiển thị tất cả đơn hàng
+                    loadAllOrders();
+                }
+            }
+        }
+    });
+
+    // Dữ liệu cho biểu đồ
+    const quantityLabels = @Html.Raw(topProductsLabels);
+    const quantityData = @Html.Raw(topProductsData);
+    const revenueLabels = @Html.Raw(topRevenueLabels);
+    const revenueData = @Html.Raw(topRevenueData);
+    
+    // Biến lưu trữ biểu đồ
+    let chartQuantity = null;
+    let chartRevenue = null;
+    
+    // Màu sắc cho biểu đồ
+    const chartColors = [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)'
+    ];
+    
+    // Hiển thị tab theo số lượng
+    function showQuantityTab() {
+        $('#quantityContent').show();
+        $('#revenueContent').hide();
+        $('#btnQuantity').addClass('active').removeClass('btn-outline-primary').addClass('btn-primary');
+        $('#btnRevenue').removeClass('active').removeClass('btn-primary').addClass('btn-outline-primary');
+    }
+    
+    // Hiển thị tab theo doanh thu
+    function showRevenueTab() {
+        $('#quantityContent').hide();
+        $('#revenueContent').show();
+        $('#btnRevenue').addClass('active').removeClass('btn-outline-primary').addClass('btn-primary');
+        $('#btnQuantity').removeClass('active').removeClass('btn-primary').addClass('btn-outline-primary');
+        }
+        
+    // Khởi tạo biểu đồ
+    function initializeCharts() {
+        console.log("Khởi tạo biểu đồ...");
+        
+        // Khởi tạo biểu đồ số lượng
+        const ctxQuantity = document.getElementById('chartQuantity');
+        if (ctxQuantity && quantityLabels && quantityLabels.length > 0) {
+            if (chartQuantity) {
+                chartQuantity.destroy();
+            }
+            
+            chartQuantity = new Chart(ctxQuantity, {
+                type: 'pie',
+                data: {
+                    labels: quantityLabels,
+                    datasets: [{
+                        data: quantityData,
+                        backgroundColor: chartColors,
+                        borderColor: chartColors.map(color => color.replace('0.7', '1')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            display: true,
+                            labels: {
+                                boxWidth: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    return `${label}: ${value} sản phẩm`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        } else if (ctxQuantity) {
+            // Nếu không có dữ liệu nhưng canvas tồn tại, hiển thị thông báo trong canvas
+            if (chartQuantity) {
+                chartQuantity.destroy();
+            }
+            
+            const ctx = ctxQuantity.getContext('2d');
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#6c757d';
+            ctx.fillText('Không có dữ liệu để hiển thị', ctxQuantity.width / 2, ctxQuantity.height / 2);
+        } else {
+            console.error("Không tìm thấy canvas 'chartQuantity'");
+        }
+        
+        // Khởi tạo biểu đồ doanh thu
+        const ctxRevenue = document.getElementById('chartRevenue');
+        if (ctxRevenue && revenueLabels && revenueLabels.length > 0) {
+            if (chartRevenue) {
+                chartRevenue.destroy();
+            }
+            
+            chartRevenue = new Chart(ctxRevenue, {
+                type: 'pie',
+                data: {
+                    labels: revenueLabels,
+                    datasets: [{
+                        data: revenueData,
+                        backgroundColor: chartColors,
+                        borderColor: chartColors.map(color => color.replace('0.7', '1')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            display: true,
+                            labels: {
+                                boxWidth: 15,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    return `${label}: ${new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value)}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        } else if (ctxRevenue) {
+            // Nếu không có dữ liệu nhưng canvas tồn tại, hiển thị thông báo trong canvas
+            if (chartRevenue) {
+                chartRevenue.destroy();
+            }
+            
+            const ctx = ctxRevenue.getContext('2d');
+            ctx.font = '14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#6c757d';
+            ctx.fillText('Không có dữ liệu để hiển thị', ctxRevenue.width / 2, ctxRevenue.height / 2);
+        } else {
+            console.error("Không tìm thấy canvas 'chartRevenue'");
+        }
+    }
+
+    // Hàm nạp đơn hàng theo thời gian
+    function loadOrdersByPeriod(period) {
+        $.ajax({
+            url: '/Admin/Reporting/GetOrdersBySpecificPeriod',
+            data: {
+                kieuThongKe: '@kieuThongKe',
+                fromDate: '@fromDateInput',
+                toDate: '@toDateInput',
+                specificPeriod: period
+            },
+            success: function(result) {
+                $('#order-list-container').html(result);
+            }
+        });
+    }
+    
+    // Hàm nạp tất cả đơn hàng trong khoảng thời gian đã chọn
+    function loadAllOrders() {
+        $.ajax({
+            url: '/Admin/Reporting/GetOrdersBySpecificPeriod',
+            data: {
+                kieuThongKe: '@kieuThongKe',
+                fromDate: '@fromDateInput',
+                toDate: '@toDateInput',
+                specificPeriod: ''
+            },
+            success: function(result) {
+                $('#order-list-container').html(result);
+            }
+        });
+    }
+
+    // Khởi tạo khi tài liệu đã sẵn sàng
+    $(document).ready(function() {
+        // Khởi tạo biểu đồ
+        initializeCharts();
+        
+        // Hiển thị tab mặc định
+        showQuantityTab();
+        
+        // Thêm sự kiện resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Cập nhật lại biểu đồ khi thay đổi kích thước
+                if (chartQuantity) chartQuantity.update();
+                if (chartRevenue) chartRevenue.update();
+                if (revenueChart) revenueChart.update();
+            }, 250);
+        });
+        
+        // Khởi tạo bộ lọc ngày tháng
+        updateDateInputs();
+        
+        // Cập nhật giá trị ban đầu
+        setTimeout(function() {
+            updateDayInputValues();
+            updateMonthInputValues();
+        }, 200);
+    });
+
+    // Cập nhật giá trị fromDateDay và toDateDay từ các select
+    function updateDayInputValues() {
+        const fromDay = document.getElementById('fromDaySelect').value;
+        const fromMonth = document.getElementById('fromMonthDaySelect').value;
+        const fromYear = document.getElementById('fromYearDaySelect').value;
+        const toDay = document.getElementById('toDaySelect').value;
+        const toMonth = document.getElementById('toMonthDaySelect').value;
+        const toYear = document.getElementById('toYearDaySelect').value;
+        
+        // Cập nhật giá trị hidden input
+        document.getElementById('fromDateDay').value = `${fromYear}-${fromMonth}-${fromDay}`;
+        document.getElementById('toDateDay').value = `${toYear}-${toMonth}-${toDay}`;
+    }
+    
+    // Cập nhật giá trị fromDateMonth và toDateMonth từ các select
+    function updateMonthInputValues() {
+        const fromMonth = document.getElementById('fromMonthSelect').value;
+        const fromYear = document.getElementById('fromYearSelect').value;
+        const toMonth = document.getElementById('toMonthSelect').value;
+        const toYear = document.getElementById('toYearSelect').value;
+        
+        // Cập nhật giá trị hidden input
+        document.getElementById('fromDateMonth').value = `${fromYear}-${fromMonth}`;
+        document.getElementById('toDateMonth').value = `${toYear}-${toMonth}`;
+    }
+    
+    // Thêm sự kiện change cho tất cả các select
+    function setupDateChangeEvents() {
+        // Sự kiện cho bộ lọc ngày
+        document.getElementById('fromDaySelect').addEventListener('change', updateDayInputValues);
+        document.getElementById('fromMonthDaySelect').addEventListener('change', updateDayInputValues);
+        document.getElementById('fromYearDaySelect').addEventListener('change', updateDayInputValues);
+        document.getElementById('toDaySelect').addEventListener('change', updateDayInputValues);
+        document.getElementById('toMonthDaySelect').addEventListener('change', updateDayInputValues);
+        document.getElementById('toYearDaySelect').addEventListener('change', updateDayInputValues);
+        
+        // Sự kiện cho bộ lọc tháng
+        document.getElementById('fromMonthSelect').addEventListener('change', updateMonthInputValues);
+        document.getElementById('fromYearSelect').addEventListener('change', updateMonthInputValues);
+        document.getElementById('toMonthSelect').addEventListener('change', updateMonthInputValues);
+        document.getElementById('toYearSelect').addEventListener('change', updateMonthInputValues);
+    }
+    
+    function updateDateInputs() {
+        const kieuThongKe = document.getElementById('kieuThongKeSelect').value;
+        
+        // Ẩn tất cả các bộ lọc
+        document.getElementById('filterByDay').style.display = 'none';
+        document.getElementById('filterByMonth').style.display = 'none';
+        document.getElementById('filterByYear').style.display = 'none';
+        
+        // Hiển thị bộ lọc phù hợp
+        if (kieuThongKe === 'ngay') {
+            document.getElementById('filterByDay').style.display = 'block';
+        } else if (kieuThongKe === 'thang') {
+            document.getElementById('filterByMonth').style.display = 'block';
+        } else if (kieuThongKe === 'nam') {
+            document.getElementById('filterByYear').style.display = 'block';
+        }
+        
+        // Thiết lập sự kiện change cho các select
+        setTimeout(setupDateChangeEvents, 100);
+    }
+    
+    function submitForm() {
+        const kieuThongKe = document.getElementById('kieuThongKeSelect').value;
+        let fromDateValue = '';
+        let toDateValue = '';
+        
+        if (kieuThongKe === 'ngay') {
+            // Cập nhật giá trị input hidden trước
+            updateDayInputValues();
+            fromDateValue = document.getElementById('fromDateDay').value;
+            toDateValue = document.getElementById('toDateDay').value;
+        } else if (kieuThongKe === 'thang') {
+            // Cập nhật giá trị input hidden trước
+            updateMonthInputValues();
+            fromDateValue = document.getElementById('fromDateMonth').value + '-01';
+            toDateValue = document.getElementById('toDateMonth').value + '-' + 
+                          new Date(document.getElementById('toDateMonth').value.split('-')[0], 
+                                  parseInt(document.getElementById('toDateMonth').value.split('-')[1]), 0).getDate();
+        } else if (kieuThongKe === 'nam') {
+            fromDateValue = document.getElementById('fromDateYear').value + '-01-01';
+            toDateValue = document.getElementById('toDateYear').value + '-12-31';
+        }
+        
+        // Kiểm tra validation đã được chuyển sang server-side
+        
+        // Cập nhật giá trị cho form hidden inputs
+        document.getElementById('realFromDate').value = fromDateValue;
+        document.getElementById('realToDate').value = toDateValue;
+        
+        // Tạo form mới và submit để tải lại trang
+        var form = document.createElement('form');
+        form.method = 'GET';
+        form.action = '/Admin/Reporting/Index';
+        
+        // Thêm các trường input
+        var kieuThongKeInput = document.createElement('input');
+        kieuThongKeInput.type = 'hidden';
+        kieuThongKeInput.name = 'kieuThongKe';
+        kieuThongKeInput.value = kieuThongKe;
+        form.appendChild(kieuThongKeInput);
+        
+        var fromDateInput = document.createElement('input');
+        fromDateInput.type = 'hidden';
+        fromDateInput.name = 'fromDate';
+        fromDateInput.value = fromDateValue;
+        form.appendChild(fromDateInput);
+        
+        var toDateInput = document.createElement('input');
+        toDateInput.type = 'hidden';
+        toDateInput.name = 'toDate';
+        toDateInput.value = toDateValue;
+        form.appendChild(toDateInput);
+        
+        // Thêm form vào body và submit
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
+@section Scripts {
+    <script>
+        // Tạo biến JavaScript từ dữ liệu Razor
+        var labelsArray = @Html.Raw(labelsJson);
+        var dataArray = @Html.Raw(dataJson);
+        var topProductsLabelsArray = @Html.Raw(topProductsLabels);
+        var topProductsDataArray = @Html.Raw(topProductsData);
+        var topRevenueLabelsArray = @Html.Raw(topRevenueLabels);
+        var topRevenueDataArray = @Html.Raw(topRevenueData);
+
+        // Biểu đồ doanh thu
+        var ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctxRevenue, {
+            type: 'line',
+            data: {
+                labels: labelsArray,
+                datasets: [{
+                    label: 'Doanh thu',
+                    data: dataArray,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    pointBorderColor: '#fff',
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let value = context.raw;
+                                return 'Doanh thu: ' + new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời gian'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Doanh thu (₫)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                            }
+                        }
+                    }
+                },
+                onClick: function(e, elements) {
+                    if (elements.length > 0) {
+                        const index = elements[0].index;
+                        const selectedPeriod = labelsArray[index];
+                        loadOrdersByPeriod(selectedPeriod);
+                    } else {
+                        // Nếu người dùng không chọn điểm nào trên biểu đồ, hiển thị tất cả đơn hàng
+                        loadAllOrders();
+                    }
+                }
+            }
+        });
+        
+        // Hàm nạp đơn hàng theo thời gian
+        function loadOrdersByPeriod(period) {
+            $.ajax({
+                url: '/Admin/Reporting/GetOrdersBySpecificPeriod',
+                data: {
+                    kieuThongKe: '@kieuThongKe',
+                    fromDate: '@fromDateInput',
+                    toDate: '@toDateInput',
+                    specificPeriod: period
+                },
+                success: function(result) {
+                    $('#order-list-container').html(result);
+                }
+            });
+        }
+        
+        // Hàm nạp tất cả đơn hàng trong khoảng thời gian đã chọn
+        function loadAllOrders() {
+            $.ajax({
+                url: '/Admin/Reporting/GetOrdersBySpecificPeriod',
+                data: {
+                    kieuThongKe: '@kieuThongKe',
+                    fromDate: '@fromDateInput',
+                    toDate: '@toDateInput',
+                    specificPeriod: ''
+                },
+                success: function(result) {
+                    $('#order-list-container').html(result);
+                }
+            });
+        }
+    </script>
+}

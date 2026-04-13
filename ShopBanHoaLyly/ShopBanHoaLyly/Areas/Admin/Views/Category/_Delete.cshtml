@@ -1,0 +1,41 @@
+@model ShopBanHoaLyly.Models.DanhMuc
+
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Xác nhận xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa danh mục <b>@Model.TenDanhMuc</b>?</p>
+                <div id="deleteErrorMessage" class="alert alert-danger mt-2" style="display:none;"></div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" id="confirmDeleteCategoryBtn" class="btn btn-danger" data-id="@Model.MaDanhMuc">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#confirmDeleteCategoryBtn').off('click').on('click', function () {
+            var id = $(this).data('id');
+            $.post('/Admin/Category/Delete', { id: id }, function (res) {
+                if (res.success) {
+                    $('#deleteCategoryModal').modal('hide');
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    // Hiển thị thông báo lỗi
+                    $('#deleteErrorMessage').text(res.message || "Có lỗi xảy ra khi xóa danh mục").show();
+                }
+            })
+            .fail(function() {
+                $('#deleteErrorMessage').text("Lỗi kết nối máy chủ, vui lòng thử lại sau").show();
+            });
+        });
+    });
+</script> 

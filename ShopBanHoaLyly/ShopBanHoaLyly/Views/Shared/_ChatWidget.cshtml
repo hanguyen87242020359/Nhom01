@@ -1,0 +1,368 @@
+<div id="chat-widget" class="chat-widget collapsed">
+    <div id="chat-button" class="chat-button">
+        <i class="bi bi-chat-dots-fill"></i>
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h3 style="color:white">Shop Hoa Lyly</h3>
+            <button id="chat-toggle" type="button">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="chat-body">
+            <div id="chat-messages" class="messages">
+                <div class="message bot">
+                    Xin chào! Tôi là trợ lý ảo của Shop Hoa Lyly. Tôi có thể giúp gì cho bạn?
+                </div>
+            </div>
+            <div class="chat-footer">
+                <div class="input-area">
+                    <input type="text" id="chat-input" placeholder="Nhập tin nhắn..." autocomplete="off">
+                    <button id="chat-send" type="button">
+                        <i class="bi bi-send-fill"></i>
+                    </button>
+                </div>
+                <div class="actions">
+                    <button id="chat-clear" type="button" title="Xóa lịch sử chat">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.chat-widget {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chat-widget.collapsed .chat-container {
+    display: none;
+}
+
+.chat-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ff6b6b;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.chat-button:hover {
+    transform: scale(1.05);
+}
+
+.chat-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 5px 40px rgba(0,0,0,0.16);
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #ff6b6b;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.chat-header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.chat-body {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 18px;
+    word-wrap: break-word;
+}
+
+.message.bot {
+    background: white;
+    align-self: flex-start;
+    margin-right: auto;
+    border: 1px solid #e0e0e0;
+}
+
+.message.user {
+    background: #ff6b6b;
+    color: white;
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.chat-footer {
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #eee;
+}
+
+.input-area {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+}
+
+.input-area button {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.typing .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #888;
+    margin-right: 3px;
+    animation: typing 1s infinite;
+}
+
+.typing .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.actions button, .actions a {
+    background: transparent;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.actions button:hover, .actions a:hover {
+    color: #ff6b6b;
+}
+
+@@keyframes typing {
+    0% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-5px); }
+    100% { opacity: 0.3; transform: translateY(0); }
+}
+
+@@media (max-width: 576px) {
+    .chat-container {
+        width: calc(100% - 40px);
+        bottom: 0;
+        right: 0;
+        left: auto;
+    }
+    
+    .chat-button {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+</style>
+
+<!-- Thêm thư viện Marked.js để render Markdown -->
+<script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    // Thiết lập Marked.js để cho phép hiển thị HTML
+    marked.setOptions({
+        breaks: true,         // Cho phép xuống dòng
+        sanitize: false       // Cho phép HTML nguyên bản
+    });
+    
+    // Nút chat tròn và nút đóng chat
+    document.getElementById('chat-button').addEventListener('click', function() {
+        openChat();
+    });
+    
+    document.getElementById('chat-toggle').addEventListener('click', function() {
+        closeChat();
+    });
+    
+    // Nút gửi tin nhắn
+    document.getElementById('chat-send').addEventListener('click', function() {
+        sendMessage();
+    });
+    
+    // Bắt sự kiện enter trong input
+    document.getElementById('chat-input').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+    
+    // Nút xóa lịch sử chat
+    document.getElementById('chat-clear').addEventListener('click', function() {
+        clearChat();
+    });
+    
+    // Mở chat
+    function openChat() {
+        document.getElementById('chat-widget').classList.remove('collapsed');
+        scrollToBottom();
+    }
+    
+    // Đóng chat
+    function closeChat() {
+        document.getElementById('chat-widget').classList.add('collapsed');
+    }
+    
+    // Cuộn xuống dưới cùng
+    function scrollToBottom() {
+        var messages = document.getElementById('chat-messages');
+        messages.scrollTop = messages.scrollHeight;
+    }
+    
+    // Gửi tin nhắn
+    function sendMessage() {
+        var inputElement = document.getElementById('chat-input');
+        var message = inputElement.value;
+        
+        if (message.trim() === '') return;
+        
+        // Hiển thị tin nhắn của người dùng
+        var userMessageHtml = '<div class="message user">' + escapeHtml(message) + '</div>';
+        document.getElementById('chat-messages').insertAdjacentHTML('beforeend', userMessageHtml);
+        
+        // Xóa nội dung input
+        inputElement.value = '';
+        scrollToBottom();
+        
+        // Hiển thị đang nhập
+        var typingHtml = '<div class="message bot typing" id="typing-indicator">' +
+            '<span class="dot"></span>' +
+            '<span class="dot"></span>' +
+            '<span class="dot"></span>' +
+            '</div>';
+        document.getElementById('chat-messages').insertAdjacentHTML('beforeend', typingHtml);
+        scrollToBottom();
+        
+        // Gửi tin nhắn đến server
+        fetch('@Url.Action("SendMessage", "Chat")', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({ message: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Xóa hiệu ứng đang nhập
+            var typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) typingIndicator.remove();
+            
+            // Render Markdown và HTML trong phản hồi của bot
+            var renderedMessage = marked.parse(data.message);
+            
+            // Hiển thị phản hồi từ bot (đã render)
+            var botMessageHtml = '<div class="message bot">' + renderedMessage + '</div>';
+            document.getElementById('chat-messages').insertAdjacentHTML('beforeend', botMessageHtml);
+            scrollToBottom();
+        })
+        .catch(error => {
+            // Xóa hiệu ứng đang nhập
+            var typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) typingIndicator.remove();
+            
+            // Hiển thị thông báo lỗi
+            var errorHtml = '<div class="message bot">Xin lỗi, có lỗi xảy ra khi xử lý tin nhắn của bạn. Vui lòng thử lại sau.</div>';
+            document.getElementById('chat-messages').insertAdjacentHTML('beforeend', errorHtml);
+            scrollToBottom();
+        });
+    }
+    
+    // Xóa lịch sử chat
+    function clearChat() {
+        fetch('@Url.Action("ClearChat", "Chat")', {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(() => {
+            document.getElementById('chat-messages').innerHTML = 
+                '<div class="message bot">Xin chào! Tôi là trợ lý ảo của Shop Hoa Lyly. Tôi có thể giúp gì cho bạn?</div>';
+        });
+    }
+    
+    // Hàm bảo mật dữ liệu HTML
+    function escapeHtml(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+});
+</script> 

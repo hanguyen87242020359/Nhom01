@@ -1,0 +1,550 @@
+﻿@model IEnumerable<ShopBanHoaLyly.Models.SanPham>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Slider/Intro Section Start -->
+<div class="intro11-slider-wrap section-2">
+    <div class="intro11-slider swiper-container">
+        <div class="swiper-wrapper">
+            <div class="intro11-section swiper-slide slide-1 slide-bg-1 bg-position">
+                <!-- Intro Content Start -->
+                <div class="intro11-content-2 text-center">
+                    <!-- Dịch -->
+                    <h1 class="different-title">Hoa Tươi</h1>
+                    <h2 class="title text-white">Chạm Tới Trái Tim</h2>
+                    <a asp-controller="Home" asp-action="Search" class="btn flosun-button  secondary-btn theme-color rounded-0">Xem bộ sưu tập</a>
+                </div>
+                <!-- Intro Content End -->
+            </div>
+            <div class="intro11-section swiper-slide slide-2 slide-bg-1 bg-position">
+                <!-- Intro Content Start -->
+                <div class="intro11-content-2 text-center">
+                    <!-- Dịch -->
+                    <h1 class="different-title">Hương Hoa</h1>
+                    <h2 class="title text-white">Lời Tỏ Tình Ngọt Ngào</h2>
+                    <a asp-controller="Home" asp-action="Search" class="btn flosun-button  secondary-btn theme-color rounded-0">Xem bộ sưu tập</a>
+                </div>
+                <!-- Intro Content End -->
+            </div>
+            <div class="intro11-section swiper-slide slide-6 slide-bg-1 bg-position">
+                <!-- Intro Content Start -->
+                <div class="intro11-content-2 text-center">
+                    <!-- Dịch -->
+                    <h1 class="different-title">Sắc Hoa</h1>
+                    <h2 class="title text-white">Rực Rỡ Mỗi Khoảnh Khắc</h2>
+                    <a asp-controller="Home" asp-action="Search" class="btn flosun-button  secondary-btn theme-color rounded-0">Xem bộ sưu tập</a>
+                </div>
+                <!-- Intro Content End -->
+            </div>
+        </div>
+        <!-- Slider Navigation -->
+        <div class="home1-slider-prev swiper-button-prev main-slider-nav"><i class="lnr lnr-arrow-left"></i></div>
+        <div class="home1-slider-next swiper-button-next main-slider-nav"><i class="lnr lnr-arrow-right"></i></div>
+        <!-- Slider pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+<!-- Slider/Intro Section End -->
+<!-- Category Tiles Start -->
+@{
+    var categories = ViewBag.Categories as List<ShopBanHoaLyly.Models.DanhMuc> ?? new List<ShopBanHoaLyly.Models.DanhMuc>();
+    var catImages = new[] { "home1-category-1.jpg", "home1-category-2.jpg", "home1-category-3.jpg", "home1-category-4.jpg", "home1-category-5.jpg", "home1-category-6.png", "home1-category-7.png", "home1-category-8.png", "home1-category-9.png", "home1-category-10.png", "home1-category-11.png", "home1-category-12.png" };
+}
+<style>
+    .category-circle {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        transition: all 0.3s ease;
+    }
+
+    .category-item {
+        text-align: center;
+        margin-bottom: 18px;
+    }
+
+        .category-item a:hover .category-circle {
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+            transform: translateY(-4px);
+        }
+
+    .category-circle.placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 28px;
+    }
+</style>
+<div class="category-section" style="padding-bottom: 4em; padding-top: 4em;">
+    <div class="container">
+        <div class="section-title text-center mb-30">
+            <span class="section-title-1">Danh mục</span>
+            <h3 class="section-title-3">Mẫu hoa mới nhất 2026</h3>
+        </div>
+        <div class="row justify-content-center">
+            @for (int i = 0; i < categories.Count; i++)
+            {
+                var cat = categories[i];
+                var img = catImages[i % catImages.Length];
+                var imgPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "category", img);
+                bool hasImage = System.IO.File.Exists(imgPath);
+                var title = cat.TenDanhMuc ?? "";
+                var name = (cat.TenDanhMuc ?? "?").Trim();
+                var initial = name.Length > 0 ? name.Substring(0, 1).ToUpper() : "?";
+                var hue = Math.Abs((cat.TenDanhMuc ?? "").GetHashCode()) % 360;
+                var bg = $"hsl({hue},70%,45%)";
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 category-item">
+                    <a asp-controller="Home" asp-action="Search" asp-route-cId="@cat.MaDanhMuc">
+                        @if (hasImage)
+                        {
+                            <img src="~/images/category/@img" alt="@title" class="category-circle" />
+                        }
+                        else
+                        {
+                            <div class="category-circle placeholder" style="background-color:@bg">@initial</div>
+                        }
+                        <h5 class="mt-2">@cat.TenDanhMuc</h5>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Category Tiles End -->
+<!-- Shop Collection Start Here -->
+<div class="shop-collection-area gray-bg pt-no-text pb-no-text">
+    <div class="container custom-area">
+        <div class="row" style="margin-bottom: 70px;">
+            <div class="col-md-6 col-custom">
+                <div class="collection-content">
+                    <div class="section-title text-left">
+                        <!-- Dịch -->
+                        <span class="section-title-1">Hoa cho</span>
+                        <h3 class="section-title-3 pb-0">Sinh nhật & Quà tặng</h3>
+                    </div>
+                    <div class="desc-content">
+                        <!-- Dịch đoạn mô tả mẫu -->
+                        <p>Chúng tôi tuyển chọn những bó hoa đẹp nhất để giúp bạn gửi gắm yêu thương và lời chúc ý nghĩa đến người thân yêu. Mỗi thiết kế đều mang một thông điệp riêng, tinh tế và đầy cảm xúc.</p>
+                    </div>
+                    <!-- Dịch -->
+                    <a asp-controller="Home" asp-action="Search" class="btn flosun-button secondary-btn rounded-0">Xem bộ sưu tập</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-custom">
+                <!--Single Banner Area Start-->
+                <div class="single-banner hover-style">
+                    <div class="banner-img">
+                        <a href="#">
+                            <img src="~/images/collection/1-4.png" alt="">
+                            <div class="overlay-1"></div>
+                        </a>
+                    </div>
+                </div>
+                <!--Single Banner Area End-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-custom order-2 order-md-1">
+                <!--Single Banner Area Start-->
+                <div class="single-banner hover-style">
+                    <div class="banner-img">
+                        <a href="#">
+                            <img src="~/images/collection/1-5.png" alt="">
+                            <div class="overlay-1"></div>
+                        </a>
+                    </div>
+                </div>
+                <!--Single Banner Area End-->
+            </div>
+            <div class="col-md-6 col-custom order-1 order-md-2">
+                <div class="collection-content">
+                    <div class="section-title text-left">
+                        <!-- Dịch -->
+                        <span class="section-title-1">Hoa cho</span>
+                        <h3 class="section-title-3 pb-0">Ngày cưới</h3>
+                    </div>
+                    <div class="desc-content">
+                        <!-- Dịch đoạn mô tả mẫu -->
+                        <p>Chúng tôi mang đến những thiết kế hoa cưới tinh tế và sang trọng, giúp tạo nên khoảnh khắc đáng nhớ trong lễ thành hôn. Mỗi bó hoa là một biểu tượng của tình yêu, sự gắn kết và khởi đầu trọn vẹn cho đôi lứa.</p>
+                    </div>
+                    <!-- Dịch -->
+                    <a asp-controller="Home" asp-action="Search" class="btn flosun-button secondary-btn rounded-0">Xem bộ sưu tập</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shop Collection End Here -->
+<!--Product Area Start-->
+<div class="product-area mt-text-3">
+    <div class="container custom-area-2 overflow-hidden">
+        <div class="row">
+            <!--Section Title Start-->
+            <div class="col-12 col-custom">
+                <div class="section-title text-center mb-30">
+                    <!-- Dịch -->
+                    <span class="section-title-1">Xu hướng nhất</span>
+                    <h3 class="section-title-3">Sản phẩm nổi bật</h3>
+                </div>
+            </div>
+            <!--Section Title End-->
+        </div>
+        <div class="row product-row">
+            <div class="col-12 col-custom">
+                <div class="product-slider swiper-container anime-element-multi">
+                    <div class="swiper-wrapper">
+                        @{
+                            var productPairs = Model.Select((product, index) => new { product, index })
+                            .GroupBy(x => x.index / 2)
+                            .Select(g => g.Select(x => x.product).ToList())
+                            .ToList();
+                        
+
+                        foreach (var pair in productPairs)
+                        {
+                        <div class="single-item swiper-slide">
+                            @foreach (var product in pair)
+                            {
+                                var firstImage = product.HinhAnhs.FirstOrDefault()?.DuongDan;
+                                var secondImage = product.HinhAnhs.Skip(1).FirstOrDefault()?.DuongDan;
+
+                                <div class="single-product position-relative mb-30">
+                                    <div class="product-image">
+                                        <a class="d-block" asp-controller="Home" asp-action="Details" asp-route-id="@product.MaSanPham">
+                                            <img src="~/images/product/@firstImage" alt="@product.TenSanPham" class="product-image-1 w-100" width="285px" height="285px" />
+                                            <img src="~/images/product/@secondImage" alt="@product.TenSanPham" class="product-image-2 position-absolute w-100" width="285px" height="285px" />
+                                        </a>
+                                        <div class="add-action d-flex flex-column position-absolute">
+                                            <a href="javascript:void(0);"
+                                                title="Thêm vào yêu thích"
+                                                onclick="addToWishlist(@product.MaSanPham)">
+                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Yêu thích"></i>
+                                            </a>
+                                            <a href="#exampleModalCenter"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#exampleModalCenter"
+                                                data-name="@product.TenSanPham"
+                                                data-price="@product.GiaBan?.ToString("C0")"
+                                                data-image="@Url.Content("~/images/product/" + (product.HinhAnhs.FirstOrDefault()?.DuongDan ?? "default.jpg"))"
+                                                data-desc="@product.MoTa"
+                                                data-cart="@Url.Action("AddToCart", "Cart", new { id = product.MaSanPham })"
+                                                data-wishlist="@Url.Action("AddToWishlist", "Wishlist", new { id = product.MaSanPham })"
+                                                data-rating="@(product.DanhGia?.Any() == true ? Math.Round((double)(product.DanhGia.Average(r => r.SoSao) ?? 0)) : 0)"
+                                                data-reviews="@(product.DanhGia?.Count ?? 0)"
+                                                title="Xem nhanh">
+                                                <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Xem nhanh"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="product-title">
+                                            <h4 class="title-2">
+                                                <a asp-controller="Home" asp-action="Details" asp-route-id="@product.MaSanPham">@product.TenSanPham</a>
+                                            </h4>
+                                        </div>
+                                        <div class="product-rating">
+                                            @{
+                                                var rating = product.DanhGia?.Any() == true 
+                                                    ? Math.Round((double)(product.DanhGia.Average(r => r.SoSao) ?? 0)) 
+                                                    : 0;
+                                                var reviews = product.DanhGia?.Count ?? 0;
+                                                
+                                                for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= rating)
+                                                    {
+                                            <i class="fa fa-star"></i>
+                                                    }
+                                                    else
+                                                    {
+                                            <i class="fa fa-star-o"></i>
+                                                    }
+                                                }
+                                            }
+                                            <span>(@reviews)</span>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price">@product.GiaBan?.ToString("C0")</span>
+                                        </div>
+                                                <a href="javascript:void(0);" class="btn product-cart" onclick="addToCart(@product.MaSanPham)" style="  width: 100%;
+                                                                                                                                                        background-color: #E72463;
+                                                                                                                                                        color: white;
+                                                                                                                                                        padding: 8px;
+                                                                                                                                                        text-align: center;
+                                                                                                                                                        display: flex;
+                                                                                                                                                        justify-content: center;
+                                                                                                                                                        margin-top: 10px;
+                                                                                                                                                        position: absolute;
+                                                                                                                                                        bottom: 0;">Thêm vào giỏ hàng</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        }
+                        }
+                    </div>
+                    <!-- Slider pagination -->
+                    <div class="swiper-pagination default-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Product Area End-->
+<!-- Modal -->
+<div class="modal flosun-modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close close-button" data-bs-dismiss="modal" aria-label="Đóng">
+                <span class="close-icon" aria-hidden="true">x</span>
+            </button>
+            <div class="modal-body">
+                <div class="container-fluid custom-area">
+                    <div class="row">
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product-img">
+                                <img id="modalProductImage" class="w-100" src="" alt="Sản phẩm" width="400px" height="400px" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product">
+                                <div class="product-content">
+                                    <div class="product-title">
+                                        <h4 class="title" id="modalProductName"></h4>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="regular-price" id="modalProductPrice"></span>
+                                    </div>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <span id="modalProductReview">1 đánh giá</span>
+                                    </div>
+                                    <p class="desc-content" id="modalProductDesc"></p>
+                                    <div class="quantity-with-btn">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" value="1" type="text">
+                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
+                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="add-to_btn">
+                                            <a class="btn product-cart button-icon flosun-button dark-btn" id="modalAddToCart" href="javascript:void(0);" data-id="">Thêm vào giỏ hàng</a>
+                                            <a class="btn flosun-button secondary-btn rounded-0"
+                                               id="modalAddToWishlist"
+                                               href="javascript:void(0);"
+                                               data-id=""
+                                               onclick="addToWishlistFromModal(this)">
+                                                Thêm vào yêu thích
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scroll to Top Start -->
+<a class="scroll-to-top" href="#">
+    <i class="lnr lnr-arrow-up"></i>
+</a>
+<!-- Scroll to Top End -->
+
+<div class="service-area mt-no-text mb-no-text">
+    <div class="container custom-area">
+        <div class="row mb-5">
+            <div class="col-12 col-custom">
+                <div class="section-title text-center">
+                    <h3 class="section-title-3">Tại Sao Bạn Nên Dùng Dịch vụ của chúng tôi?</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Single Service Start -->
+            <div class="col-md-6 col-lg-4 col-custom text-center mb-4">
+                <div class="single-service">
+                    <div class="service-icon mb-4">
+                        <i class="fa fa-pagelines fa-3x" style="color: #E72463;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4 class="title-3 mb-3">Hoa tươi hàng ngày</h4>
+                        <p>Chúng tôi cam kết chỉ sử dụng hoa tươi nhất, được nhập mới mỗi ngày để đảm bảo độ tươi và thời gian sử dụng lâu dài cho khách hàng.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Service End -->
+            <!-- Single Service Start -->
+            <div class="col-md-6 col-lg-4 col-custom text-center mb-4">
+                <div class="single-service">
+                    <div class="service-icon mb-4">
+                        <i class="fa fa-paint-brush fa-3x" style="color: #E72463;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4 class="title-3 mb-3">Thiết kế độc đáo</h4>
+                        <p>Các thiết kế hoa của Lyly luôn được cập nhật theo xu hướng mới nhất, kết hợp giữa phong cách hiện đại và truyền thống.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Service End -->
+            <!-- Single Service Start -->
+            <div class="col-md-6 col-lg-4 col-custom text-center mb-4">
+                <div class="single-service">
+                    <div class="service-icon mb-4">
+                        <i class="fa fa-truck fa-3x" style="color: #E72463;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4 class="title-3 mb-3">Giao hàng nhanh chóng</h4>
+                        <p>Dịch vụ giao hàng của chúng tôi luôn đảm bảo đúng giờ, giữ nguyên vẻ đẹp của hoa và bảo quản tốt trong quá trình vận chuyển.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Service End -->
+            <!-- Single Service Start -->
+            <div class="col-md-6 col-lg-4 col-custom text-center mb-4">
+                <div class="single-service">
+                    <div class="service-icon mb-4">
+                        <i class="fa fa-shopping-cart fa-3x" style="color: #E72463;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4 class="title-3 mb-3">Đặt hàng trực tuyến</h4>
+                        <p>Dễ dàng đặt hàng trên website với giao diện thân thiện và quy trình thanh toán đơn giản, bảo mật và an toàn.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Service End -->
+            <!-- Single Service Start -->
+            <div class="col-md-6 col-lg-4 col-custom text-center mb-4">
+                <div class="single-service">
+                    <div class="service-icon mb-4">
+                        <i class="fa fa-comments fa-3x" style="color: #E72463;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4 class="title-3 mb-3">Tư vấn chuyên nghiệp</h4>
+                        <p>Tư vấn viên AI sẽ giúp bạn lựa chọn hoa phù hợp với từng dịp và ngân sách.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Service End -->
+            <!-- Single Service Start -->
+            <div class="col-md-6 col-lg-4 col-custom text-center mb-4">
+                <div class="single-service">
+                    <div class="service-icon mb-4">
+                        <i class="fa fa-magic fa-3x" style="color: #E72463;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h4 class="title-3 mb-3">Thiết kế theo yêu cầu</h4>
+                        <p>Ngoài các mẫu có sẵn, chúng tôi còn nhận thiết kế theo yêu cầu riêng của khách hàng cho các dịp đặc biệt.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Single Service End -->
+        </div>
+    </div>
+</div>
+
+<!-- News Section Start -->
+<div class="news-section pb-4" style="padding-top: 50px;">
+    <div class="container">
+        <div class="section-title text-center mb-30">
+            <span class="section-title-1">Mới nhất</span>
+            <h3 class="section-title-3" style="margin-bottom:50px !important;">Tin tức</h3>
+        </div>
+        @{
+            var newsList = ViewBag.News as List<ShopBanHoaLyly.Models.TinTuc> ?? new List<ShopBanHoaLyly.Models.TinTuc>();
+        }
+        <div class="row">
+            @foreach (var nt in newsList)
+            {
+                <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="single-news">
+                        <a asp-controller="News" asp-action="Details" asp-route-id="@nt.MaTinTuc">
+                            <img src="~/images/blog/@(nt.HinhAnhDaiDien ?? "default.jpg")" alt="@nt.TieuDe" class="img-fluid" />
+                        </a>
+                        <h5 class="mt-2"><a asp-controller="News" asp-action="Details" asp-route-id="@nt.MaTinTuc">@nt.TieuDe</a></h5>
+                        <p class="text-muted">@nt.NgayCapNhat.ToString("dd/MM/yyyy")</p>
+                        <p>@(nt.TomTat != null && nt.TomTat.Length > 150 ? nt.TomTat.Substring(0, 150) + "..." : nt.TomTat)</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- News Section End -->
+<!--FAQ-->
+<section class="FAQ mt-10 container wow animate__animated animate__fadeInUp">
+    <div class="FAQ-heading">
+        <h1>
+            Câu hỏi thường gặp
+        </h1>
+        <p>Chúng tôi đã tổng hợp những câu hỏi phổ biến nhất giúp bạn hiểu rõ hơn về quyền lợi, cách sử dụng và quy trình hỗ trợ khi gặp sự cố về sản phẩm. Luôn sẵn sàng đồng hành cùng bạn 24/7, mọi lúc – mọi nơi.</p>
+    </div>
+
+    <div class="FAQ-content">
+        <div class="ko-faq-accordion">
+            <div class="ko-accordion-item">
+                <div class="ko-accordion-item-header">Quán mở cửa vào thời gian nào?</div>
+                <div class="ko-accordion-item-body">
+                    <p class="ko-accordion-item-body-content">Quán mở cửa từ 7:00 sáng – 11:00 tối tất cả các ngày trong tuần.</p>
+                </div>
+            </div>
+            <div class="ko-accordion-item">
+                <div class="ko-accordion-item-header">Shop có nhận giao hoa trong ngày không?</div>
+                <div class="ko-accordion-item-body">
+                    <p class="ko-accordion-item-body-content">Có. Shop hỗ trợ giao hoa trong ngày đối với các đơn hàng đặt trước ít nhất 2–4 giờ (tùy khu vực).</p>
+                </div>
+            </div>
+            <div class="ko-accordion-item">
+                <div class="ko-accordion-item-header">Hoa có giống hình trên website không?</div>
+                <div class="ko-accordion-item-body">
+                    <p class="ko-accordion-item-body-content">
+                        Shop cam kết hoa giống mẫu từ 90–95%. Trong trường hợp thiếu hoa theo mùa, shop sẽ chủ động thay thế loại hoa tương đương và thông báo trước cho khách.
+                    </p>
+                </div>
+            </div>
+            <div class="ko-accordion-item">
+                <div class="ko-accordion-item-header">Shop chấp nhận những hình thức thanh toán nào?</div>
+                <div class="ko-accordion-item-body">
+                    <p class="ko-accordion-item-body-content">
+                        Shop hỗ trợ:
+
+                        Thanh toán khi nhận hoa (COD)
+
+                        Chuyển khoản ngân hàng
+
+                        Ví điện tử (Momo, ZaloPay, VNPAY…)
+                    </p>
+                </div>
+            </div>
+            <div class="ko-accordion-item">
+                <div class="ko-accordion-item-header">Hoa tươi giữ được bao lâu?</div>
+                <div class="ko-accordion-item-body">
+                    <p class="ko-accordion-item-body-content">Thông thường hoa tươi có thể giữ 3–7 ngày, tùy loại hoa và cách chăm sóc.</p>
+                </div>
+            </div>
+            <div class="ko-accordion-item">
+                <div class="ko-accordion-item-header">Hoa có gây dị ứng không?</div>
+                <div class="ko-accordion-item-body">
+                    <p class="ko-accordion-item-body-content">Một số loại có mùi mạnh như hoa ly có thể gây khó chịu cho người nhạy cảm. Có thể chọn hoa ít mùi như baby, tulip, lan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="mt-no-text"></div>

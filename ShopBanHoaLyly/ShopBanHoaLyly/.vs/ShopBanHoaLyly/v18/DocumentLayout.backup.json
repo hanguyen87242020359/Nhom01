@@ -1,0 +1,293 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\models\\phuongthucthanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:models\\phuongthucthanhtoan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\services\\vnpaypayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:services\\vnpaypayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\wwwroot\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:wwwroot\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\assets\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:assets\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\assets\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:assets\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\views\\shared\\_clientlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:views\\shared\\_clientlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|c:\\users\\ndh\\desktop\\shopbanhoalyly\\shopbanhoalyly\\shopbanhoalyly\\areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{02A0AF48-60B7-4AC0-A85D-9EE005C5AC4E}|ShopBanHoaLyly.csproj|solutionrelative:areas\\admin\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PhuongThucThanhToan.cs",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Models\\PhuongThucThanhToan.cs",
+              "RelativeDocumentMoniker": "Models\\PhuongThucThanhToan.cs",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Models\\PhuongThucThanhToan.cs",
+              "RelativeToolTip": "Models\\PhuongThucThanhToan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T06:57:12.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-11T08:45:13.948Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAAAO8BAACaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-11T08:19:44.603Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\assets\\css\\style.css",
+              "RelativeDocumentMoniker": "assets\\css\\style.css",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\assets\\css\\style.css",
+              "RelativeToolTip": "assets\\css\\style.css",
+              "ViewState": "AgIAAAwdAAAAAAAAAAAcwDAdAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-12T12:01:32.279Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VnpayPayment.cs",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Services\\VnpayPayment.cs",
+              "RelativeDocumentMoniker": "Services\\VnpayPayment.cs",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Services\\VnpayPayment.cs",
+              "RelativeToolTip": "Services\\VnpayPayment.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T02:19:46.608Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "VnPayService.cs",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Services\\VnPayService.cs",
+              "RelativeDocumentMoniker": "Services\\VnPayService.cs",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Services\\VnPayService.cs",
+              "RelativeToolTip": "Services\\VnPayService.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAkwCQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-11T15:38:16.929Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAJIBAAAAAAAAAAAgwK8BAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T11:15:19.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "main.js",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\wwwroot\\js\\main.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\main.js",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\wwwroot\\js\\main.js",
+              "RelativeToolTip": "wwwroot\\js\\main.js",
+              "ViewState": "AgIAACwBAAAAAAAAAAAAADMCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-14T04:46:32.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\wwwroot\\css\\style.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\style.css",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\wwwroot\\css\\style.css",
+              "RelativeToolTip": "wwwroot\\css\\style.css",
+              "ViewState": "AgIAAIwdAAAAAAAAAAAAAEMdAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-12T11:58:40.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-01-13T02:58:28.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "main.js",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\assets\\js\\main.js",
+              "RelativeDocumentMoniker": "assets\\js\\main.js",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\assets\\js\\main.js",
+              "RelativeToolTip": "assets\\js\\main.js",
+              "ViewState": "AgIAANQBAAAAAAAAAADwvwUCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-01-14T04:46:45.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\About.cshtml",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAAoAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T11:57:16.713Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "Views\\Home\\Contact.cshtml",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAIwG8AAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T11:52:24.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Details.cshtml",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Home\\Details.cshtml",
+              "RelativeToolTip": "Views\\Home\\Details.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAADAAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T11:57:19.832Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "_ClientLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Shared\\_ClientLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_ClientLayout.cshtml",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Views\\Shared\\_ClientLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_ClientLayout.cshtml",
+              "ViewState": "AgIAADQBAAAAAAAAAAD4v1MBAAC4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T07:51:25.823Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAAOgAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-12T07:13:50.156Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\NDH\\Desktop\\ShopBanHoaLyly\\ShopBanHoaLyly\\ShopBanHoaLyly\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAnwG8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-11T10:28:25.847Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

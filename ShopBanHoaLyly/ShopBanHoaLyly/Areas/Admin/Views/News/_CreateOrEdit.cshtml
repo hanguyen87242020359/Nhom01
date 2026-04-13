@@ -1,0 +1,174 @@
+@model ShopBanHoaLyly.Models.TinTuc
+@{
+    var isEdit = Model.MaTinTuc != 0;
+}
+<div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold">@(isEdit ? "Chỉnh sửa tin tức" : "Thêm tin tức mới")</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createOrEditNewsForm" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @if (isEdit)
+                    {
+                        <input type="hidden" name="MaTinTuc" value="@Model.MaTinTuc" />
+                        <input type="hidden" name="MaTaiKhoan" value="@Model.MaTaiKhoan" />
+                        <input type="hidden" name="NgayCapNhat" value="@Model.NgayCapNhat.ToString("yyyy-MM-ddTHH:mm:ss")" />
+                        <input type="hidden" name="HinhAnhDaiDien" value="@Model.HinhAnhDaiDien" />
+                    }
+                    <!-- Hàng 1: Hình ảnh và thông tin cơ bản -->
+                    <div class="row mb-4">
+                        <!-- Cột trái chứa hình ảnh đại diện lớn -->
+                        <div class="col-md-5">
+                            <div class="form-group form-group-default">
+                                <label>Hình ảnh đại diện</label>
+                                <input type="file" name="HinhAnhFile" class="form-control mb-3" accept="image/*" />
+                                <div class="text-danger" id="HinhAnhFileError"></div>
+                                <div class="image-preview-container mt-3 text-center">
+                                    @if (isEdit && !string.IsNullOrEmpty(Model.HinhAnhDaiDien))
+                                    {
+                                        <img src="~/images/blog/@Model.HinhAnhDaiDien" alt="@Model.TieuDe" id="imagePreview" 
+                                            class="img-fluid rounded shadow" style="max-height: 300px; width: 100%; object-fit: cover;" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/no-image.png" alt="No Image" id="imagePreview" 
+                                            class="img-fluid rounded shadow" style="max-height: 300px; width: 100%; object-fit: cover;" />
+                                    }
+                                </div>
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="checkbox" name="TrangThaiHienThi" id="trangThaiHienThi" value="true" @(Model.TrangThaiHienThi == true ? "checked" : "") />
+                                    <label class="form-check-label" for="trangThaiHienThi">
+                                        Hiển thị tin tức
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cột phải chứa thông tin cơ bản -->
+                        <div class="col-md-7">
+                            <div class="form-group form-group-default">
+                                <label>Tiêu đề</label>
+                                <input name="TieuDe" type="text" class="form-control" value="@Model.TieuDe" placeholder="Nhập tiêu đề tin tức" />
+                                <div class="text-danger" id="TieuDeError"></div>
+                            </div>
+                            <div class="form-group form-group-default mt-3">
+                                <label>Tóm tắt</label>
+                                <textarea name="TomTat" class="form-control" rows="8" placeholder="Nhập tóm tắt tin tức">@Model.TomTat</textarea>
+                                <div class="text-danger" id="TomTatError"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hàng 2: Nội dung bài viết (full width) -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group form-group-default">
+                                <label>Nội dung</label>
+                                <div id="editor">@Html.Raw(Model.NoiDung)</div>
+                                <input type="hidden" name="NoiDung" id="hiddenContent" />
+                                <div class="text-danger" id="NoiDungError"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" id="saveNewsBtn" class="btn btn-primary">
+                    @(isEdit ? "Lưu" : "Thêm")
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Xóa tất cả thông báo lỗi khi mở modal
+        $('#addNewsModal').on('shown.bs.modal', function () {
+            $('.text-danger').empty();
+        });
+        
+        // Preview ảnh khi chọn file
+        $('input[name="HinhAnhFile"]').on('change', function() {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        // Định nghĩa hàm xử lý submit form
+        function submitNewsForm() {
+            var form = $('#createOrEditNewsForm')[0];
+            var formData = new FormData(form);
+            
+            // Lấy nội dung từ CKEditor và đặt vào input ẩn
+            if (window.editor) {
+                var editorContent = window.editor.getData();
+                formData.set('NoiDung', editorContent);
+                $('#hiddenContent').val(editorContent);
+            } else {
+                console.error('Không thể tìm thấy đối tượng editor');
+            }
+            
+            var isEdit = formData.has('MaTinTuc') && formData.get('MaTinTuc') !== '';
+            var url = isEdit ? '/Admin/News/Edit/' + formData.get('MaTinTuc') : '/Admin/News/Create';
+            
+            // Hiển thị loading
+            var btn = $('#saveNewsBtn');
+            btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Đang xử lý...');
+            
+            // Submit qua AJAX
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    // Kích hoạt lại nút
+                    btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                    
+                    if (res.success) {
+                        $('#addNewsModal').modal('hide');
+                        location.reload();
+                    } else {
+                        if (res.errors) {
+                            // Hiển thị lỗi validation
+                            // Xóa tất cả thông báo lỗi cũ
+                            $('.text-danger').empty();
+                            
+                            for (var field in res.errors) {
+                                var errorContainer = $('#' + field + 'Error');
+                                if (errorContainer.length) {
+                                    // Chỉ hiển thị thông báo lỗi đầu tiên
+                                    errorContainer.text(res.errors[field].errors[0]);
+                                }
+                            }
+                        } else {
+                            alert(res.message || 'Có lỗi xảy ra');
+                        }
+                    }
+                },
+                error: function() {
+                    // Kích hoạt lại nút
+                    btn.prop('disabled', false).html(isEdit ? 'Lưu' : 'Thêm');
+                    
+                    alert('Có lỗi xảy ra khi gửi yêu cầu');
+                }
+            });
+        }
+        
+        // Gắn sự kiện cho nút lưu
+        $('#saveNewsBtn').off('click').on('click', submitNewsForm);
+    });
+</script> 

@@ -1,0 +1,317 @@
+﻿@model ShopBanHoaLyly.ViewModels.ProductCategoryViewModel
+@{
+    ViewData["Title"] = "Tìm kiếm";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    var keyword = ViewBag.Keyword as string;
+}
+
+<!-- Breadcrumb Area Start Here -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Tìm kiếm</h3>
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                        <li>Tìm kiếm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End Here -->
+<!-- Shop Main Area Start Here -->
+<div class="shop-main-area">
+    <div class="container container-default custom-area">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9 col-12 col-custom widget-mt">
+                <!--shop toolbar start-->
+                <div class="shop_toolbar_wrapper mb-30">
+                    <div class="shop_toolbar_btn">
+                        <button data-role="grid_3" type="button" class="active btn-grid-3" title="Lưới"><i class="fa fa-th"></i></button>
+                    </div>
+                    <div class="shop-select" style="min-width: 250px;">
+                        <form id="sortForm" class="d-flex flex-column w-100" asp-controller="Home" asp-action="Search" method="get">
+                            <div class="form-group">
+                                <select class="form-control nice-select w-100" name="sort" id="sortSelect">
+                                    <option value="1" selected="@(ViewBag.Sort == 1 ? "selected" : null)">Theo bảng chữ cái, A-Z</option>
+                                    <option value="2" selected="@(ViewBag.Sort == 2 ? "selected" : null)">Sắp xếp theo giá: thấp đến cao</option>
+                                    <option value="3" selected="@(ViewBag.Sort == 3 ? "selected" : null)">Sắp xếp theo giá: cao đến thấp</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="minPrice" value="@ViewBag.MinPrice" />
+                            <input type="hidden" name="maxPrice" value="@ViewBag.MaxPrice" />
+                            <input type="hidden" name="cId" value="@ViewBag.cId" />
+                            <input type="hidden" name="search" value="@ViewBag.Keyword" />
+                        </form>
+                    </div>
+                </div>
+                <!--shop toolbar end-->
+                @if (!Model.products.Any())
+                {
+                    <div class="alert alert-warning">Không tìm thấy sản phẩm nào phù hợp.</div>
+                }
+                else
+                {
+                    <div class="row shop_wrapper grid_3">
+                        @foreach (var product in Model.products)
+                        {
+                            var soldOut = (product.SoLuongCon ?? 0) == 0;
+                            <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area mb-4">
+                                <div class="product-item @(soldOut ? "sold-out" : "")">
+                                    <div class="single-product position-relative mr-0 ml-0">
+                                        <div class="product-image">
+                                            @if (soldOut)
+                                            {
+                                                <span class="badge-soldout">Hết hàng</span>
+                                            }
+                                            <a class="d-block" asp-controller="Home" asp-action="Details" asp-route-id="@product.MaSanPham">
+                                                <img src="~/images/product/@(product.HinhAnhs.FirstOrDefault()?.DuongDan ?? "default.jpg")" alt="@product.TenSanPham" class="product-image-1 w-100" width="285px" height="285px" />
+                                            </a>
+                                            <div class="add-action d-flex flex-column position-absolute">
+                                                <a href="javascript:void(0);" title="Thêm vào yêu thích" onclick="addToWishlist(@product.MaSanPham)"><i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Yêu thích"></i></a>
+                                                <a href="#exampleModalCenter"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModalCenter"
+                                                   data-name="@product.TenSanPham"
+                                                   data-price="@product.GiaBan?.ToString("C0")"
+                                                   data-image="@Url.Content("~/images/product/" + (product.HinhAnhs.FirstOrDefault()?.DuongDan ?? "default.jpg"))"
+                                                   data-desc="@product.MoTa"
+                                                   data-cart="@Url.Action("AddToCart", "Cart", new { id = product.MaSanPham })"
+                                                   data-wishlist="@Url.Action("AddToWishlist", "Wishlist", new { id = product.MaSanPham })"
+                                                   data-rating="@(product.DanhGia?.Any() == true ? Math.Round((double)(product.DanhGia.Average(r => r.SoSao) ?? 0)) : 0)"
+                                                   data-reviews="@(product.DanhGia?.Count ?? 0)"
+                                                   title="Xem nhanh">
+                                                    <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Xem nhanh"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-content">
+                                            <div class="product-title">
+                                                <h4 class="title-2">
+                                                    <a asp-controller="Home" asp-action="Details" asp-route-id="@product.MaSanPham">@product.TenSanPham</a>
+                                                </h4>
+                                            </div>
+                                            <div class="product-rating">
+                                                @{
+                                                    var rating = product.DanhGia?.Any() == true 
+                                                        ? Math.Round((double)(product.DanhGia.Average(r => r.SoSao) ?? 0)) 
+                                                        : 0;
+                                                    var reviews = product.DanhGia?.Count ?? 0;
+                                                    
+                                                    for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= rating)
+                                                        {
+                                                <i class="fa fa-star"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                <i class="fa fa-star-o"></i>
+                                                        }
+                                                    }
+                                                }
+                                                <span>(@reviews đánh giá)</span>
+                                            </div>
+                                            <div class="price-box">
+                                                <span class="regular-price">@product.GiaBan?.ToString("C0")</span>
+                                            </div>
+                                            @if (!soldOut)
+                                            {
+                                                <a href="javascript:void(0);" class="btn product-cart" onclick="addToCart(@product.MaSanPham)" style="width: 100%;
+                background-color: #E72463;
+                color: white;
+                padding: 8px;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+                position: absolute;
+                bottom: 0;">Thêm vào giỏ hàng</a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    @if ((ViewBag.TotalPages ?? 1) > 1)
+                    {
+                        <div class="row">
+                            <div class="col-sm-12 col-custom">
+                                <div class="toolbar-bottom">
+                                    <div class="pagination">
+                                        <ul>
+                                            @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+                                            {
+                                                if (i == (int)ViewBag.Page)
+                                                {
+                                                    <li class="current">@i</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a href="@Url.Action("Search", "Home", new { search = ViewBag.Keyword, cId = ViewBag.cId, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = ViewBag.Sort, page = i })">@i</a>
+                                                    </li>
+                                                }
+                                            }
+                                            @if ((int)ViewBag.Page < (int)ViewBag.TotalPages)
+                                            {
+                                                <li class="next">
+                                                    <a href="@Url.Action("Search", "Home", new { search = ViewBag.Keyword, cId = ViewBag.cId, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice, sort = ViewBag.Sort, page = (int)ViewBag.Page + 1 })">tiếp</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <p class="desc-content text-center text-sm-right mb-0">
+                                        Hiển thị @(((int)ViewBag.Page - 1) * (int)ViewBag.PageSize + 1)
+                                        -
+                                        @(Math.Min((int)ViewBag.Page * (int)ViewBag.PageSize, (int)ViewBag.TotalItems))
+                                        của @ViewBag.TotalItems kết quả
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-lg-3 col-12 col-custom">
+                <!-- Sidebar Widget Start -->
+                <aside class="sidebar_widget widget-mt">
+                    <div class="widget_inner">
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Tìm kiếm</h3>
+                            <div class="search-box">
+                                <form asp-controller="Home" asp-action="Search" method="get">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control text-start" name="search" value="@keyword" placeholder="Tìm trong cửa hàng" aria-label="Tìm trong cửa hàng" style="text-align:left;">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Bộ Lọc Giá</h3>
+                            <!-- Widget Menu Start -->
+                            <form asp-controller="Home" asp-action="Search" method="get">
+                                <div id="slider-range"></div>
+                                <button type="submit">Lọc</button>
+                                <input type="text" id="amount" />
+                                <!-- Input ẩn để gửi giá trị -->
+                                <input type="hidden" id="minPrice" name="minPrice" />
+                                <input type="hidden" id="maxPrice" name="maxPrice" />
+                                <input type="hidden" name="cId" value="@ViewBag.cId" />
+                                <input type="hidden" name="search" value="@ViewBag.Keyword" />
+                            </form>
+                            <!-- Widget Menu End -->
+                        </div>
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Danh mục</h3>
+                            <div class="sidebar-body">
+                                <ul class="sidebar-list">
+                                    <li><a href="@Url.Action("Search", "Home", new { search = ViewBag.Keyword, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice })">Tất cả sản phẩm</a></li>
+                                    @foreach (var category in Model.categories)
+                                    {
+                                        <li><a href="@Url.Action("Search", "Home", new { search = ViewBag.Keyword, cId = category.MaDanhMuc, minPrice = ViewBag.MinPrice, maxPrice = ViewBag.MaxPrice })">@category.TenDanhMuc</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <!-- Sidebar Widget End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shop Main Area End Here -->
+<!-- Modal -->
+<div class="modal flosun-modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="close close-button" data-bs-dismiss="modal" aria-label="Đóng">
+                <span class="close-icon" aria-hidden="true">x</span>
+            </button>
+            <div class="modal-body">
+                <div class="container-fluid custom-area">
+                    <div class="row">
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product-img">
+                                <img id="modalProductImage" class="w-100" src="" alt="Sản phẩm" width="400px" height="400px" />
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-custom">
+                            <div class="modal-product">
+                                <div class="product-content">
+                                    <div class="product-title">
+                                        <h4 class="title" id="modalProductName"></h4>
+                                    </div>
+                                    <div class="price-box">
+                                        <span class="regular-price" id="modalProductPrice"></span>
+                                    </div>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <span id="modalProductReview">1 đánh giá</span>
+                                    </div>
+                                    <p class="desc-content" id="modalProductDesc"></p>
+                                    <div class="quantity-with-btn">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" value="1" type="text">
+                                                <div class="dec qtybutton"><i class="fa fa-minus"></i></div>
+                                                <div class="inc qtybutton"><i class="fa fa-plus"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="add-to_btn">
+                                            <a class="btn product-cart button-icon flosun-button dark-btn" id="modalAddToCart" href="javascript:void(0);" data-id="">Thêm vào giỏ hàng</a>
+                                            <a class="btn flosun-button secondary-btn rounded-0"
+                                               id="modalAddToWishlist"
+                                               href="javascript:void(0);"
+                                               data-id=""
+                                               onclick="addToWishlistFromModal(this)">
+                                                Thêm vào yêu thích
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scroll to Top Start -->
+<a class="scroll-to-top" href="#">
+    <i class="lnr lnr-arrow-up"></i>
+</a>
+<!-- Scroll to Top End -->
+<div class="mt-no-text"></div>
+
+<script>
+    const minServer = @ViewBag.MinPrice;
+    const maxServer = @ViewBag.MaxPrice;
+</script>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#sortSelect').niceSelect(); // khởi tạo nếu chưa
+            $('#sortSelect').on('change', function () {
+                $('#sortForm').submit();
+            });
+        });
+    </script>
+}
